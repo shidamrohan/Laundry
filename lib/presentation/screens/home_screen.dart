@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'search_screen.dart';
 import 'all_services_screen.dart';
+import 'categories_screen.dart';
+import 'offers_screen.dart';
+import 'refer_earn_screen.dart';
+import 'subscriptions_screen.dart';
+import 'select_location_screen.dart';
+import 'select_service_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -175,21 +181,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 2),
-                Row(
-                  children: const [
-                    Icon(Icons.location_on, color: Color(0xFF0EA5A4), size: 14),
-                    SizedBox(width: 2),
-                    Text(
-                      'Home · 21 Brigade Rd',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SelectLocationScreen()),
+                    );
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(Icons.location_on, color: Color(0xFF0EA5A4), size: 14),
+                      SizedBox(width: 2),
+                      Text(
+                        'Home · 21 Brigade Rd',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 2),
-                    Icon(Icons.expand_more, color: Color(0xFF64748B), size: 14),
-                  ],
+                      SizedBox(width: 2),
+                      Icon(Icons.expand_more, color: Color(0xFF64748B), size: 14),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -353,7 +367,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const SelectServiceScreen()));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: const Color(0xFF0EA5A4),
@@ -398,11 +414,24 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Our Services',
-          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Our Services',
+              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            TextButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CategoriesScreen()),
+              ),
+              child: const Text('See all',
+                  style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 13, fontWeight: FontWeight.w600)),
+            ),
+          ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -423,7 +452,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildServiceItem(IconData icon, String label) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const AllServicesScreen()),
+      ),
       child: Column(
         children: [
           Expanded(
@@ -775,7 +807,26 @@ class _HomeScreenState extends State<HomeScreen> {
               final label = items[i]['label'] as String;
 
               return GestureDetector(
-                onTap: () => setState(() => _currentNavIndex = i),
+                onTap: () {
+                  if (i == 1) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SubscriptionsScreen()),
+                    );
+                  } else if (i == 3) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const OffersScreen()),
+                    );
+                  } else if (i == 4) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ReferEarnScreen()),
+                    );
+                  } else {
+                    setState(() => _currentNavIndex = i);
+                  }
+                },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
