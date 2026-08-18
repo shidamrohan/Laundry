@@ -339,7 +339,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [const Color(0xFF0EA5A4).withOpacity(0.1), const Color(0xFF7C3AED).withOpacity(0.1)], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                  gradient: LinearGradient(colors: [const Color(0xFF0EA5A4).withValues(alpha: 0.1), const Color(0xFF7C3AED).withValues(alpha: 0.1)], begin: Alignment.topLeft, end: Alignment.bottomRight),
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),

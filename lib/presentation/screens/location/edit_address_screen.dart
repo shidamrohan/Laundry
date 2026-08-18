@@ -64,7 +64,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             onPressed: () {},
             style: TextButton.styleFrom(
               foregroundColor: const Color(0xFFDC2626),
-              backgroundColor: const Color(0xFFDC2626).withOpacity(0.05),
+              backgroundColor: const Color(0xFFDC2626).withValues(alpha: 0.05),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             ),
@@ -108,7 +108,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                       bottom: -4,
                       child: Container(
                         width: 8, height: 8,
-                        decoration: BoxDecoration(color: Colors.black.withOpacity(0.2), shape: BoxShape.circle, boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 2)]),
+                        decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.2), shape: BoxShape.circle, boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 2)]),
                       ),
                     ),
                     const Icon(Icons.location_on, color: Color(0xFF0EA5A4), size: 48),
@@ -207,7 +207,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
       decoration: BoxDecoration(
         color: const Color(0xFFEFF6F6),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.3)), // solid border for now
+        border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.3)), // solid border for now
       ),
       child: const Text('+ Custom', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.bold)),
     );
@@ -355,12 +355,12 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                   clipBehavior: Clip.hardEdge,
                   child: Stack(
                     children: [
-                      Container(color: Colors.black.withOpacity(0.2)),
+                      Container(color: Colors.black.withValues(alpha: 0.2)),
                       Positioned(
                         top: 8, left: 8,
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                          decoration: BoxDecoration(color: Colors.black.withOpacity(0.4), borderRadius: BorderRadius.circular(6)),
+                          decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.4), borderRadius: BorderRadius.circular(6)),
                           child: const Text('Building', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                         ),
                       ),
@@ -369,7 +369,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                         child: Center(
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                            decoration: BoxDecoration(color: Colors.white.withOpacity(0.9), borderRadius: BorderRadius.circular(8)),
+                            decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.9), borderRadius: BorderRadius.circular(8)),
                             child: const Text('Replace', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 10, fontWeight: FontWeight.bold)),
                           ),
                         ),
@@ -385,7 +385,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                   decoration: BoxDecoration(
                     color: const Color(0xFFEFF6F6),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.4)), // Solid instead of dashed for simplicity
+                    border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.4)), // Solid instead of dashed for simplicity
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -434,7 +434,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             ),
             CupertinoSwitch(
               value: _isDefault,
-              activeColor: const Color(0xFF0EA5A4),
+              activeTrackColor: const Color(0xFF0EA5A4),
               onChanged: (val) => setState(() => _isDefault = val),
             ),
           ],

@@ -120,7 +120,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
               ),
               const SizedBox(width: 8),
               const Text(
-                'Orio Plus',
+                'VOSHIFY Plus',
                 style: TextStyle(
                   color: Color(0xFF0EA5A4),
                   fontSize: 20,
@@ -154,7 +154,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0EA5A4).withOpacity(0.3),
+            color: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
             blurRadius: 24,
             offset: const Offset(0, 8),
           ),
@@ -168,7 +168,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
             top: -60, right: -60,
             child: Container(
               width: 150, height: 150,
-              decoration: BoxDecoration(color: Colors.white.withOpacity(0.1), shape: BoxShape.circle),
+              decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.1), shape: BoxShape.circle),
             ),
           ),
           // Content
@@ -183,7 +183,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Icon(Icons.workspace_premium, color: Colors.white, size: 28),
@@ -191,7 +191,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Text('SAVE UP TO ₹2,400/YR', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 0.5)),
@@ -199,10 +199,10 @@ class _MembershipScreenState extends State<MembershipScreen> {
                 ],
               ),
               const SizedBox(height: 24),
-              const Text('Unlock Orio Plus', style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.w800, height: 1.1)),
+              const Text('Unlock VOSHIFY Plus', style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.w800, height: 1.1)),
               const SizedBox(height: 12),
               Text('Get exclusive benefits and save more on every order you place with India\'s cleanest laundry service.',
-                  style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 14, height: 1.4)),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 14, height: 1.4)),
             ],
           ),
         ],
@@ -327,10 +327,10 @@ class _MembershipScreenState extends State<MembershipScreen> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isFeatured ? const Color(0xFF0EA5A4) : (isActive ? const Color(0xFF0EA5A4).withOpacity(0.5) : const Color(0xFFE2E8E9)),
+          color: isFeatured ? const Color(0xFF0EA5A4) : (isActive ? const Color(0xFF0EA5A4).withValues(alpha: 0.5) : const Color(0xFFE2E8E9)),
           width: isFeatured ? 2 : 1,
         ),
-        boxShadow: isFeatured ? [BoxShadow(color: const Color(0xFF0EA5A4).withOpacity(0.15), blurRadius: 16)] : const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8)],
+        boxShadow: isFeatured ? [BoxShadow(color: const Color(0xFF0EA5A4).withValues(alpha: 0.15), blurRadius: 16)] : const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8)],
       ),
       child: Column(
         children: [
@@ -393,7 +393,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
         children: [
           Container(
             width: 32, height: 32,
-            decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withOpacity(0.1), shape: BoxShape.circle),
+            decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1), shape: BoxShape.circle),
             child: const Icon(Icons.check_circle, color: Color(0xFF0EA5A4), size: 20),
           ),
           const SizedBox(width: 16),
@@ -411,7 +411,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
       decoration: BoxDecoration(
         color: const Color(0xFFEFF6F6),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.1)),
+        border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1)),
       ),
       child: Row(
         children: [
@@ -465,7 +465,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [const Color(0xFFF7FAFB), const Color(0xFFF7FAFB).withOpacity(0.0)],
+          colors: [const Color(0xFFF7FAFB), const Color(0xFFF7FAFB).withValues(alpha: 0.0)],
         ),
       ),
       child: ElevatedButton(
@@ -474,7 +474,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
           backgroundColor: const Color(0xFF0EA5A4),
           foregroundColor: Colors.white,
           elevation: 8,
-          shadowColor: const Color(0xFF0EA5A4).withOpacity(0.5),
+          shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.5),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           padding: const EdgeInsets.symmetric(vertical: 20),
           minimumSize: const Size(double.infinity, 0),
@@ -482,7 +482,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Join Orio Plus — $ctaPrice', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text('Join VOSHIFY Plus — $ctaPrice', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(width: 12),
             const Icon(Icons.arrow_forward, size: 20),
           ],

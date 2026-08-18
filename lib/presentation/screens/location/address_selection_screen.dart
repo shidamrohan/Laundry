@@ -91,7 +91,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
                       decoration: BoxDecoration(
                         color: const Color(0xFF0EA5A4),
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.2), width: 4),
+                        border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.2), width: 4),
                       ),
                     ),
                     _buildDashedLine(),
@@ -100,7 +100,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
                       decoration: BoxDecoration(
                         color: const Color(0xFF7C3AED),
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFF7C3AED).withOpacity(0.2), width: 4),
+                        border: Border.all(color: const Color(0xFF7C3AED).withValues(alpha: 0.2), width: 4),
                       ),
                     ),
                   ],
@@ -211,7 +211,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
             ),
             CupertinoSwitch(
               value: _sameAsPickup,
-              activeColor: const Color(0xFF0EA5A4),
+              activeTrackColor: const Color(0xFF0EA5A4),
               onChanged: (val) => setState(() => _sameAsPickup = val),
             ),
           ],
@@ -295,7 +295,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
             child: TextButton(
               onPressed: () {},
               style: TextButton.styleFrom(
-                backgroundColor: const Color(0xFF0EA5A4).withOpacity(0.1),
+                backgroundColor: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
                 foregroundColor: const Color(0xFF0EA5A4),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 padding: const EdgeInsets.symmetric(vertical: 8),
@@ -377,16 +377,16 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black.withOpacity(0.2), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter))),
+              child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.2), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter))),
             ),
             Positioned(
               bottom: 12, left: 12,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: Colors.white.withOpacity(0.5)),
+                  border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
                 ),
                 child: Row(
                   children: [
@@ -420,7 +420,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
             backgroundColor: const Color(0xFF0EA5A4),
             foregroundColor: Colors.white,
             elevation: 8,
-            shadowColor: const Color(0xFF0EA5A4).withOpacity(0.4),
+            shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           ),

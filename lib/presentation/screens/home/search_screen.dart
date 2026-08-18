@@ -76,7 +76,7 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           // ── FIXED HEADER ──
           Container(
-            color: const Color(0xFF0B1220).withOpacity(0.95),
+            color: const Color(0xFF0B1220).withValues(alpha: 0.95),
             padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 12),
             child: Row(
               children: [
@@ -235,7 +235,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF1E293B),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: isActive
-                    ? [BoxShadow(color: const Color(0xFF0EA5A4).withOpacity(0.25), blurRadius: 8)]
+                    ? [BoxShadow(color: const Color(0xFF0EA5A4).withValues(alpha: 0.25), blurRadius: 8)]
                     : null,
               ),
               child: Row(
@@ -329,7 +329,7 @@ class _SearchScreenState extends State<SearchScreen> {
             decoration: BoxDecoration(
               color: const Color(0xFF0F172A),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.1)),
+              border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -379,14 +379,14 @@ class _SearchScreenState extends State<SearchScreen> {
                         ? Image.network(
                             s['image'] as String,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => Container(
+                            errorBuilder: (_, _, _) => Container(
                               color: const Color(0xFF1E293B),
                               child: const Icon(Icons.image_not_supported_outlined,
                                   color: Color(0xFF334155)),
                             ),
                           )
                         : Container(
-                            color: const Color(0xFF0EA5A4).withOpacity(0.12),
+                            color: const Color(0xFF0EA5A4).withValues(alpha: 0.12),
                             child: Icon(s['icon'] as IconData,
                                 color: const Color(0xFF0EA5A4), size: 30),
                           ),

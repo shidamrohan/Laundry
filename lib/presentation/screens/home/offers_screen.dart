@@ -163,7 +163,7 @@ class _OffersScreenState extends State<OffersScreen> {
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0EA5A4).withOpacity(0.2),
+            color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -175,7 +175,7 @@ class _OffersScreenState extends State<OffersScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(20),
             ),
             child: const Text('FLASH SALE LIVE',
@@ -186,7 +186,7 @@ class _OffersScreenState extends State<OffersScreen> {
               style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold, height: 1.2)),
           const SizedBox(height: 8),
           Text('Get flat 50% off on your first same-day delivery. Valid for next 2 hours.',
-              style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 13, height: 1.4)),
+              style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 13, height: 1.4)),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {},
@@ -194,7 +194,7 @@ class _OffersScreenState extends State<OffersScreen> {
               backgroundColor: Colors.white,
               foregroundColor: const Color(0xFF0EA5A4),
               elevation: 4,
-              shadowColor: Colors.black.withOpacity(0.2),
+              shadowColor: Colors.black.withValues(alpha: 0.2),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               minimumSize: Size.zero,
@@ -234,7 +234,7 @@ class _OffersScreenState extends State<OffersScreen> {
             width: 56,
             height: 56,
             decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.1),
+              color: iconColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, color: iconColor, size: 30),
@@ -252,7 +252,7 @@ class _OffersScreenState extends State<OffersScreen> {
                     const SizedBox(width: 8),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                      decoration: BoxDecoration(color: badgeColor.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+                      decoration: BoxDecoration(color: badgeColor.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
                       child: Text(badgeText.toUpperCase(), style: TextStyle(color: badgeColor, fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 0.5)),
                     ),
                   ],
@@ -289,7 +289,7 @@ class _OffersScreenState extends State<OffersScreen> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.3), width: 2),
+            border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.3), width: 2),
             boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
           ),
           child: Row(
@@ -299,7 +299,7 @@ class _OffersScreenState extends State<OffersScreen> {
                 width: 56,
                 height: 56,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFDC2626).withOpacity(0.1),
+                  color: const Color(0xFFDC2626).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Icon(Icons.timer, color: Color(0xFFDC2626), size: 30),
@@ -317,7 +317,7 @@ class _OffersScreenState extends State<OffersScreen> {
                         const SizedBox(width: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                          decoration: BoxDecoration(color: const Color(0xFFDC2626).withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+                          decoration: BoxDecoration(color: const Color(0xFFDC2626).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: const [
@@ -375,7 +375,7 @@ class _OffersScreenState extends State<OffersScreen> {
         color: const Color(0xFFEFF6F6),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: const Color(0xFF7C3AED).withOpacity(0.2), // dashed-like visual style in HTML
+          color: const Color(0xFF7C3AED).withValues(alpha: 0.2), // dashed-like visual style in HTML
           width: 2,
         ), // Flutter doesn't have native dashed borders, so we use a solid tinted border here
       ),
@@ -386,7 +386,7 @@ class _OffersScreenState extends State<OffersScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                Text('ORIO GOLD', style: TextStyle(color: Color(0xFF7C3AED), fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
+                Text('VOSHIFY GOLD', style: TextStyle(color: Color(0xFF7C3AED), fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
                 SizedBox(height: 4),
                 Text('Unlock 15 more offers', style: TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.bold)),
                 SizedBox(height: 2),
@@ -406,7 +406,7 @@ class _OffersScreenState extends State<OffersScreen> {
               backgroundColor: const Color(0xFF7C3AED),
               foregroundColor: Colors.white,
               elevation: 4,
-              shadowColor: const Color(0xFF7C3AED).withOpacity(0.4),
+              shadowColor: const Color(0xFF7C3AED).withValues(alpha: 0.4),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               minimumSize: Size.zero,
@@ -451,14 +451,14 @@ class _OffersScreenState extends State<OffersScreen> {
         children: [
           Icon(
             icon,
-            color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B).withOpacity(0.6),
+            color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B).withValues(alpha: 0.6),
             size: 24,
           ),
           const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
-              color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B).withOpacity(0.6),
+              color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B).withValues(alpha: 0.6),
               fontSize: 10,
               fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
             ),

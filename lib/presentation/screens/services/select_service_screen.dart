@@ -390,7 +390,7 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
                   backgroundColor: const Color(0xFF0EA5A4),
                   foregroundColor: Colors.white,
                   elevation: 8,
-                  shadowColor: const Color(0xFF0EA5A4).withOpacity(0.4),
+                  shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                   disabledBackgroundColor: const Color(0xFFE2E8E9),

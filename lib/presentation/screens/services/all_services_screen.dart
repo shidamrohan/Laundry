@@ -90,11 +90,11 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
   Widget _buildStickyHeader(double topPadding) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.95),
+        color: Colors.white.withValues(alpha: 0.95),
         border: const Border(bottom: BorderSide(color: Color(0xFFE2E8E9))),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0F172A).withOpacity(0.04),
+            color: const Color(0xFF0F172A).withValues(alpha: 0.04),
             blurRadius: 12,
             offset: const Offset(0, 2),
           )
@@ -144,7 +144,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                         color: _isGridView ? const Color(0xFF0EA5A4) : const Color(0xFFEFF6F6),
                         shape: BoxShape.circle,
                         boxShadow: _isGridView
-                            ? [BoxShadow(color: const Color(0xFF0EA5A4).withOpacity(0.25), blurRadius: 8)]
+                            ? [BoxShadow(color: const Color(0xFF0EA5A4).withValues(alpha: 0.25), blurRadius: 8)]
                             : null,
                       ),
                       child: Icon(Icons.grid_view,
@@ -162,7 +162,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                         color: !_isGridView ? const Color(0xFF0EA5A4) : const Color(0xFFEFF6F6),
                         shape: BoxShape.circle,
                         boxShadow: !_isGridView
-                            ? [BoxShadow(color: const Color(0xFF0EA5A4).withOpacity(0.25), blurRadius: 8)]
+                            ? [BoxShadow(color: const Color(0xFF0EA5A4).withValues(alpha: 0.25), blurRadius: 8)]
                             : null,
                       ),
                       child: Icon(Icons.view_list,
@@ -238,7 +238,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 itemCount: _categories.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 8),
+                separatorBuilder: (_, _) => const SizedBox(width: 8),
                 itemBuilder: (_, i) {
                   final isActive = _activeCategory == i;
                   return GestureDetector(
@@ -319,10 +319,10 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.6)),
+        border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.6)),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0F172A).withOpacity(0.06),
+            color: const Color(0xFF0F172A).withValues(alpha: 0.06),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -345,7 +345,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                   Image.network(
                     s['image'] as String,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(color: const Color(0xFFEFF6F6)),
+                    errorBuilder: (_, _, _) => Container(color: const Color(0xFFEFF6F6)),
                   ),
                   // Badge
                   if (s['badge'] != null)
@@ -354,7 +354,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0EA5A4).withOpacity(0.9),
+                          color: const Color(0xFF0EA5A4).withValues(alpha: 0.9),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(s['badge'] as String,
@@ -373,7 +373,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                         width: 32,
                         height: 32,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.85),
+                          color: Colors.white.withValues(alpha: 0.85),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -468,7 +468,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                             border: Border.all(
                               color: isAdded
                                   ? const Color(0xFF16A34A)
-                                  : const Color(0xFF0EA5A4).withOpacity(0.2),
+                                  : const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                             ),
                           ),
                           child: Icon(
@@ -504,10 +504,10 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.6)),
+        border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.6)),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0F172A).withOpacity(0.05),
+            color: const Color(0xFF0F172A).withValues(alpha: 0.05),
             blurRadius: 12,
             offset: const Offset(0, 2),
           )
@@ -524,14 +524,14 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
               fit: StackFit.expand,
               children: [
                 Image.network(s['image'] as String, fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(color: const Color(0xFFEFF6F6))),
+                    errorBuilder: (_, _, _) => Container(color: const Color(0xFFEFF6F6))),
                 if (s['badge'] != null)
                   Positioned(
                     top: 6, left: 6,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF0EA5A4).withOpacity(0.9),
+                        color: const Color(0xFF0EA5A4).withValues(alpha: 0.9),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(s['badge'] as String,
@@ -620,7 +620,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                               border: Border.all(
                                 color: isAdded
                                     ? const Color(0xFF16A34A)
-                                    : const Color(0xFF0EA5A4).withOpacity(0.2),
+                                    : const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                               ),
                             ),
                             child: Icon(isAdded ? Icons.check : Icons.add,
@@ -647,10 +647,10 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.6)),
+          border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.6)),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF0F172A).withOpacity(0.04),
+              color: const Color(0xFF0F172A).withValues(alpha: 0.04),
               blurRadius: 12,
               offset: const Offset(0, 2),
             ),
@@ -738,7 +738,7 @@ class _ShimmerBoxState extends State<_ShimmerBox> with SingleTickerProviderState
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _anim,
-      builder: (_, __) {
+      builder: (_, _) {
         return Container(
           height: widget.height,
           width: widget.width,

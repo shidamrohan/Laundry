@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/presentation/widgets/skeleton_loader.dart';
 import 'package:laundry/presentation/screens/booking/select_location_screen.dart';
+import 'package:laundry/presentation/screens/home/offers_screen.dart';
 import 'package:laundry/presentation/screens/home/search_screen.dart';
+import 'package:laundry/presentation/screens/booking/your_orders_screen.dart';
+import 'package:laundry/presentation/screens/booking/profile_screen.dart';
 import 'package:laundry/presentation/screens/services/all_services_screen.dart';
 import 'package:laundry/presentation/screens/services/categories_screen.dart';
-import 'package:laundry/presentation/screens/home/offers_screen.dart';
-import 'package:laundry/presentation/screens/profile/refer_earn_screen.dart';
-import 'package:laundry/presentation/screens/profile/subscriptions_screen.dart';
-import 'package:laundry/presentation/screens/location/location_screen.dart';
 import 'package:laundry/presentation/screens/services/select_service_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,8 +17,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentBanner = 0;
+  final int _currentBanner = 0;
   int _currentNavIndex = 0;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   final List<Map<String, dynamic>> _services = [
     {'icon': Icons.local_laundry_service, 'label': 'Wash & Fold'},
@@ -58,7 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           // --- SCROLLABLE CONTENT ---
-          CustomScrollView(
+          _isLoading 
+            ? const Positioned.fill(child: HomeSkeletonLoader())
+            : CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               // Top space for header
@@ -97,11 +115,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
-              // --- ORIO PLUS BANNER ---
+              // --- VOSHIFY PLUS BANNER ---
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: _buildOrioPlus(),
+                  child: _buildVOSHIFYPlus(),
                 ),
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 24)),
@@ -153,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF0EA5A4).withOpacity(0.2),
+                  color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                   blurRadius: 12,
                 )
               ],
@@ -214,9 +232,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: const Color(0xFF0EA5A4).withOpacity(0.1),
+              color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.2)),
+              border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.2)),
             ),
             child: const Text(
               '₹450',
@@ -309,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0EA5A4).withOpacity(0.15),
+            color: const Color(0xFF0EA5A4).withValues(alpha: 0.15),
             blurRadius: 24,
             spreadRadius: 0,
           )
@@ -324,7 +342,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 96, height: 96,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.12),
+                color: Colors.white.withValues(alpha: 0.12),
               ),
             ),
           ),
@@ -334,7 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 120, height: 120,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
               ),
             ),
           ),
@@ -342,7 +360,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // Bubble icon decoration
           Positioned(
             right: -8, bottom: -8,
-            child: Icon(Icons.bubble_chart, size: 80, color: Colors.white.withOpacity(0.3)),
+            child: Icon(Icons.bubble_chart, size: 80, color: Colors.white.withValues(alpha: 0.3)),
           ),
 
           // Content
@@ -364,7 +382,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 6),
                 Text(
                   'Free pickup on your first order',
-                  style: TextStyle(color: Colors.white.withOpacity(0.85), fontSize: 13, fontWeight: FontWeight.w500),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.85), fontSize: 13, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
@@ -399,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: i == _currentBanner ? 20 : 6,
                   height: 6,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(i == _currentBanner ? 1.0 : 0.4),
+                    color: Colors.white.withValues(alpha: i == _currentBanner ? 1.0 : 0.4),
                     borderRadius: BorderRadius.circular(3),
                   ),
                 );
@@ -555,7 +573,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Image.network(
                   imageUrl,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Container(
+                  errorBuilder: (_, _, _) => Container(
                     color: const Color(0xFF1E293B),
                     child: const Icon(Icons.image_not_supported_outlined, color: Color(0xFF334155)),
                   ),
@@ -566,9 +584,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.55),
+                      color: Colors.black.withValues(alpha: 0.55),
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.white.withOpacity(0.1)),
+                      border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -623,7 +641,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildOrioPlus() {
+  Widget _buildVOSHIFYPlus() {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -634,7 +652,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
-          BoxShadow(color: const Color(0xFF7C3AED).withOpacity(0.25), blurRadius: 20)
+          BoxShadow(color: const Color(0xFF7C3AED).withValues(alpha: 0.25), blurRadius: 20)
         ],
       ),
       child: Stack(
@@ -645,7 +663,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 80, height: 80,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
               ),
             ),
           ),
@@ -659,13 +677,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: const [
                         Icon(Icons.workspace_premium, color: Colors.white, size: 20),
                         SizedBox(width: 8),
-                        Text('Orio Plus', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text('VOSHIFY Plus', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                       ],
                     ),
                     const SizedBox(height: 4),
                     Text(
                       'Save 20% on every order',
-                      style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 12, fontWeight: FontWeight.w500),
+                      style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),
@@ -758,10 +776,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFF0B1220),
-        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.08))),
+        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.08))),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 16, offset: const Offset(0, -4)),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 16, offset: const Offset(0, -4)),
         ],
       ),
       child: SafeArea(
@@ -791,7 +809,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         border: Border.all(color: const Color(0xFF0B1220), width: 3),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF0EA5A4).withOpacity(0.4),
+                            color: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
                             blurRadius: 16,
                             spreadRadius: 0,
                           )
@@ -812,7 +830,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (i == 1) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const SubscriptionsScreen()),
+                      MaterialPageRoute(builder: (_) => const YourOrdersScreen()),
                     );
                   } else if (i == 3) {
                     Navigator.push(
@@ -822,7 +840,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else if (i == 4) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const ReferEarnScreen()),
+                      MaterialPageRoute(builder: (_) => const ProfileScreen()),
                     );
                   } else {
                     setState(() => _currentNavIndex = i);
@@ -832,7 +850,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   duration: const Duration(milliseconds: 200),
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   decoration: BoxDecoration(
-                    color: isActive ? const Color(0xFF0EA5A4).withOpacity(0.1) : Colors.transparent,
+                    color: isActive ? const Color(0xFF0EA5A4).withValues(alpha: 0.1) : Colors.transparent,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(

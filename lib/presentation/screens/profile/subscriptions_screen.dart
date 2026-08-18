@@ -33,7 +33,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
                     children: const [
                       Text('Laundry on autopilot.', style: TextStyle(color: Color(0xFF0F172A), fontSize: 28, fontWeight: FontWeight.bold, height: 1.2)),
                       SizedBox(height: 4),
-                      Text('Set your schedule and let Orio handle the rest every single week.', style: TextStyle(color: Color(0xFF64748B), fontSize: 14)),
+                      Text('Set your schedule and let VOSHIFY handle the rest every single week.', style: TextStyle(color: Color(0xFF64748B), fontSize: 14)),
                     ],
                   ),
                 ),
@@ -159,7 +159,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: Colors.white.withOpacity(0.9),
+      color: Colors.white.withValues(alpha: 0.9),
       padding: EdgeInsets.fromLTRB(4, topPadding, 4, 0),
       height: topPadding + 64,
       child: Row(
@@ -352,7 +352,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
               const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                decoration: BoxDecoration(color: const Color(0xFF16A34A).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(color: const Color(0xFF16A34A).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: const [
@@ -498,7 +498,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
             children: [
               const Text('Refer & Get Free Bag', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 4),
-              Text('Invite friends to Orio and get 1 extra bag credit for every successful referral.', style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 13, height: 1.4)),
+              Text('Invite friends to VOSHIFY and get 1 extra bag credit for every successful referral.', style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 13, height: 1.4)),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {},

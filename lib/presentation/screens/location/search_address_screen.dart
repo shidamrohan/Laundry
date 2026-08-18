@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/core/services/location_service.dart';
+import 'package:laundry/presentation/screens/location/add_address_screen.dart';
 
 class SearchAddressScreen extends StatefulWidget {
   const SearchAddressScreen({super.key});
@@ -8,7 +10,8 @@ class SearchAddressScreen extends StatefulWidget {
 }
 
 class _SearchAddressScreenState extends State<SearchAddressScreen> {
-  final TextEditingController _searchController = TextEditingController(text: 'Brigade');
+  final TextEditingController _searchController = TextEditingController();
+  bool _isFetchingLocation = false;
 
   @override
   void dispose() {
@@ -19,7 +22,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
   void _showDeleteModal() {
     showDialog(
       context: context,
-      barrierColor: const Color(0xFF0F172A).withOpacity(0.6),
+      barrierColor: const Color(0xFF0F172A).withValues(alpha: 0.6),
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -31,7 +34,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
               children: [
                 Container(
                   width: 64, height: 64,
-                  decoration: BoxDecoration(color: const Color(0xFFDC2626).withOpacity(0.1), shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: const Color(0xFFDC2626).withValues(alpha: 0.1), shape: BoxShape.circle),
                   child: const Icon(Icons.delete, color: Color(0xFFDC2626), size: 32),
                 ),
                 const SizedBox(height: 24),
@@ -59,7 +62,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       elevation: 4,
-                      shadowColor: const Color(0xFFDC2626).withOpacity(0.4),
+                      shadowColor: const Color(0xFFDC2626).withValues(alpha: 0.4),
                     ),
                     child: const Text('Delete', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   ),
@@ -166,7 +169,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
 
   Widget _buildCurrentLocationRow() {
     return GestureDetector(
-      onTap: () {},
+      onTap: _fetchLocation,
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -178,8 +181,10 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
           children: [
             Container(
               width: 40, height: 40,
-              decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withOpacity(0.1), shape: BoxShape.circle),
-              child: const Icon(Icons.my_location, color: Color(0xFF0EA5A4), size: 20),
+              decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1), shape: BoxShape.circle),
+              child: _isFetchingLocation 
+                  ? const Padding(padding: EdgeInsets.all(10.0), child: CircularProgressIndicator(strokeWidth: 2, color: Color(0xFF0EA5A4)))
+                  : const Icon(Icons.my_location, color: Color(0xFF0EA5A4), size: 20),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -192,7 +197,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
                       const SizedBox(width: 8),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                        decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+                        decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
                         child: const Text('PRECISE', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
                       ),
                     ],
@@ -207,6 +212,35 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _fetchLocation() async {
+    setState(() => _isFetchingLocation = true);
+    try {
+      final position = await LocationService.getCurrentPosition();
+      if (position != null) {
+        final address = await LocationService.getAddressFromCoordinates(position.latitude, position.longitude);
+        if (mounted && address != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Location found: $address')),
+          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AddAddressScreen()), // Passed successfully!
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isFetchingLocation = false);
+      }
+    }
   }
 
   Widget _buildSearchResults() {
@@ -282,7 +316,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                               decoration: BoxDecoration(
-                                color: isSaved ? const Color(0xFF0EA5A4).withOpacity(0.1) : const Color(0xFFEFF6F6),
+                                color: isSaved ? const Color(0xFF0EA5A4).withValues(alpha: 0.1) : const Color(0xFFEFF6F6),
                                 border: isSaved ? null : Border.all(color: const Color(0xFFE2E8E9)),
                                 borderRadius: BorderRadius.circular(6),
                               ),
@@ -329,7 +363,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black.withOpacity(0.6), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter))),
+              child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.6), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter))),
             ),
             Positioned(
               bottom: 16, left: 16,

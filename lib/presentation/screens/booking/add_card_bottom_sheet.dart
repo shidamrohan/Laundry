@@ -197,7 +197,7 @@ class _AddCardBottomSheetState extends State<AddCardBottomSheet> {
                   ],
                 ),
               ),
-              const Text('Orio', style: TextStyle(color: Colors.white, fontSize: 20, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, letterSpacing: -0.5)),
+              const Text('VOSHIFY', style: TextStyle(color: Colors.white, fontSize: 20, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, letterSpacing: -0.5)),
             ],
           ),
           const SizedBox(height: 32),
@@ -303,7 +303,7 @@ class _AddCardBottomSheetState extends State<AddCardBottomSheet> {
             ),
             CupertinoSwitch(
               value: _saveCard,
-              activeColor: const Color(0xFF0EA5A4),
+              activeTrackColor: const Color(0xFF0EA5A4),
               onChanged: (val) => setState(() => _saveCard = val),
             ),
           ],

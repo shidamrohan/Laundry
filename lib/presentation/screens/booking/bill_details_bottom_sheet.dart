@@ -81,7 +81,7 @@ class BillDetailsBottomSheet extends StatelessWidget {
                   
                   const SizedBox(height: 24),
                   
-                  _buildSavingRow(Icons.confirmation_number, 'Coupon (ORIO150)', '−₹150'),
+                  _buildSavingRow(Icons.confirmation_number, 'Coupon (VOSHIFY150)', '−₹150'),
                   const SizedBox(height: 16),
                   _buildSavingRow(Icons.account_balance_wallet, 'Wallet credit', '−₹100'),
                   

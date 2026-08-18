@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/presentation/widgets/skeleton_loader.dart';
 
 class YourOrdersScreen extends StatefulWidget {
   const YourOrdersScreen({super.key});
@@ -10,8 +11,24 @@ class YourOrdersScreen extends StatefulWidget {
 class _YourOrdersScreenState extends State<YourOrdersScreen> {
   String _selectedFilter = 'All';
   int _steamIronRating = 5; // pre-filled 5 stars
+  bool _isLoading = true;
 
   final List<String> _filters = ['All', 'Active', 'Completed', 'Cancelled'];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    await Future.delayed(const Duration(seconds: 1, milliseconds: 500));
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   static const _primary = Color(0xFF0EA5A4);
 
@@ -30,29 +47,24 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _background,
-      body: Stack(
+      body: Column(
         children: [
-          Column(
-            children: [
-              _buildAppBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 100),
-                  child: Column(
-                    children: [
-                      _buildSearchBar(),
-                      const SizedBox(height: 16),
-                      _buildFilterChips(),
-                      const SizedBox(height: 20),
-                      _buildOrdersList(),
-                    ],
-                  ),
-                ),
+          _buildAppBar(),
+          Expanded(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 40),
+              child: Column(
+                children: [
+                  _buildSearchBar(),
+                  const SizedBox(height: 16),
+                  _buildFilterChips(),
+                  const SizedBox(height: 20),
+                  _isLoading ? _buildOrdersSkeleton() : _buildOrdersList(),
+                ],
               ),
-            ],
+            ),
           ),
-          Positioned(bottom: 0, left: 0, right: 0, child: _buildBottomNav()),
         ],
       ),
     );
@@ -155,6 +167,15 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
     );
   }
 
+  Widget _buildOrdersSkeleton() {
+    return Column(
+      children: List.generate(3, (index) => const Padding(
+        padding: EdgeInsets.only(bottom: 16),
+        child: SkeletonContainer(width: double.infinity, height: 180, borderRadius: 20),
+      )),
+    );
+  }
+
   Widget _buildOrdersList() {
     return Column(
       children: [
@@ -176,7 +197,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
     return _OrderCard(
       icon: Icons.local_laundry_service,
       title: 'Wash & Fold',
-      subtitle: 'Orio Express · Koramangala',
+      subtitle: 'VOSHIFY Express · Koramangala',
       statusLabel: 'Delivered',
       statusColor: _success,
       statusBgColor: const Color(0x1A16A34A),
@@ -236,7 +257,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
                         children: const [
                           Text('Dry Cleaning', style: TextStyle(color: _textPrimary, fontSize: 18, fontWeight: FontWeight.w600)),
                           SizedBox(height: 2),
-                          Text('Orio Premium · Indiranagar', style: TextStyle(color: _textSecondary, fontSize: 14)),
+                          Text('VOSHIFY Premium · Indiranagar', style: TextStyle(color: _textSecondary, fontSize: 14)),
                         ],
                       ),
                     ),
@@ -292,7 +313,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
     return _OrderCard(
       icon: Icons.iron,
       title: 'Steam Iron',
-      subtitle: 'Orio Express · HSR Layout',
+      subtitle: 'VOSHIFY Express · HSR Layout',
       statusLabel: 'Delivered',
       statusColor: _success,
       statusBgColor: const Color(0x1A16A34A),
@@ -345,7 +366,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
       child: _OrderCard(
         icon: Icons.checkroom,
         title: 'Shoe Spa',
-        subtitle: 'Orio Express · Koramangala',
+        subtitle: 'VOSHIFY Express · Koramangala',
         statusLabel: 'Cancelled',
         statusColor: _error,
         statusBgColor: const Color(0x1ADC2626),
@@ -437,55 +458,6 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
         decoration: BoxDecoration(
           color: _surfaceAlt,
           borderRadius: BorderRadius.circular(radius),
-        ),
-      ),
-    );
-  }
-
-  // --- Bottom Nav ---
-  Widget _buildBottomNav() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: _surface,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        boxShadow: [BoxShadow(color: Color(0x1A0F172A), blurRadius: 24, offset: Offset(0, -8))],
-        border: Border(top: BorderSide(color: _divider)),
-      ),
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.home_outlined, Icons.home, 'Home', false),
-              _buildNavItem(Icons.receipt_long_outlined, Icons.receipt_long, 'Orders', true),
-              _buildNavItem(Icons.support_agent_outlined, Icons.support_agent, 'Support', false),
-              _buildNavItem(Icons.person_outline, Icons.person, 'Profile', false),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData outlinedIcon, IconData filledIcon, String label, bool isActive) {
-    return GestureDetector(
-      onTap: () {},
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: isActive ? const EdgeInsets.symmetric(horizontal: 16, vertical: 6) : const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        decoration: BoxDecoration(
-          color: isActive ? _surfaceAlt : Colors.transparent,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(isActive ? filledIcon : outlinedIcon, color: isActive ? _primary : _textSecondary, size: 24),
-            const SizedBox(height: 2),
-            Text(label, style: TextStyle(color: isActive ? _primary : _textSecondary, fontSize: 13, fontWeight: FontWeight.w600)),
-          ],
         ),
       ),
     );

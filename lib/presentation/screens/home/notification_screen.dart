@@ -93,7 +93,7 @@ class _NotificationScreenState extends State<NotificationScreen>
             left: size.width / 2 - size.width * 0.7,
             child: AnimatedBuilder(
               animation: _glowController,
-              builder: (_, __) {
+              builder: (_, _) {
                 final scale = 1.0 + _glowController.value * 0.1;
                 final opacity = 0.04 + _glowController.value * 0.04;
                 return Transform.scale(
@@ -103,7 +103,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                     height: size.width * 1.4,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: const Color(0xFF0EA5A4).withOpacity(opacity),
+                      color: const Color(0xFF0EA5A4).withValues(alpha: opacity),
                     ),
                   ),
                 );
@@ -146,10 +146,10 @@ class _NotificationScreenState extends State<NotificationScreen>
                                     height: 180,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: const Color(0xFF0EA5A4).withOpacity(0.15),
+                                      color: const Color(0xFF0EA5A4).withValues(alpha: 0.15),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: const Color(0xFF0EA5A4).withOpacity(0.15),
+                                          color: const Color(0xFF0EA5A4).withValues(alpha: 0.15),
                                           blurRadius: 60,
                                           spreadRadius: 30,
                                         )
@@ -159,7 +159,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                   Image.network(
                                     'https://lh3.googleusercontent.com/aida/AP1WRLuA1gChLBYvQbnsBosFn2uXGXf7CtU_5MfBYr9-ssb6u9hQtmzX222e7zcibFQVtS7iS1XeL4tZ9iscGRIj7Jsk0ZDKzMPuDD9j7dkQoNX9esmI8bbyb4x146ubxTPlxZpOYmkhIJyBH2Q0aqRjEnIx0S2bhFN4NcSleLEahIwYFlak0v7AmJnB1jB7O-jfaYA-m0LoCHLrvdWVeURW9EbGUKw5Zuby8sjtmEp869SHS7wreYfrao7BVfmm',
                                     fit: BoxFit.contain,
-                                    errorBuilder: (_, __, ___) => const Icon(
+                                    errorBuilder: (_, _, _) => const Icon(
                                       Icons.notifications_active,
                                       size: 100,
                                       color: Color(0xFF0EA5A4),
@@ -230,7 +230,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                   borderRadius: BorderRadius.circular(28),
                                 ),
                                 elevation: 8,
-                                shadowColor: const Color(0xFF0EA5A4).withOpacity(0.3),
+                                shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
                               ),
                               child: _buildButtonContent(),
                             ),
@@ -279,7 +279,7 @@ class _NotificationScreenState extends State<NotificationScreen>
               height: 20,
               child: CircularProgressIndicator(
                 strokeWidth: 2.5,
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
               ),
             ),
             const SizedBox(width: 10),
@@ -338,8 +338,8 @@ class _NotificationScreenState extends State<NotificationScreen>
             height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: const Color(0xFF0EA5A4).withOpacity(0.12),
-              border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.2)),
+              color: const Color(0xFF0EA5A4).withValues(alpha: 0.12),
+              border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.2)),
             ),
             child: Icon(icon, color: const Color(0xFF0EA5A4), size: 20),
           ),
@@ -360,7 +360,7 @@ class _NotificationScreenState extends State<NotificationScreen>
   Widget _buildBubble(AnimationController ctrl, double left, double top, double sz) {
     return AnimatedBuilder(
       animation: ctrl,
-      builder: (_, __) {
+      builder: (_, _) {
         final dx = sin(ctrl.value * pi * 2) * 10.0;
         final dy = sin(ctrl.value * pi * 2 * 0.66) * (-20.0);
         return Positioned(
@@ -374,11 +374,11 @@ class _NotificationScreenState extends State<NotificationScreen>
               gradient: RadialGradient(
                 center: const Alignment(-0.4, -0.4),
                 colors: [
-                  const Color(0xFF0EA5A4).withOpacity(0.4),
+                  const Color(0xFF0EA5A4).withValues(alpha: 0.4),
                   Colors.transparent,
                 ],
               ),
-              border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.2)),
+              border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.2)),
             ),
           ),
         );

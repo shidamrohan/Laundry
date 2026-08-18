@@ -142,7 +142,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
                       _buildFaqCard(
                         index: 3,
                         question: 'Is my wallet secure?',
-                        answer: 'Yes, your Orio Wallet is secured with industry-standard encryption and requires OTP verification for significant changes.',
+                        answer: 'Yes, your VOSHIFY Wallet is secured with industry-standard encryption and requires OTP verification for significant changes.',
                       ),
                     ],
                   ),

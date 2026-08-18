@@ -132,7 +132,7 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0EA5A4).withOpacity(0.2),
+            color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -144,11 +144,11 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
           // Bubbles
           Positioned(
             top: -20, right: -20,
-            child: Container(width: 120, height: 120, decoration: BoxDecoration(color: Colors.white.withOpacity(0.1), shape: BoxShape.circle)),
+            child: Container(width: 120, height: 120, decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.1), shape: BoxShape.circle)),
           ),
           Positioned(
             bottom: -20, left: -20,
-            child: Container(width: 90, height: 90, decoration: BoxDecoration(color: const Color(0xFF0B7F7E).withOpacity(0.2), shape: BoxShape.circle)),
+            child: Container(width: 90, height: 90, decoration: BoxDecoration(color: const Color(0xFF0B7F7E).withValues(alpha: 0.2), shape: BoxShape.circle)),
           ),
           // Content
           Column(
@@ -156,14 +156,14 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
               Image.network(
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuBEnEqgzajrvLBpG7nEJw4CF4-sfvVAOVzMOTZTBmyrVS2OX720bigtsFlbZYizs44CJJ4_JovTJGaz36NDNBQfCYrGERC9-C9tEfjCEQLpLUUC0jiaIsDSbBzXKtQ-HxnnujHF6EN3vEexeAg3RcCa_gjhC9ffCTuP7Di_rvPVCWMWEWYSIckzpiy_Kn57O7cV5tTbxPODp0WeNbtdjXRQRy74leJTh3a-ON8Z8EFOS6qiESgIv23iJavvj35SOErcr4TMQfQ4uNlX',
                 height: 140,
-                errorBuilder: (_, __, ___) => const SizedBox(height: 140, child: Icon(Icons.group, size: 80, color: Colors.white)),
+                errorBuilder: (_, _, _) => const SizedBox(height: 140, child: Icon(Icons.group, size: 80, color: Colors.white)),
               ),
               const SizedBox(height: 16),
               const Text('Give ₹100, Get ₹100',
                   style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold, letterSpacing: -0.5)),
               const SizedBox(height: 8),
-              Text('Invite friends to Orio and you both earn.',
-                  style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 15)),
+              Text('Invite friends to VOSHIFY and you both earn.',
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 15)),
             ],
           ),
         ],
@@ -263,7 +263,7 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
                   duration: const Duration(milliseconds: 200),
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   decoration: BoxDecoration(
-                    color: _isCopied ? const Color(0xFF16A34A).withOpacity(0.1) : const Color(0xFFEFF6F6),
+                    color: _isCopied ? const Color(0xFF16A34A).withValues(alpha: 0.1) : const Color(0xFFEFF6F6),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -286,7 +286,7 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
             backgroundColor: const Color(0xFF0EA5A4),
             foregroundColor: Colors.white,
             elevation: 4,
-            shadowColor: const Color(0xFF0EA5A4).withOpacity(0.4),
+            shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             padding: const EdgeInsets.symmetric(vertical: 16),
             minimumSize: const Size(double.infinity, 0),
@@ -349,7 +349,7 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
             const SizedBox(width: 12),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-              decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
+              decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(12)),
               child: const Text('3/5 Complete', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 11, fontWeight: FontWeight.bold)),
             ),
           ],
@@ -483,7 +483,7 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: isJoined ? const Color(0xFF16A34A).withOpacity(0.1) : const Color(0xFFF59E0B).withOpacity(0.1),
+                  color: isJoined ? const Color(0xFF16A34A).withValues(alpha: 0.1) : const Color(0xFFF59E0B).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(status, style: TextStyle(color: isJoined ? const Color(0xFF16A34A) : const Color(0xFFF59E0B), fontSize: 9, fontWeight: FontWeight.bold)),

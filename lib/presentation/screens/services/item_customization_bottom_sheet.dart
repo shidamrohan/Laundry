@@ -308,7 +308,7 @@ class _ItemCustomizationBottomSheetState extends State<ItemCustomizationBottomSh
                       ),
                       CupertinoSwitch(
                         value: _treatments[title]!,
-                        activeColor: const Color(0xFF0EA5A4),
+                        activeTrackColor: const Color(0xFF0EA5A4),
                         onChanged: (val) => setState(() => _treatments[title] = val),
                       ),
                     ],
@@ -360,7 +360,7 @@ class _ItemCustomizationBottomSheetState extends State<ItemCustomizationBottomSh
           ),
           CupertinoSwitch(
             value: _isPremiumCare,
-            activeColor: const Color(0xFF7C3AED),
+            activeTrackColor: const Color(0xFF7C3AED),
             onChanged: (val) => setState(() => _isPremiumCare = val),
           ),
         ],
@@ -416,7 +416,7 @@ class _ItemCustomizationBottomSheetState extends State<ItemCustomizationBottomSh
                   backgroundColor: const Color(0xFF0EA5A4),
                   foregroundColor: Colors.white,
                   elevation: 8,
-                  shadowColor: const Color(0xFF0EA5A4).withOpacity(0.4),
+                  shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 ),

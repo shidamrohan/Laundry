@@ -90,7 +90,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       child: const Text('DELIVERED', style: TextStyle(color: _primary, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
                     ),
                     const SizedBox(height: 8),
-                    const Text('Order #ORIO1042', style: TextStyle(color: _textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+                    const Text('Order #VOSHIFY1042', style: TextStyle(color: _textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 4),
                     const Text('19 Jul 2026', style: TextStyle(color: _textSecondary, fontSize: 14)),
                   ],
@@ -307,7 +307,7 @@ class OrderDetailsScreen extends StatelessWidget {
           _billRow('Platform fee', '₹5'),
           _billRow('Taxes', '₹47'),
           _billRowWithBadge('Coupon', 'FRESH50', '-₹150', valueColor: _success),
-          _billRow('Orio Wallet', '-₹100', valueColor: _primary, bold: true),
+          _billRow('VOSHIFY Wallet', '-₹100', valueColor: _primary, bold: true),
           const SizedBox(height: 8),
           const Divider(color: _divider),
           const SizedBox(height: 8),
@@ -326,7 +326,7 @@ class OrderDetailsScreen extends StatelessWidget {
               const Icon(Icons.account_balance_wallet, color: _textSecondary, size: 20),
               const SizedBox(width: 8),
               const Expanded(
-                child: Text('Paid via Orio Wallet + UPI', style: TextStyle(color: _textSecondary, fontSize: 14, fontWeight: FontWeight.w500)),
+                child: Text('Paid via VOSHIFY Wallet + UPI', style: TextStyle(color: _textSecondary, fontSize: 14, fontWeight: FontWeight.w500)),
               ),
               const Icon(Icons.check_circle, color: _success, size: 20),
             ],
@@ -409,7 +409,7 @@ class OrderDetailsScreen extends StatelessWidget {
             Positioned(
               bottom: 12, left: 16, right: 16,
               child: const Text(
-                'Your clothes were treated with eco-friendly Orio Bio-Wash.',
+                'Your clothes were treated with eco-friendly VOSHIFY Bio-Wash.',
                 style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ),

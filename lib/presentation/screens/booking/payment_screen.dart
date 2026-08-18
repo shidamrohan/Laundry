@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/add_card_bottom_sheet.dart';
 import 'package:laundry/presentation/screens/booking/bill_details_bottom_sheet.dart';
 import 'package:laundry/presentation/screens/booking/payment_success_screen.dart';
-import 'package:laundry/presentation/screens/booking/payment_failed_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -488,7 +487,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               imageUrl:
                   'https://lh3.googleusercontent.com/aida-public/AB6AXuAilJZyRE7WoK_mRTk8TvFsxXKaWzX4lpGkQkqJdNip254OLFCYbynLYhwRWWaXxj3c_Dci7bXw9AH7nyGj2mGYthGNexIcslfOw2bVtTtpyH3wdWC79PnayxolLH2yviSI9qMNF8Cwwo8aPloR_Xs4GHAHCX9qxNQKaXlBmgaTWl8nYu7KQvPm5Vp-js7NmcQnnq4Pg0fNhBDDJ08kfRt0Y5T3vK39_9NZP8HcwrEQziwnEd9oRQE9UNcKUtiqkQy4Pffe3ciyTmKl',
               title: 'Wallets',
-              subtitle: 'Orio Wallet: ₹450',
+              subtitle: 'VOSHIFY Wallet: ₹450',
               subtitleColor: const Color(0xFF0EA5A4),
             ),
             const Divider(height: 1, color: Color(0xFFE2E8E9)),
@@ -581,20 +580,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
             const SizedBox(width: 24),
             Expanded(
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   showDialog(
                     context: context, 
                     barrierDismissible: false,
                     builder: (_) => const Center(child: CircularProgressIndicator(color: Color(0xFF0EA5A4)))
                   );
-                  Future.delayed(const Duration(seconds: 2), () {
-                    if (context.mounted) {
-                      Navigator.pop(context); // Close loading dialog
-                      // In production, replace with real payment result.
-                      // For demo: always navigate to success.
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const PaymentSuccessScreen()), (route) => false);
-                    }
-                  });
+                  await Future.delayed(const Duration(seconds: 2));
+                  if (!mounted) return;
+                  Navigator.pop(context); // Close loading dialog
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const PaymentSuccessScreen()), (route) => false);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF0EA5A4),
@@ -698,7 +693,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(icon, color: color, size: 20),

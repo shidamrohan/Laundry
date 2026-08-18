@@ -250,9 +250,9 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
           child: Column(
             children: [
               _buildSelectableRow(
-                id: 'orio_wallet',
+                id: 'voshify_wallet',
                 icon: Icons.account_balance_wallet,
-                title: 'Orio Wallet',
+                title: 'VOSHIFY Wallet',
                 subtitleWidget: const Text('₹1,250', style: TextStyle(color: _success, fontSize: 14, fontWeight: FontWeight.bold)),
                 iconColor: _primary,
                 iconBg: _primary.withValues(alpha: 0.1),

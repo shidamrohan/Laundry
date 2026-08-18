@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/core/services/location_service.dart';
 import 'package:laundry/presentation/screens/location/search_address_screen.dart';
 import 'package:laundry/presentation/screens/location/edit_address_screen.dart';
 
@@ -10,7 +11,8 @@ class SelectLocationScreen extends StatefulWidget {
 }
 
 class _SelectLocationScreenState extends State<SelectLocationScreen> {
-  int _selectedTab = 0; // 0 for Pickup, 1 for Delivery
+  int _selectedTab = 0;
+  bool _isFetchingLocation = false; // 0 for Pickup, 1 for Delivery
 
   @override
   Widget build(BuildContext context) {
@@ -137,8 +139,8 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
           Navigator.push(
             context,
             PageRouteBuilder(
-              pageBuilder: (_, __, ___) => const SearchAddressScreen(),
-              transitionsBuilder: (_, animation, __, child) {
+              pageBuilder: (_, _, _) => const SearchAddressScreen(),
+              transitionsBuilder: (_, animation, _, child) {
                 return FadeTransition(opacity: animation, child: child);
               },
               transitionDuration: const Duration(milliseconds: 200),
@@ -162,14 +164,15 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
       children: [
         Expanded(
           child: _buildActionCard(
-            icon: Icons.location_searching,
+            icon: _isFetchingLocation ? Icons.hourglass_empty : Icons.location_searching,
             iconColor: Colors.white,
             iconBg: const Color(0xFF0EA5A4),
-            title: 'Use current location',
+            title: _isFetchingLocation ? 'Fetching...' : 'Use current location',
             titleColor: const Color(0xFF0EA5A4),
             subtitle: 'Enable for precise pickup',
             cardBg: const Color(0xFFEFF6F6),
-            borderColor: const Color(0xFF0EA5A4).withOpacity(0.2),
+            borderColor: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
+            onTap: _fetchLocation,
           ),
         ),
         const SizedBox(width: 16),
@@ -183,6 +186,12 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
             subtitle: 'Manual entry',
             cardBg: Colors.white,
             borderColor: const Color(0xFFE2E8E9),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const EditAddressScreen()),
+              );
+            },
           ),
         ),
       ],
@@ -198,8 +207,11 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
     required String subtitle,
     required Color cardBg,
     required Color borderColor,
+    VoidCallback? onTap,
   }) {
-    return Container(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: cardBg,
@@ -220,13 +232,45 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
           Text(subtitle, style: const TextStyle(color: Color(0xFF64748B), fontSize: 12)),
         ],
       ),
+    ),
     );
+  }
+
+  Future<void> _fetchLocation() async {
+    setState(() => _isFetchingLocation = true);
+    try {
+      final position = await LocationService.getCurrentPosition();
+      if (position != null) {
+        final address = await LocationService.getAddressFromCoordinates(position.latitude, position.longitude);
+        if (mounted && address != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Location found: $address')),
+          );
+          // Auto-fill or navigate based on success.
+          // For now, let's navigate to EditAddressScreen passing the address.
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const EditAddressScreen()), // Ideally pass address
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isFetchingLocation = false);
+      }
+    }
   }
 
   Widget _buildToggle() {
     return Container(
       padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(color: const Color(0xFFE2E8E9).withOpacity(0.4), borderRadius: BorderRadius.circular(30)),
+      decoration: BoxDecoration(color: const Color(0xFFE2E8E9).withValues(alpha: 0.4), borderRadius: BorderRadius.circular(30)),
       child: Row(
         children: [
           Expanded(child: _buildToggleTab(0, 'Pickup')),
@@ -281,7 +325,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.5)),
+        border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.5)),
         boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
       ),
       child: Column(
@@ -305,7 +349,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                         const SizedBox(width: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                          decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+                          decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
                           child: const Text('DEFAULT', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
                         ),
                       ],
@@ -326,7 +370,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(color: const Color(0xFF16A34A).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(color: const Color(0xFF16A34A).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                 child: Row(
                   children: [
                     Container(width: 6, height: 6, decoration: const BoxDecoration(color: Color(0xFF16A34A), shape: BoxShape.circle)),
@@ -338,7 +382,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
               const SizedBox(width: 8),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                 child: Row(
                   children: const [
                     Icon(Icons.schedule, color: Color(0xFF0EA5A4), size: 14),
@@ -372,7 +416,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.5)),
+        border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.5)),
         boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
       ),
       child: Row(
@@ -394,7 +438,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                 const SizedBox(height: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(color: const Color(0xFF16A34A).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: const Color(0xFF16A34A).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -418,7 +462,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.5)),
+        border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.5)),
         boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
       ),
       child: Row(
@@ -441,9 +485,9 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF59E0B).withOpacity(0.1),
+                    color: const Color(0xFFF59E0B).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: const Color(0xFFF59E0B).withOpacity(0.2)),
+                    border: Border.all(color: const Color(0xFFF59E0B).withValues(alpha: 0.2)),
                   ),
                   child: Row(
                     children: const [
@@ -488,9 +532,9 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.5),
+        color: Colors.white.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.3)),
+        border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/presentation/screens/booking/edit_profile_screen.dart';
+import 'package:laundry/presentation/screens/booking/notification_settings_screen.dart';
+import 'package:laundry/presentation/screens/booking/accessibility_settings_screen.dart';
+import 'package:laundry/presentation/screens/booking/about_screen.dart';
+import 'package:laundry/presentation/screens/profile/terms_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -46,7 +51,7 @@ class SettingsScreen extends StatelessWidget {
             _buildSection(
               title: 'ACCOUNT',
               items: [
-                _SettingsRow(icon: Icons.person, label: 'Edit profile', onTap: () {}),
+                _SettingsRow(icon: Icons.person, label: 'Edit profile', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const EditProfileScreen()))),
                 _SettingsRow(icon: Icons.link, label: 'Linked accounts', onTap: () {}),
                 _SettingsRow(icon: Icons.devices, label: 'Manage devices', onTap: () {}),
               ],
@@ -56,7 +61,7 @@ class SettingsScreen extends StatelessWidget {
             _buildSection(
               title: 'NOTIFICATIONS',
               items: [
-                _SettingsRow(icon: Icons.notifications, label: 'Push, email & SMS', onTap: () {}),
+                _SettingsRow(icon: Icons.notifications, label: 'Push, email & SMS', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationSettingsScreen()))),
               ],
             ),
             const SizedBox(height: 32),
@@ -79,7 +84,7 @@ class SettingsScreen extends StatelessWidget {
             _buildSection(
               title: 'APPEARANCE',
               items: [
-                _SettingsRow(icon: Icons.palette, label: 'Theme', subtitle: 'System', onTap: () {}),
+                _SettingsRow(icon: Icons.palette, label: 'Theme', subtitle: 'System', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AccessibilitySettingsScreen()))),
                 _SettingsRow(icon: Icons.language, label: 'Language', subtitle: 'English', onTap: () {}),
               ],
             ),
@@ -98,8 +103,8 @@ class SettingsScreen extends StatelessWidget {
             _buildSection(
               title: 'ABOUT',
               items: [
-                _SettingsRow(icon: Icons.info_outline, label: 'About Orio', onTap: () {}),
-                _SettingsRow(icon: Icons.description_outlined, label: 'Terms', onTap: () {}),
+                _SettingsRow(icon: Icons.info_outline, label: 'About VOSHIFY', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AboutScreen()))),
+                _SettingsRow(icon: Icons.description_outlined, label: 'Terms', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const TermsScreen()))),
                 _SettingsRow(icon: Icons.policy, label: 'Privacy policy', onTap: () {}),
                 _SettingsRow(icon: Icons.ad_units, label: 'App version', subtitle: 'v2.4.0', isNavigable: false),
               ],
@@ -126,7 +131,7 @@ class SettingsScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 child: Text(
-                  '© 2024 Orio Inc. Made with care for your clothes.',
+                  '© 2024 VOSHIFY Inc. Made with care for your clothes.',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0x9964748B), fontSize: 12, height: 1.5),
                 ),

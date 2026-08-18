@@ -415,7 +415,7 @@ class _ScheduleDeliveryScreenState extends State<ScheduleDeliveryScreen> {
             ),
             CupertinoSwitch(
               value: _scheduleLater,
-              activeColor: const Color(0xFF0EA5A4),
+              activeTrackColor: const Color(0xFF0EA5A4),
               onChanged: (val) => setState(() => _scheduleLater = val),
             ),
           ],

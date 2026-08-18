@@ -344,7 +344,7 @@ class _CareInstructionsScreenState extends State<CareInstructionsScreen> {
                 ),
                 CupertinoSwitch(
                   value: _isHandleWithCare,
-                  activeColor: const Color(0xFF0EA5A4),
+                  activeTrackColor: const Color(0xFF0EA5A4),
                   onChanged: (val) => setState(() => _isHandleWithCare = val),
                 ),
               ],

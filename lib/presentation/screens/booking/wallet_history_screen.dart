@@ -153,7 +153,7 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
                             badgeLabel: 'Refunded',
                             badgeColor: const Color(0xFF2563EB),
                             badgeBg: const Color(0x1A2563EB),
-                            ref: 'Order #ORIO1038',
+                            ref: 'Order #VOSHIFY1038',
                             time: '04:20 PM',
                           ),
                           _buildStandardCard(
@@ -184,7 +184,7 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
                             badgeLabel: 'Success',
                             badgeColor: const Color(0xFF16A34A),
                             badgeBg: const Color(0x1A16A34A),
-                            ref: 'Order #ORIO1022',
+                            ref: 'Order #VOSHIFY1022',
                             time: '02:10 PM',
                           ),
                           _buildStandardCard(
@@ -530,7 +530,7 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
                   const SizedBox(height: 8),
                   _buildDetailRow('Transaction ID', '129384756'),
                   const SizedBox(height: 8),
-                  _buildDetailRow('Order Reference', 'Order #ORIO1042'),
+                  _buildDetailRow('Order Reference', 'Order #VOSHIFY1042'),
                 ],
               ),
             ),

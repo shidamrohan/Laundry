@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/core/services/location_service.dart';
+import 'package:laundry/presentation/screens/location/add_address_screen.dart';
 
 class SelectLocationScreen extends StatefulWidget {
   const SelectLocationScreen({super.key});
@@ -9,6 +11,7 @@ class SelectLocationScreen extends StatefulWidget {
 
 class _SelectLocationScreenState extends State<SelectLocationScreen> {
   bool _isClosing = false;
+  bool _isFetchingLocation = false;
 
   void _handleClose() {
     setState(() => _isClosing = true);
@@ -220,7 +223,25 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
           ),
           const SizedBox(width: 16),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: _isFetchingLocation
+                ? null
+                : () async {
+                    setState(() => _isFetchingLocation = true);
+                    try {
+                      final pos = await LocationService.getCurrentPosition();
+                      if (pos != null) {
+                        final address = await LocationService.getAddressFromCoordinates(pos.latitude, pos.longitude);
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Location found: $address')));
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => const AddAddressScreen()));
+                        }
+                      }
+                    } catch (e) {
+                      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+                    } finally {
+                      if (mounted) setState(() => _isFetchingLocation = false);
+                    }
+                  },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF0EA5A4),
               foregroundColor: Colors.white,
@@ -228,7 +249,9 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             ),
-            child: const Text('Enable', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+            child: _isFetchingLocation 
+                ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                : const Text('Enable', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
           ),
         ],
       ),

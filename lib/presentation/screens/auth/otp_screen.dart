@@ -51,11 +51,11 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
               width: 256,
               height: 256,
               decoration: BoxDecoration(
-                color: const Color(0xFF0EA5A4).withOpacity(0.1),
+                color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF0EA5A4).withOpacity(0.15),
+                    color: const Color(0xFF0EA5A4).withValues(alpha: 0.15),
                     blurRadius: 80,
                     spreadRadius: 40,
                   )
@@ -70,11 +70,11 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
               width: 192,
               height: 192,
               decoration: BoxDecoration(
-                color: const Color(0xFF2563EB).withOpacity(0.1),
+                color: const Color(0xFF2563EB).withValues(alpha: 0.1),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF2563EB).withOpacity(0.15),
+                    color: const Color(0xFF2563EB).withValues(alpha: 0.15),
                     blurRadius: 60,
                     spreadRadius: 30,
                   )
@@ -123,7 +123,7 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
                                 borderRadius: BorderRadius.circular(12),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: const Color(0xFF0EA5A4).withOpacity(0.2),
+                                    color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                                     blurRadius: 12,
                                     offset: const Offset(0, 4),
                                   ),
@@ -235,8 +235,8 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
                               child: Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF1E293B).withOpacity(0.5),
-                                  border: Border.all(color: const Color(0xFF1E293B).withOpacity(0.8)),
+                                  color: const Color(0xFF1E293B).withValues(alpha: 0.5),
+                                  border: Border.all(color: const Color(0xFF1E293B).withValues(alpha: 0.8)),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Row(
@@ -315,12 +315,12 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
                                 } : null,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF0EA5A4),
-                                  disabledBackgroundColor: const Color(0xFF0EA5A4).withOpacity(0.5),
+                                  disabledBackgroundColor: const Color(0xFF0EA5A4).withValues(alpha: 0.5),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(28),
                                   ),
                                   elevation: _otpController.text.length == 6 ? 8 : 0,
-                                  shadowColor: const Color(0xFF0EA5A4).withOpacity(0.2),
+                                  shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -370,7 +370,7 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
         boxShadow: isActive
             ? [
                 BoxShadow(
-                  color: const Color(0xFF0EA5A4).withOpacity(0.3),
+                  color: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
                   blurRadius: 15,
                   spreadRadius: 0,
                 )

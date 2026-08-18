@@ -674,7 +674,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text(
-                            'ORIO150 applied',
+                            'VOSHIFY150 applied',
                             style: TextStyle(
                               color: Color(0xFF16A34A),
                               fontSize: 14,
@@ -760,7 +760,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text(
-                            'Use Orio Wallet',
+                            'Use VOSHIFY Wallet',
                             style: TextStyle(
                               color: Color(0xFF0F172A),
                               fontSize: 14,
@@ -792,7 +792,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                       const SizedBox(width: 12),
                       CupertinoSwitch(
                         value: _useWallet,
-                        activeColor: const Color(0xFF0EA5A4),
+                        activeTrackColor: const Color(0xFF0EA5A4),
                         onChanged: (val) => setState(() => _useWallet = val),
                       ),
                     ],
@@ -907,7 +907,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                     ),
                     const SizedBox(height: 12),
                     _buildBillRow('Express charges', '₹99'),
-                    _buildBillRow('Coupon (ORIO150)', '−₹150', isGreen: true),
+                    _buildBillRow('Coupon (VOSHIFY150)', '−₹150', isGreen: true),
                     if (_useWallet)
                       _buildBillRow('Wallet applied', '−₹100', isGreen: true),
                     const SizedBox(height: 16),
@@ -1007,7 +1007,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                     ),
                     TextSpan(
                       text:
-                          '. Orio ensures your clothes are handled with premium care and professional grade sanitation.',
+                          '. VOSHIFY ensures your clothes are handled with premium care and professional grade sanitation.',
                     ),
                   ],
                 ),

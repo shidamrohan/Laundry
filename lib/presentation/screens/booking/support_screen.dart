@@ -23,80 +23,70 @@ class SupportScreen extends StatelessWidget {
           child: Container(height: 1, color: const Color(0xFFE2E8E9)),
         ),
       ),
-      body: Stack(
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 40),
         children: [
-          Positioned.fill(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 120),
-              children: [
-                // Header Section Card
-                _buildHeaderCard(),
-                const SizedBox(height: 24),
+          // Header Section Card
+          _buildHeaderCard(),
+          const SizedBox(height: 24),
 
-                // Support Options
-                _buildSupportOption(
-                  icon: Icons.chat_bubble,
-                  iconColor: const Color(0xFF0EA5A4),
-                  iconBgColor: const Color(0x1A0EA5A4),
-                  title: 'Live chat',
-                  subtitle: 'Avg reply 2 min',
-                  hasDot: true,
-                ),
-                const SizedBox(height: 12),
-                _buildSupportOption(
-                  icon: Icons.call,
-                  iconColor: const Color(0xFF7C3AED),
-                  iconBgColor: const Color(0x1A7C3AED),
-                  title: 'Call us',
-                  subtitle: 'Toll-free',
-                ),
-                const SizedBox(height: 12),
-                _buildSupportOption(
-                  icon: Icons.mail,
-                  iconColor: const Color(0xFFEA580C), // orange-600
-                  iconBgColor: const Color(0xFFFFEDD5), // orange-100
-                  title: 'Email',
-                  subtitle: 'support@orio.app',
-                ),
-                const SizedBox(height: 12),
-                _buildSupportOption(
-                  icon: Icons.assignment,
-                  iconColor: const Color(0xFF0D9488), // teal-600
-                  iconBgColor: const Color(0xFFCCFBF1), // teal-100
-                  title: 'Raise a ticket',
-                  subtitle: 'New request',
-                ),
-                const SizedBox(height: 12),
-                _buildSupportOption(
-                  icon: Icons.error_outline,
-                  iconColor: const Color(0xFFDC2626), // error
-                  iconBgColor: const Color(0x1ADC2626),
-                  title: 'Report a transaction',
-                  subtitle: 'Billing issues',
-                ),
-                const SizedBox(height: 32),
+          // Support Options
+          _buildSupportOption(
+            icon: Icons.chat_bubble,
+            iconColor: const Color(0xFF0EA5A4),
+            iconBgColor: const Color(0xFFE6F6F6),
+            title: 'Chat with us',
+            subtitle: 'Typically replies in minutes',
+          ),
+          const SizedBox(height: 12),
+          _buildSupportOption(
+            icon: Icons.phone,
+            iconColor: const Color(0xFF7C3AED), // purple
+            iconBgColor: const Color(0x1A7C3AED),
+            title: 'Call us',
+            subtitle: 'Toll-free',
+          ),
+          const SizedBox(height: 12),
+          _buildSupportOption(
+            icon: Icons.mail,
+            iconColor: const Color(0xFFEA580C), // orange-600
+            iconBgColor: const Color(0xFFFFEDD5), // orange-100
+            title: 'Email',
+            subtitle: 'support@voshify.app',
+          ),
+          const SizedBox(height: 12),
+          _buildSupportOption(
+            icon: Icons.assignment,
+            iconColor: const Color(0xFF0D9488), // teal-600
+            iconBgColor: const Color(0xFFCCFBF1), // teal-100
+            title: 'Raise a ticket',
+            subtitle: 'New request',
+          ),
+          const SizedBox(height: 12),
+          _buildSupportOption(
+            icon: Icons.error_outline,
+            iconColor: const Color(0xFFDC2626), // error
+            iconBgColor: const Color(0x1ADC2626),
+            title: 'Report a transaction',
+            subtitle: 'Billing issues',
+          ),
+          const SizedBox(height: 32),
 
-                // Ticket History
-                const Padding(
-                  padding: EdgeInsets.only(left: 4, bottom: 16),
-                  child: Text('Your tickets', style: TextStyle(color: Color(0xFF0F172A), fontSize: 20, fontWeight: FontWeight.bold)),
-                ),
-                _buildTicketCard(),
+          // Ticket History
+          const Padding(
+            padding: EdgeInsets.only(left: 4, bottom: 16),
+            child: Text('Your tickets', style: TextStyle(color: Color(0xFF0F172A), fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
+          _buildTicketCard(),
 
-                const SizedBox(height: 40),
-                const Center(
-                  child: Text(
-                    'Most issues are resolved within 24 hours.',
-                    style: TextStyle(color: Color(0xBF64748B), fontSize: 12),
-                  ),
-                ),
-              ],
+          const SizedBox(height: 40),
+          const Center(
+            child: Text(
+              'Most issues are resolved within 24 hours.',
+              style: TextStyle(color: Color(0xBF64748B), fontSize: 12),
             ),
           ),
-          
-          // Bottom Navigation
-          Positioned(bottom: 0, left: 0, right: 0, child: _buildBottomNav()),
         ],
       ),
     );
@@ -264,46 +254,4 @@ class SupportScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomNav() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        boxShadow: [BoxShadow(color: Color(0x140F172A), blurRadius: 16, offset: Offset(0, -4))],
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: SafeArea(
-        top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildNavItem(Icons.home_outlined, Icons.home, 'Home', false),
-            _buildNavItem(Icons.local_laundry_service_outlined, Icons.local_laundry_service, 'Orders', false),
-            _buildNavItem(Icons.support_agent_outlined, Icons.support_agent, 'Support', true),
-            _buildNavItem(Icons.person_outline, Icons.person, 'Profile', false),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData outlinedIcon, IconData filledIcon, String label, bool isActive) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        isActive
-            ? Transform.scale(
-                scale: 1.0,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                  decoration: BoxDecoration(color: const Color(0xFFEFF6F6), borderRadius: BorderRadius.circular(20)),
-                  child: Icon(filledIcon, color: const Color(0xFF0EA5A4), size: 24),
-                ),
-              )
-            : Icon(outlinedIcon, color: const Color(0xFF64748B), size: 24),
-        const SizedBox(height: 4),
-        Text(label, style: TextStyle(color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B), fontSize: 11, fontWeight: isActive ? FontWeight.bold : FontWeight.w600)),
-      ],
-    );
-  }
 }

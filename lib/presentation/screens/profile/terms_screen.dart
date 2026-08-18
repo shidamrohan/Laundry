@@ -35,11 +35,11 @@ class _TermsScreenState extends State<TermsScreen> {
               width: 300,
               height: 300,
               decoration: BoxDecoration(
-                color: const Color(0xFF0EA5A4).withOpacity(0.08),
+                color: const Color(0xFF0EA5A4).withValues(alpha: 0.08),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF0EA5A4).withOpacity(0.1),
+                    color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
                     blurRadius: 100,
                     spreadRadius: 60,
                   )
@@ -76,7 +76,7 @@ class _TermsScreenState extends State<TermsScreen> {
                           borderRadius: BorderRadius.circular(8),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF0EA5A4).withOpacity(0.4),
+                              color: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
                               blurRadius: 15,
                               spreadRadius: 0,
                             )
@@ -110,7 +110,7 @@ class _TermsScreenState extends State<TermsScreen> {
                         ),
                         const SizedBox(height: 10),
                         const Text(
-                          'Please review and accept our policies to start using Orio.',
+                          'Please review and accept our policies to start using VOSHIFY.',
                           style: TextStyle(
                             color: Color(0xFF94A3B8),
                             fontSize: 15,
@@ -214,7 +214,7 @@ class _TermsScreenState extends State<TermsScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    const Color(0xFF0B1220).withOpacity(0),
+                    const Color(0xFF0B1220).withValues(alpha: 0),
                     const Color(0xFF0B1220),
                     const Color(0xFF0B1220),
                   ],
@@ -237,12 +237,12 @@ class _TermsScreenState extends State<TermsScreen> {
                       } : null,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0EA5A4),
-                        disabledBackgroundColor: const Color(0xFF0EA5A4).withOpacity(0.4),
+                        disabledBackgroundColor: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(28),
                         ),
                         elevation: _termsAgreed ? 8 : 0,
-                        shadowColor: const Color(0xFF0EA5A4).withOpacity(0.3),
+                        shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
                       ),
                       child: Text(
                         'Agree & Continue',

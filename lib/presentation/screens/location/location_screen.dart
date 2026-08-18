@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/core/services/location_service.dart';
 import 'package:laundry/presentation/screens/booking/select_location_screen.dart';
-import 'package:laundry/presentation/screens/profile/terms_screen.dart';
-import 'package:laundry/presentation/screens/location/location_screen.dart';
-import 'package:laundry/presentation/screens/location/location_screen.dart';
 
-class LocationScreen extends StatelessWidget {
+class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
+
+  @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class LocationScreen extends StatelessWidget {
                   const SizedBox(height: 32),
                   _buildBenefitsRow(),
                   const SizedBox(height: 40),
-                  _buildActionButtons(context),
+                  _buildActionButtons(),
                   const SizedBox(height: 32),
                   _buildFooterHint(),
                 ],
@@ -77,11 +82,11 @@ class LocationScreen extends StatelessWidget {
                 image: NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuDG29EVFogZ2XiBDmKjFAY6MjHQopZCMUL-Ri6CWoDNWGg3lTuYRejpCfMuNsW-PmM9ssUPFkakakNDvEI6ElPdU87dzoslcfTms_Bo-wyMD0vOcuXbJJ2btGXIDRF_AVqtH-zIqhbf3roATqL5qKBIGaqXRr6_ueKq5QbmPcfvdod5DyManUgCSR5lkh8kqCtBdLxYhQGDNL8c5stHRB4DyenRksQ114_sB439Z5-4vq9aqga3E4rh2P6Q6QmqvywCKW0DjHyCBbPD'),
                 fit: BoxFit.cover,
               ),
-              boxShadow: [BoxShadow(color: Colors.white.withOpacity(0.6), spreadRadius: 10, blurRadius: 20)],
+              boxShadow: [BoxShadow(color: Colors.white.withValues(alpha: 0.6), spreadRadius: 10, blurRadius: 20)],
             ),
           ),
           // White overlay to make it subtle
-          Container(width: 240, height: 240, decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white.withOpacity(0.7))),
+          Container(width: 240, height: 240, decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white.withValues(alpha: 0.7))),
           // Main Illustration (with simple implicit animation in a real app, here static for simplicity, or could use an AnimatedBuilder)
           Image.network(
             'https://lh3.googleusercontent.com/aida-public/AB6AXuCc7tBfv_5n8_-OOV_268Kwg4PHZ28Oyjp3L93WWuzBDf4ihNE1MzVj-lF1AdkreEwJpmIbOkSv-kCxpLluadfdn6wPM1CuK_hMJTzKknWVMGl40qmhBXE9kouClfIrUj5kFwNOfwH06r6OKDWT3nbhoOKyb08pMgAN7J0Ldq-lwHCvb164AevDm1ajE9T0ZM2DPGuBx3_YRvIyGxj27pJmf7z0e6oeLJ278hKcdCCQq4rPSSXHcY9jyu5rApVVRvTWmRXp804CwCII',
@@ -104,7 +109,7 @@ class LocationScreen extends StatelessWidget {
         ),
         SizedBox(height: 12),
         Text(
-          'Orio needs your location to detect your address and show accurate pickup times.',
+          'VOSHIFY needs your location to detect your address and show accurate pickup times.',
           style: TextStyle(color: Color(0xFF64748B), fontSize: 15, height: 1.5),
           textAlign: TextAlign.center,
         ),
@@ -131,7 +136,7 @@ class LocationScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFFEFF6F6),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.1)),
+        border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -144,27 +149,50 @@ class LocationScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButtons(BuildContext context) {
+  Widget _buildActionButtons() {
     return Column(
       children: [
         SizedBox(
           width: double.infinity,
           height: 56,
           child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const SelectLocationScreen()),
-              );
-            },
+            onPressed: _isLoading
+                ? null
+                : () async {
+                    setState(() => _isLoading = true);
+                    try {
+                      await LocationService.getCurrentPosition();
+                      // Location granted and fetched. Go to SelectLocationScreen
+                      if (mounted) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => const SelectLocationScreen()),
+                        );
+                      }
+                    } catch (e) {
+                      // Failed or denied, still let them go to manual select
+                      if (mounted) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => const SelectLocationScreen()),
+                        );
+                      }
+                    } finally {
+                      if (mounted) {
+                        setState(() => _isLoading = false);
+                      }
+                    }
+                  },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF0EA5A4),
               foregroundColor: Colors.white,
               elevation: 4,
-              shadowColor: const Color(0xFF0EA5A4).withOpacity(0.4),
+              shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             ),
-            child: const Text('Enable location', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            child: _isLoading 
+                ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                : const Text('Enable location', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           ),
         ),
         const SizedBox(height: 16),
@@ -173,7 +201,7 @@ class LocationScreen extends StatelessWidget {
           height: 48,
           child: TextButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (_) => const SelectLocationScreen()),
               );

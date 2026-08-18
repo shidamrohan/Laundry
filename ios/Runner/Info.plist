@@ -66,5 +66,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>VOSHIFY needs your location to detect your address for laundry pickup and delivery.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>VOSHIFY needs your location to detect your address for laundry pickup and delivery.</string>
 </dict>
 </plist>

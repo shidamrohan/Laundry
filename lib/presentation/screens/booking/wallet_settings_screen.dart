@@ -63,7 +63,7 @@ class WalletSettingsScreen extends StatelessWidget {
                 _buildSettingsItem(
                   icon: Icons.help,
                   label: 'FAQs',
-                  subtitle: 'Learn how Orio Wallet works',
+                  subtitle: 'Learn how VOSHIFY Wallet works',
                   onTap: () {},
                 ),
                 _buildSettingsItem(
@@ -368,7 +368,7 @@ class WalletSettingsScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text('Delete wallet?', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
         content: const Text(
-          'This will permanently remove your Orio Wallet and all associated data. This action cannot be undone.',
+          'This will permanently remove your VOSHIFY Wallet and all associated data. This action cannot be undone.',
           style: TextStyle(color: Color(0xFF64748B), fontSize: 14, height: 1.5),
         ),
         actions: [

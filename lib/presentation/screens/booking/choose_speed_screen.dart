@@ -86,7 +86,7 @@ class _ChooseSpeedScreenState extends State<ChooseSpeedScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: Colors.white.withOpacity(0.9),
+      color: Colors.white.withValues(alpha: 0.9),
       child: Column(
         children: [
           Padding(
@@ -169,10 +169,10 @@ class _ChooseSpeedScreenState extends State<ChooseSpeedScreen> {
       onTap: () => setState(() => _selectedSpeed = key),
       child: Container(
         decoration: BoxDecoration(
-          color: isSelected ? color.withOpacity(0.05) : Colors.white,
+          color: isSelected ? color.withValues(alpha: 0.05) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: isSelected ? color : Colors.transparent, width: 2),
-          boxShadow: isSelected ? [BoxShadow(color: color.withOpacity(0.1), blurRadius: 24, offset: const Offset(0, 8))] : const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
+          boxShadow: isSelected ? [BoxShadow(color: color.withValues(alpha: 0.1), blurRadius: 24, offset: const Offset(0, 8))] : const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(14),
@@ -201,7 +201,7 @@ class _ChooseSpeedScreenState extends State<ChooseSpeedScreen> {
                         Container(
                           width: 48, height: 48,
                           decoration: BoxDecoration(
-                            color: isSelected ? color.withOpacity(0.2) : const Color(0xFFEFF6F6),
+                            color: isSelected ? color.withValues(alpha: 0.2) : const Color(0xFFEFF6F6),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Icon(option['icon'], color: isSelected ? color : const Color(0xFF64748B), size: 28),
@@ -239,7 +239,7 @@ class _ChooseSpeedScreenState extends State<ChooseSpeedScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         decoration: BoxDecoration(
-                          color: color.withOpacity(0.1),
+                          color: color.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(

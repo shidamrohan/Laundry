@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF0EA5A4).withOpacity(0.2),
+                            color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                             blurRadius: 16,
                             offset: const Offset(0, 8),
                           ),
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         boxShadow: _isPhoneFocused
                             ? [
                                 BoxShadow(
-                                  color: const Color(0xFF0EA5A4).withOpacity(0.2),
+                                  color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                                   blurRadius: 0,
                                   spreadRadius: 2,
                                 )
@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(28),
                           ),
                           elevation: 8,
-                          shadowColor: const Color(0xFF0EA5A4).withOpacity(0.2),
+                          shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                         ),
                         child: const Text(
                           'Continue',

@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/presentation/screens/booking/your_orders_screen.dart';
+import 'package:laundry/presentation/screens/booking/address_book_screen.dart';
+import 'package:laundry/presentation/screens/booking/payment_methods_screen.dart';
+import 'package:laundry/presentation/screens/booking/wallet_settings_screen.dart';
+import 'package:laundry/presentation/screens/booking/notification_settings_screen.dart';
+import 'package:laundry/presentation/screens/booking/accessibility_settings_screen.dart';
+import 'package:laundry/presentation/screens/booking/help_center_screen.dart';
+import 'package:laundry/presentation/screens/booking/about_screen.dart';
+import 'package:laundry/presentation/screens/booking/report_issue_screen.dart';
+import 'package:laundry/presentation/screens/booking/logout_confirmation_dialog.dart';
+import 'package:laundry/presentation/screens/booking/edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -25,52 +36,45 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(width: 8),
         ],
       ),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _buildProfileCard(),
-                  const SizedBox(height: 24),
-                  _buildMembershipCard(),
-                  const SizedBox(height: 24),
-                  _buildQuickActionRow(),
-                  const SizedBox(height: 32),
-                  _buildSettingsGroups(),
-                  const SizedBox(height: 32),
-                  
-                  // Logout Button
-                  OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.logout, color: Color(0xFFDC2626)),
-                    label: const Text('Log out', style: TextStyle(color: Color(0xFFDC2626), fontSize: 18, fontWeight: FontWeight.w600)),
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Color(0x33DC2626), width: 2), // dashed-like mock
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text('Orio Laundry v4.2.0 • Made with Cleanliness', textAlign: TextAlign.center, style: TextStyle(color: Color(0x663D4949), fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
-                  const SizedBox(height: 100), // bottom nav space
-                ],
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _buildProfileCard(context),
+            const SizedBox(height: 24),
+            _buildMembershipCard(),
+            const SizedBox(height: 24),
+            _buildQuickActionRow(),
+            const SizedBox(height: 32),
+            _buildSettingsGroups(context),
+            const SizedBox(height: 32),
+            
+            // Logout Button
+            OutlinedButton.icon(
+              onPressed: () {
+                showLogoutConfirmationDialog(context);
+              },
+              icon: const Icon(Icons.logout, color: Color(0xFFDC2626)),
+              label: const Text('Log out', style: TextStyle(color: Color(0xFFDC2626), fontSize: 18, fontWeight: FontWeight.w600)),
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(color: Color(0x33DC2626), width: 2), // dashed-like mock
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                backgroundColor: Colors.transparent,
               ),
             ),
-          ),
-
-          // Bottom Navigation
-          Positioned(bottom: 0, left: 0, right: 0, child: _buildBottomNav()),
-        ],
+            const SizedBox(height: 16),
+            const Text('VOSHIFY Laundry v4.2.0 • Made with Cleanliness', textAlign: TextAlign.center, style: TextStyle(color: Color(0x663D4949), fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
+            const SizedBox(height: 24),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildProfileCard() {
+  Widget _buildProfileCard(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
@@ -120,7 +124,9 @@ class ProfileScreen extends StatelessWidget {
               const Text('+91 98765 43210', style: TextStyle(color: Color(0xCCFFFFFF), fontSize: 14)),
               const SizedBox(height: 24),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const EditProfileScreen()));
+                },
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: Color(0x80FFFFFF)),
                   foregroundColor: Colors.white,
@@ -164,7 +170,7 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Orio Plus member', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+                const Text('VOSHIFY Plus member', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 4),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
@@ -243,15 +249,15 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSettingsGroups() {
+  Widget _buildSettingsGroups(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildSettingsGroup(
           title: 'ORDERS & SERVICES',
           items: [
-            _SettingsItem(icon: Icons.local_laundry_service, iconColor: const Color(0xFF0EA5A4), title: 'Your orders', subtitle: 'Track, cancel, or reorder'),
-            _SettingsItem(icon: Icons.location_on, iconColor: const Color(0xFF0EA5A4), title: 'Address book', subtitle: 'Manage home and office addresses'),
+            _SettingsItem(icon: Icons.local_laundry_service, iconColor: const Color(0xFF0EA5A4), title: 'Your orders', subtitle: 'Track, cancel, or reorder', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const YourOrdersScreen()))),
+            _SettingsItem(icon: Icons.location_on, iconColor: const Color(0xFF0EA5A4), title: 'Address book', subtitle: 'Manage home and office addresses', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AddressBookScreen()))),
             _SettingsItem(icon: Icons.bookmark, iconColor: const Color(0xFF0EA5A4), title: 'Saved services', subtitle: 'Quick access to frequent needs'),
           ],
         ),
@@ -259,16 +265,16 @@ class ProfileScreen extends StatelessWidget {
         _buildSettingsGroup(
           title: 'PAYMENTS',
           items: [
-            _SettingsItem(icon: Icons.credit_card, iconColor: const Color(0xFF0EA5A4), title: 'Payment methods'),
-            _SettingsItem(icon: Icons.account_balance, iconColor: const Color(0xFF0EA5A4), title: 'Orio Wallet settings'),
+            _SettingsItem(icon: Icons.credit_card, iconColor: const Color(0xFF0EA5A4), title: 'Payment methods', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PaymentMethodsScreen()))),
+            _SettingsItem(icon: Icons.account_balance, iconColor: const Color(0xFF0EA5A4), title: 'VOSHIFY Wallet settings', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const WalletSettingsScreen()))),
           ],
         ),
         const SizedBox(height: 32),
         _buildSettingsGroup(
           title: 'PREFERENCES',
           items: [
-            _SettingsItem(icon: Icons.notifications_active, iconColor: const Color(0xFF0EA5A4), title: 'Notifications'),
-            _SettingsItem(icon: Icons.palette, iconColor: const Color(0xFF0EA5A4), title: 'Appearance'),
+            _SettingsItem(icon: Icons.notifications_active, iconColor: const Color(0xFF0EA5A4), title: 'Notifications', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationSettingsScreen()))),
+            _SettingsItem(icon: Icons.palette, iconColor: const Color(0xFF0EA5A4), title: 'Appearance', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AccessibilitySettingsScreen()))),
             _SettingsItem(icon: Icons.language, iconColor: const Color(0xFF0EA5A4), title: 'Language'),
           ],
         ),
@@ -276,9 +282,9 @@ class ProfileScreen extends StatelessWidget {
         _buildSettingsGroup(
           title: 'SUPPORT',
           items: [
-            _SettingsItem(icon: Icons.help_center, iconColor: const Color(0xFF0EA5A4), title: 'Help & support'),
-            _SettingsItem(icon: Icons.info, iconColor: const Color(0xFF0EA5A4), title: 'About Orio'),
-            _SettingsItem(icon: Icons.report, iconColor: const Color(0xFFDC2626), title: 'Report emergency', titleColor: const Color(0xFFDC2626)),
+            _SettingsItem(icon: Icons.help_center, iconColor: const Color(0xFF0EA5A4), title: 'Help & support', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const HelpCenterScreen()))),
+            _SettingsItem(icon: Icons.info, iconColor: const Color(0xFF0EA5A4), title: 'About VOSHIFY', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AboutScreen()))),
+            _SettingsItem(icon: Icons.report, iconColor: const Color(0xFFDC2626), title: 'Report emergency', titleColor: const Color(0xFFDC2626), onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ReportIssueScreen()))),
           ],
         ),
       ],
@@ -309,7 +315,7 @@ class ProfileScreen extends StatelessWidget {
                   Material(
                     color: Colors.transparent,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: item.onTap ?? () {},
                       borderRadius: BorderRadius.circular(20),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
@@ -350,53 +356,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomNav() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        boxShadow: [BoxShadow(color: Color(0x140F172A), blurRadius: 16, offset: Offset(0, -4))],
-        border: Border(top: BorderSide(color: Color(0xFFE2E8E9))),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: SafeArea(
-        top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildNavItem(Icons.home_outlined, Icons.home, 'Home', false),
-            _buildNavItem(Icons.local_laundry_service_outlined, Icons.local_laundry_service, 'Orders', false),
-            _buildNavItem(Icons.account_balance_wallet_outlined, Icons.account_balance_wallet, 'Wallet', false),
-            _buildNavItem(Icons.person_outline, Icons.person, 'Profile', true),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData outlinedIcon, IconData filledIcon, String label, bool isActive) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        isActive
-            ? Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                decoration: BoxDecoration(color: const Color(0xFF316BF3), borderRadius: BorderRadius.circular(20)),
-                child: Icon(filledIcon, color: Colors.white, size: 24),
-              )
-            : Icon(outlinedIcon, color: const Color(0xFF3D4949), size: 24),
-        const SizedBox(height: 4),
-        Text(
-          label, 
-          style: TextStyle(
-            color: isActive ? const Color(0xFF003EA8) : const Color(0xFF3D4949), 
-            fontSize: 12, 
-            fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
-          ),
-        ),
-      ],
-    );
-  }
 }
 
 class _SettingsItem {
@@ -405,6 +364,7 @@ class _SettingsItem {
   final String title;
   final String? subtitle;
   final Color? titleColor;
+  final VoidCallback? onTap;
 
-  _SettingsItem({required this.icon, required this.iconColor, required this.title, this.subtitle, this.titleColor});
+  _SettingsItem({required this.icon, required this.iconColor, required this.title, this.subtitle, this.titleColor, this.onTap});
 }

@@ -254,7 +254,7 @@ class _AddPhotosScreenState extends State<AddPhotosScreen> with SingleTickerProv
                         onTap: () => _removePhoto(index),
                         child: Container(
                           width: 24, height: 24,
-                          decoration: BoxDecoration(color: Colors.white.withOpacity(0.9), shape: BoxShape.circle, boxShadow: const [BoxShadow(color: Color(0x1A0F172A), blurRadius: 4)]),
+                          decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.9), shape: BoxShape.circle, boxShadow: const [BoxShadow(color: Color(0x1A0F172A), blurRadius: 4)]),
                           child: const Icon(Icons.close, color: Color(0xFFDC2626), size: 16),
                         ),
                       ),
@@ -263,7 +263,7 @@ class _AddPhotosScreenState extends State<AddPhotosScreen> with SingleTickerProv
                       Positioned(
                         bottom: 0, left: 0, right: 0,
                         child: Container(
-                          color: const Color(0xFF0EA5A4).withOpacity(0.9),
+                          color: const Color(0xFF0EA5A4).withValues(alpha: 0.9),
                           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
                           child: Row(
                             children: [
@@ -312,7 +312,7 @@ class _AddPhotosScreenState extends State<AddPhotosScreen> with SingleTickerProv
   Widget _buildBottomBar() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
+        color: Colors.white.withValues(alpha: 0.9),
         border: const Border(top: BorderSide(color: Color(0x80E2E8E9))),
         boxShadow: const [BoxShadow(color: Color(0x0A0F172A), blurRadius: 24, offset: Offset(0, -8))],
       ),

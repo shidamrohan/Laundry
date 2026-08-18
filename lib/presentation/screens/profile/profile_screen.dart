@@ -132,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             // --- STICKY HEADER ---
             Container(
-              color: const Color(0xFF0B1220).withOpacity(0.92),
+              color: const Color(0xFF0B1220).withValues(alpha: 0.92),
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
               child: Column(
                 children: [
@@ -170,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xFF0EA5A4).withOpacity(0.4),
+                                color: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
                                 blurRadius: 8,
                                 spreadRadius: 0,
                               ),
@@ -205,7 +205,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      'Add a few details to personalize your Orio experience.',
+                      'Add a few details to personalize your VOSHIFY experience.',
                       style: TextStyle(
                         color: Color(0xFF94A3B8),
                         fontSize: 15,
@@ -231,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               border: Border.all(color: const Color(0xFF0B1220), width: 4),
                               boxShadow: [
                                 BoxShadow(
-                                  color: const Color(0xFF0EA5A4).withOpacity(0.3),
+                                  color: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
                                   blurRadius: 20,
                                   spreadRadius: 0,
                                 )
@@ -262,7 +262,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   border: Border.all(color: const Color(0xFF0B1220), width: 2),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
+                                      color: Colors.black.withValues(alpha: 0.2),
                                       blurRadius: 8,
                                     )
                                   ],
@@ -306,7 +306,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         style: const TextStyle(color: Colors.white, fontSize: 16),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'e.g. aarav@orio.com',
+                          hintText: 'e.g. aarav@voshify.com',
                           hintStyle: TextStyle(color: Color(0xFF334155), fontSize: 16),
                           isDense: true,
                           contentPadding: EdgeInsets.zero,
@@ -399,7 +399,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                const Color(0xFF0B1220).withOpacity(0),
+                const Color(0xFF0B1220).withValues(alpha: 0),
                 const Color(0xFF0B1220),
                 const Color(0xFF0B1220),
               ],
@@ -425,7 +425,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       borderRadius: BorderRadius.circular(28),
                     ),
                     elevation: 8,
-                    shadowColor: const Color(0xFF0EA5A4).withOpacity(0.3),
+                    shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
                   ),
                   child: const Text(
                     'Save & Continue',
@@ -500,7 +500,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          if (trailing != null) trailing,
+          ?trailing,
         ],
       ),
     );

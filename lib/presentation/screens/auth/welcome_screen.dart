@@ -63,7 +63,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                     SizedBox(width: 8),
                     Text(
-                      'Orio',
+                      'VOSHIFY',
                       style: TextStyle(
                         color: Color(0xFF0EA5A4),
                         fontSize: 24,
@@ -89,9 +89,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF0EA5A4).withOpacity(0.1),
+                    color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
                     border: Border.all(
-                      color: const Color(0xFF0EA5A4).withOpacity(0.2),
+                      color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
                     ),
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -225,7 +225,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       borderRadius: BorderRadius.circular(28),
                     ),
                     elevation: 4,
-                    shadowColor: const Color(0xFF0EA5A4).withOpacity(0.5),
+                    shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.5),
                   ),
                   child: Text(
                     _currentPage == 0 ? 'Next' : 'Get Started',
@@ -349,8 +349,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
       decoration: BoxDecoration(
-        color: const Color(0xFFEFF6F6).withOpacity(0.5),
-        border: Border.all(color: const Color(0xFFE2E8E9).withOpacity(0.4)),
+        color: const Color(0xFFEFF6F6).withValues(alpha: 0.5),
+        border: Border.all(color: const Color(0xFFE2E8E9).withValues(alpha: 0.4)),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

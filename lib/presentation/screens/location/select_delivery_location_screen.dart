@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laundry/presentation/screens/profile/terms_screen.dart';
 import 'package:laundry/presentation/screens/location/add_address_screen.dart';
 
 class SelectDeliveryLocationScreen extends StatefulWidget {
@@ -75,7 +74,7 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
           child: Image.network(
             'https://lh3.googleusercontent.com/aida-public/AB6AXuCIJAfyh0jMM4r8js4Dq-I9WZTA-EUCP0mnxJiOalJlJNyKrldqs_OtGazrye5qqCrd62VLUvZVq77L-DYZUPBhZUKNKNDizypyIXdi8OqOxd4mdDxVh4qOVAUd2Vt_sXsKIHPxOTm5oN6iuojBCg-NmEc31sPOZmcKnPOfISG9ZVL40NVmjhKyLl5CFOhNSGcR5Q6KVD1ZViOs9nkVHnPd_EAZ0QKk323ROdYTQn6L4X-RQw2fN2PQlK-2yl8EgVdm560e_lC1zPFT',
             fit: BoxFit.cover,
-            color: Colors.white.withOpacity(0.2), // Lighten the map slightly
+            color: Colors.white.withValues(alpha: 0.2), // Lighten the map slightly
             colorBlendMode: BlendMode.lighten,
           ),
         ),
@@ -96,9 +95,9 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
                   child: Container(
                     width: 128, height: 128,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF0EA5A4).withOpacity(0.1),
+                      color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
                       shape: BoxShape.circle,
-                      border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.2)),
+                      border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.2)),
                     ),
                   ),
                 ),
@@ -109,7 +108,7 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
                 child: Container(
                   width: 16, height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 4)],
                   ),
@@ -156,7 +155,7 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
                 ),
@@ -317,7 +316,7 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
                 children: [
                   Container(
                     width: 24, height: 24,
-                    decoration: BoxDecoration(color: const Color(0xFF16A34A).withOpacity(0.1), shape: BoxShape.circle),
+                    decoration: BoxDecoration(color: const Color(0xFF16A34A).withValues(alpha: 0.1), shape: BoxShape.circle),
                     child: const Icon(Icons.check_circle, color: Color(0xFF16A34A), size: 16),
                   ),
                   const SizedBox(width: 8),
@@ -326,7 +325,7 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+                decoration: BoxDecoration(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
                 child: const Text('EXPRESS AVAILABLE', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
               ),
             ],
@@ -381,9 +380,9 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
-              color: _isSavedHome ? const Color(0xFF0EA5A4) : const Color(0xFF0EA5A4).withOpacity(0.05),
+              color: _isSavedHome ? const Color(0xFF0EA5A4) : const Color(0xFF0EA5A4).withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.2)),
+              border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.2)),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -410,7 +409,7 @@ class _SelectDeliveryLocationScreenState extends State<SelectDeliveryLocationScr
         children: [
           Container(
             width: 40, height: 40,
-            decoration: BoxDecoration(color: const Color(0xFFE2E8E9).withOpacity(0.4), borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(color: const Color(0xFFE2E8E9).withValues(alpha: 0.4), borderRadius: BorderRadius.circular(8)),
             child: Icon(icon, color: const Color(0xFF64748B), size: 20),
           ),
           const SizedBox(width: 12),

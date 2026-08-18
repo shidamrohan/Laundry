@@ -160,7 +160,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen>
                     child: Text('TXN9F2K10', style: const TextStyle(color: Color(0xFF0F172A), fontSize: 13, fontWeight: FontWeight.w600, fontFamily: 'monospace', letterSpacing: 0.5))),
                 const SizedBox(height: 20),
                 _buildDetailRow('Order number',
-                    child: Text('#ORIO1042', style: const TextStyle(color: Color(0xFF2563EB), fontSize: 14, fontWeight: FontWeight.bold))),
+                    child: Text('#VOSHIFY1042', style: const TextStyle(color: Color(0xFF2563EB), fontSize: 14, fontWeight: FontWeight.bold))),
                 const SizedBox(height: 20),
                 _buildDetailRow('Service',
                     child: Text('Wash & Fold · Priority', style: const TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.w600))),
@@ -171,7 +171,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen>
                       children: const [
                         Icon(Icons.account_balance_wallet, color: Color(0xFF0EA5A4), size: 20),
                         SizedBox(width: 8),
-                        Text('Orio Wallet', style: TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.w600)),
+                        Text('VOSHIFY Wallet', style: TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.w600)),
                       ],
                     )),
 

@@ -146,7 +146,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
-                colors: [Colors.black.withOpacity(0.4), Colors.transparent],
+                colors: [Colors.black.withValues(alpha: 0.4), Colors.transparent],
               ),
             ),
           ),
@@ -160,9 +160,9 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
               children: [
                 Container(width: 8, height: 8, decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle)),
                 const SizedBox(width: 8),
-                Container(width: 8, height: 8, decoration: BoxDecoration(color: Colors.white.withOpacity(0.4), shape: BoxShape.circle)),
+                Container(width: 8, height: 8, decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.4), shape: BoxShape.circle)),
                 const SizedBox(width: 8),
-                Container(width: 8, height: 8, decoration: BoxDecoration(color: Colors.white.withOpacity(0.4), shape: BoxShape.circle)),
+                Container(width: 8, height: 8, decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.4), shape: BoxShape.circle)),
               ],
             ),
           ),
@@ -178,7 +178,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
         width: 44,
         height: 44,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.85),
+          color: Colors.white.withValues(alpha: 0.85),
           shape: BoxShape.circle,
           boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
         ),
@@ -303,7 +303,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: const Color(0xFF0EA5A4).withOpacity(0.3), width: 2),
+                        border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.3), width: 2),
                         boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
                         image: const DecorationImage(
                           image: NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuB1SY2vnSJldY6EhXWNBpwRwidlh8f55qz0H427R-QQoF05Z2yOoERZM_-B-oCLxiQHx8gI0Vw405Nv6Znk2B7vf7GcX4YOkw371Zu22a8xcxOdFJtkQJljYgMLv72OXyeODmk9itmqbwT5dI8NPLwELwmrraKCcY1ms-bxqzDgf797HtgWyYcPOW0AEcDumpUXSbz9Kgh4NJU_UVU23CO0jNctVH3Ks3IoAB3gf3rbe3NDOY9FwghMRrbPwvstwindI--soxeOvOnK'),
@@ -443,7 +443,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
               ),
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }
@@ -602,7 +602,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
   Widget _buildBottomBar(double bottomPadding) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.95),
+        color: Colors.white.withValues(alpha: 0.95),
         border: const Border(top: BorderSide(color: Color(0xFFE2E8E9))),
         boxShadow: const [BoxShadow(color: Color(0x0D000000), blurRadius: 20, offset: Offset(0, -10))],
       ),
@@ -642,7 +642,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                   backgroundColor: const Color(0xFF0EA5A4),
                   foregroundColor: Colors.white,
                   elevation: 4,
-                  shadowColor: const Color(0xFF0EA5A4).withOpacity(0.5),
+                  shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.5),
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                 ),

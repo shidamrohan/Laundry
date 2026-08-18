@@ -67,7 +67,7 @@ class _PaymentFailedScreenState extends State<PaymentFailedScreen>
             children: const [
               Icon(Icons.bubble_chart, color: Color(0xFF0EA5A4), size: 24),
               SizedBox(width: 6),
-              Text('Orio', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 20, fontWeight: FontWeight.bold)),
+              Text('VOSHIFY', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 20, fontWeight: FontWeight.bold)),
             ],
           ),
         ),

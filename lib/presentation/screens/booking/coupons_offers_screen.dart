@@ -304,7 +304,7 @@ class _CouponsOffersScreenState extends State<CouponsOffersScreen> {
       child: Column(
         children: [
           _buildCouponCard(
-            code: 'ORIO150',
+            code: 'VOSHIFY150',
             desc: '₹150 off orders above ₹499',
             saveText: 'You save ₹150',
             validity: 'Valid till 30 Jul',

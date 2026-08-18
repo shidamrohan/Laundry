@@ -74,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xFF0EA5A4).withOpacity(0.15),
+                    const Color(0xFF0EA5A4).withValues(alpha: 0.15),
                     Colors.transparent,
                   ],
                   radius: 0.7,
@@ -97,11 +97,11 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                       width: 250,
                       height: 250,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF0EA5A4).withOpacity(0.05),
+                        color: const Color(0xFF0EA5A4).withValues(alpha: 0.05),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF0EA5A4).withOpacity(0.1),
+                            color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
                             blurRadius: 80,
                             spreadRadius: 20,
                           ),
@@ -116,11 +116,11 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                       width: 300,
                       height: 300,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF2563EB).withOpacity(0.05),
+                        color: const Color(0xFF2563EB).withValues(alpha: 0.05),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF2563EB).withOpacity(0.1),
+                            color: const Color(0xFF2563EB).withValues(alpha: 0.1),
                             blurRadius: 100,
                             spreadRadius: 20,
                           ),
@@ -176,7 +176,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF0EA5A4).withOpacity(0.3),
+                        color: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
                         blurRadius: 24,
                         offset: const Offset(0, 8),
                       ),
@@ -203,7 +203,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 const SizedBox(height: 24),
                 // App Name
                 const Text(
-                  'Orio',
+                  'VOSHIFY',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 34,
@@ -238,7 +238,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                     width: 140,
                     height: 3,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     clipBehavior: Clip.hardEdge,
@@ -268,7 +268,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                   Text(
                     'PREMIUM CARE DIVISION',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 2.0,
@@ -288,10 +288,10 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         shape: BoxShape.circle,
         border: Border.all(
-          color: Colors.white.withOpacity(0.05),
+          color: Colors.white.withValues(alpha: 0.05),
           width: 1,
         ),
       ),

@@ -86,7 +86,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               child: Image.network(
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvImjyOyrwww1Ryezd6RZ_e_o8sSUEZIIG3LaoLLWGkV_iojDJmX4F_QGVKWweGv9crW9JWSqYH5VpsbW1pBnQbXzMsCO2qfQvBQOEdRKX6LvQzw1cgNOAfncinfRCg-tvhw3Qrk0l6xXDQ9vhDIdhmboOb0TSYC_-oOzQMaRcDgSpI5PNPE0uJRIFUc9tpCu7OO0oXjYncQ10x9pHeC9rWthcN71PJ91mQ6XDZGlLC7IVAu-gD9qGoNC2BD6Pk4oTqSPNqpT9j23G',
                 fit: BoxFit.cover,
-                color: Colors.white.withOpacity(0.2), // Lighten to match the UI
+                color: Colors.white.withValues(alpha: 0.2), // Lighten to match the UI
                 colorBlendMode: BlendMode.lighten,
               ),
             ),
@@ -103,7 +103,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       child: Container(
                         width: 24, height: 4,
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 2)],
                         ),
@@ -123,7 +123,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: const [BoxShadow(color: Color(0x140F172A), blurRadius: 16, offset: Offset(0, 4))],
                   ),

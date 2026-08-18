@@ -411,8 +411,8 @@ class _AddGarmentsScreenState extends State<AddGarmentsScreen> {
           end: Alignment.topCenter,
           colors: [
             const Color(0xFFF7FAFB),
-            const Color(0xFFF7FAFB).withOpacity(0.95),
-            const Color(0xFFF7FAFB).withOpacity(0.0),
+            const Color(0xFFF7FAFB).withValues(alpha: 0.95),
+            const Color(0xFFF7FAFB).withValues(alpha: 0.0),
           ],
           stops: const [0.0, 0.7, 1.0],
         ),
