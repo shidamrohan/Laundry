@@ -122,9 +122,9 @@ class _AddGarmentsScreenState extends State<AddGarmentsScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: Colors.white,
-      padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 8),
+            padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 8),
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(bottom: BorderSide(color: Color(0x1AE2E8E9))),
       ),
       child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // For CupertinoSwitch
+import 'package:laundry/core/services/location_service.dart';
 
 class EditAddressScreen extends StatefulWidget {
   const EditAddressScreen({super.key});
@@ -11,6 +12,30 @@ class EditAddressScreen extends StatefulWidget {
 class _EditAddressScreenState extends State<EditAddressScreen> {
   String _selectedTag = 'Home';
   bool _isDefault = true;
+  bool _isFetchingLocation = false;
+
+  void _fetchLocation() async {
+    setState(() => _isFetchingLocation = true);
+    try {
+      final position = await LocationService.getCurrentPosition();
+      if (position != null) {
+        final address = await LocationService.getAddressFromCoordinates(position.latitude, position.longitude);
+        if (mounted && address != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Location fetched: $address')),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isFetchingLocation = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +70,9 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
 
   Widget _buildHeader(BuildContext context, double topPadding) {
     return Container(
-      color: Colors.white,
-      padding: EdgeInsets.fromLTRB(8, topPadding + 8, 16, 8),
+            padding: EdgeInsets.fromLTRB(8, topPadding + 8, 16, 8),
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(bottom: BorderSide(color: Color(0xFFE2E8E9))),
       ),
       child: Row(
@@ -139,15 +164,20 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             ),
             Positioned(
               bottom: 16, right: 16,
-              child: Container(
-                width: 40, height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFFE2E8E9)),
-                  boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
+              child: GestureDetector(
+                onTap: _fetchLocation,
+                child: Container(
+                  width: 40, height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: const Color(0xFFE2E8E9)),
+                    boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
+                  ),
+                  child: _isFetchingLocation 
+                      ? const Padding(padding: EdgeInsets.all(8), child: CircularProgressIndicator(strokeWidth: 2)) 
+                      : const Icon(Icons.my_location, color: Color(0xFF0EA5A4), size: 24),
                 ),
-                child: const Icon(Icons.my_location, color: Color(0xFF0EA5A4), size: 24),
               ),
             ),
           ],

@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:laundry/presentation/screens/home/home_screen.dart';
+import 'package:laundry/presentation/screens/main_layout_screen.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -69,7 +69,7 @@ class _NotificationScreenState extends State<NotificationScreen>
       if (mounted) {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
+          MaterialPageRoute(builder: (_) => const MainLayoutScreen()),
           (route) => false,
         );
       }
@@ -242,7 +242,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                             onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (_) => const HomeScreen()),
+                      MaterialPageRoute(builder: (_) => const MainLayoutScreen()),
                       (route) => false,
                     );
                   },

@@ -101,9 +101,9 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: Colors.white,
-      padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 8),
+            padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 8),
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(bottom: BorderSide(color: Color(0xFFE2E8E9))),
         boxShadow: [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
       ),

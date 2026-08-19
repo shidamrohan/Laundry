@@ -93,10 +93,10 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: Colors.white,
-      padding: EdgeInsets.fromLTRB(4, topPadding, 4, 0),
+            padding: EdgeInsets.fromLTRB(4, topPadding, 4, 0),
       height: topPadding + 64,
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(bottom: BorderSide(color: Color(0xFFE2E8E9))),
         boxShadow: [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
       ),

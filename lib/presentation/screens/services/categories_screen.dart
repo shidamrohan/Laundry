@@ -88,7 +88,6 @@ class CategoriesScreen extends StatelessWidget {
         children: [
           // ── FIXED HEADER ──
           Container(
-            color: Colors.white,
             padding: EdgeInsets.fromLTRB(8, topPadding + 4, 8, 10),
             decoration: const BoxDecoration(
               color: Colors.white,

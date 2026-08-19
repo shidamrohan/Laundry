@@ -120,9 +120,9 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: Colors.white,
-      padding: EdgeInsets.fromLTRB(4, topPadding + 8, 16, 8),
+            padding: EdgeInsets.fromLTRB(4, topPadding + 8, 16, 8),
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(bottom: BorderSide(color: Color(0xFFE2E8E9))),
         boxShadow: [BoxShadow(color: Color(0x0A000000), blurRadius: 4, offset: Offset(0, 2))],
       ),

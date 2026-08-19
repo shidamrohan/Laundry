@@ -355,9 +355,32 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildSuggestions() {
+    List<Map<String, dynamic>> filtered = _suggestions.where((s) {
+      final query = _searchController.text.toLowerCase();
+      final text = '${s['title']} ${s['highlight']}'.toLowerCase();
+      return text.contains(query);
+    }).toList();
+
+    if (_activeFilter == 1) { // Category
+      filtered = filtered.where((s) => s['title'] == 'Premium').toList();
+    } else if (_activeFilter == 2) { // Price
+      filtered = filtered.where((s) => s['title'] == 'Express').toList();
+    } else if (_activeFilter == 3) { // Type
+      filtered = filtered.where((s) => s['title'] == 'Eco-Friendly').toList();
+    }
+
+    if (filtered.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: Text('No services found matching your search.', style: TextStyle(color: Color(0xFF64748B))),
+        ),
+      );
+    }
+
     return Column(
-      children: List.generate(_suggestions.length, (i) {
-        final s = _suggestions[i];
+      children: List.generate(filtered.length, (i) {
+        final s = filtered[i];
         return GestureDetector(
           onTap: () {},
           child: Container(

@@ -89,9 +89,9 @@ class _WalletScreenState extends State<WalletScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: Colors.white,
-      padding: EdgeInsets.fromLTRB(8, topPadding, 8, 0),
+            padding: EdgeInsets.fromLTRB(8, topPadding, 8, 0),
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(bottom: BorderSide(color: Color(0xFFE2E8E9))),
       ),
       child: SizedBox(

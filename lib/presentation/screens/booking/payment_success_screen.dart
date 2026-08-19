@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laundry/presentation/screens/home/home_screen.dart';
+import 'package:laundry/presentation/screens/main_layout_screen.dart';
 
 class PaymentSuccessScreen extends StatefulWidget {
   const PaymentSuccessScreen({super.key});
@@ -20,7 +20,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> with Single
         leading: IconButton(
           icon: const Icon(Icons.close, color: Color(0xFF0F172A)),
           onPressed: () {
-             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const HomeScreen()), (route) => false);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const MainLayoutScreen()), (route) => false);
           },
         ),
         title: const Text('Order confirmed', style: TextStyle(color: Color(0xFF0F172A), fontSize: 20, fontWeight: FontWeight.bold)),
@@ -70,7 +70,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> with Single
                   const SizedBox(height: 12),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const HomeScreen()), (route) => false);
+                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const MainLayoutScreen()), (route) => false);
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: const Color(0xFF64748B),

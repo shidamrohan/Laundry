@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/payment_screen.dart';
-import 'package:laundry/presentation/screens/home/home_screen.dart';
+import 'package:laundry/presentation/screens/main_layout_screen.dart';
 
 class PaymentFailedScreen extends StatefulWidget {
   const PaymentFailedScreen({super.key});
@@ -78,7 +78,7 @@ class _PaymentFailedScreenState extends State<PaymentFailedScreen>
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (_) => const HomeScreen()),
+                MaterialPageRoute(builder: (_) => const MainLayoutScreen()),
                 (route) => false,
               );
             },

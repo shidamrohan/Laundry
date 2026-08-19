@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/widgets/skeleton_loader.dart';
 import 'package:laundry/presentation/screens/booking/select_location_screen.dart';
-import 'package:laundry/presentation/screens/home/offers_screen.dart';
-import 'package:laundry/presentation/screens/home/search_screen.dart';
-import 'package:laundry/presentation/screens/booking/your_orders_screen.dart';
-import 'package:laundry/presentation/screens/booking/profile_screen.dart';
 import 'package:laundry/presentation/screens/services/all_services_screen.dart';
 import 'package:laundry/presentation/screens/services/categories_screen.dart';
 import 'package:laundry/presentation/screens/services/select_service_screen.dart';
@@ -18,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final int _currentBanner = 0;
-  int _currentNavIndex = 0;
   bool _isLoading = true;
 
   @override
@@ -145,8 +140,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
 
-      // --- BOTTOM NAV ---
-      bottomNavigationBar: _buildBottomNav(bottomPadding),
     );
   }
 
@@ -761,121 +754,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildBottomNav(double bottomPadding) {
-    final items = [
-      {'icon': Icons.home_filled, 'label': 'Home', 'filled': true},
-      {'icon': Icons.receipt_long_outlined, 'label': 'Orders', 'filled': false},
-      {'icon': null, 'label': 'Search', 'filled': false}, // FAB center
-      {'icon': Icons.percent_outlined, 'label': 'Offers', 'filled': false},
-      {'icon': Icons.person_outline, 'label': 'Profile', 'filled': false},
-    ];
-
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFF0B1220),
-        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.08))),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 16, offset: const Offset(0, -4)),
-        ],
-      ),
-      child: SafeArea(
-        top: false,
-        child: SizedBox(
-          height: 64,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(items.length, (i) {
-              if (i == 2) {
-                // FAB center button
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const SearchScreen()),
-                    );
-                  },
-                  child: Transform.translate(
-                    offset: const Offset(0, -14),
-                    child: Container(
-                      width: 52,
-                      height: 52,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF0EA5A4),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFF0B1220), width: 3),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFF0EA5A4).withValues(alpha: 0.4),
-                            blurRadius: 16,
-                            spreadRadius: 0,
-                          )
-                        ],
-                      ),
-                      child: const Icon(Icons.search, color: Colors.white, size: 26),
-                    ),
-                  ),
-                );
-              }
-
-              final isActive = _currentNavIndex == i;
-              final icon = items[i]['icon'] as IconData;
-              final label = items[i]['label'] as String;
-
-              return GestureDetector(
-                onTap: () {
-                  if (i == 1) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const YourOrdersScreen()),
-                    );
-                  } else if (i == 3) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const OffersScreen()),
-                    );
-                  } else if (i == 4) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const ProfileScreen()),
-                    );
-                  } else {
-                    setState(() => _currentNavIndex = i);
-                  }
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: isActive ? const Color(0xFF0EA5A4).withValues(alpha: 0.1) : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(icon,
-                          color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B),
-                          size: 24),
-                      const SizedBox(height: 2),
-                      Text(
-                        label,
-                        style: TextStyle(
-                          color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B),
-                          fontSize: 10,
-                          fontWeight: isActive ? FontWeight.w700 : FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }),
-          ),
-        ),
-      ),
     );
   }
 }

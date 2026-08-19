@@ -77,10 +77,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       child: Row(
         children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back, color: _primary),
-            onPressed: () => Navigator.pop(context),
-          ),
+          const SizedBox(width: 16),
           const Expanded(
             child: Text(
               'Your Orders',
@@ -176,18 +173,28 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
     );
   }
 
-  Widget _buildOrdersList() {
     return Column(
       children: [
-        _buildDeliveredCard(),
-        const SizedBox(height: 16),
-        _buildActiveCard(),
-        const SizedBox(height: 16),
-        _buildRatingCard(),
-        const SizedBox(height: 16),
-        _buildCancelledCard(),
-        const SizedBox(height: 16),
-        _buildSkeletonCard(),
+        if (_selectedFilter == 'All' || _selectedFilter == 'Completed')
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: _buildDeliveredCard(),
+          ),
+        if (_selectedFilter == 'All' || _selectedFilter == 'Active')
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: _buildActiveCard(),
+          ),
+        if (_selectedFilter == 'All' || _selectedFilter == 'Completed')
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: _buildRatingCard(),
+          ),
+        if (_selectedFilter == 'All' || _selectedFilter == 'Cancelled')
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: _buildCancelledCard(),
+          ),
       ],
     );
   }

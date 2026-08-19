@@ -26,6 +26,9 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
+    _tabController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
@@ -124,84 +127,90 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
                     child: Column(
                       children: [
                         _buildDateGroup('Today', [
-                          _buildStandardCard(
-                            icon: Icons.account_balance_wallet,
-                            iconBgColor: const Color(0x1A16A34A),
-                            iconColor: const Color(0xFF16A34A),
-                            title: 'Added to Wallet',
-                            subtitle: 'UPI • Google Pay',
-                            amount: '+₹200',
-                            amountColor: const Color(0xFF16A34A),
-                            badgeLabel: 'Success',
-                            badgeColor: const Color(0xFF16A34A),
-                            badgeBg: const Color(0x1A16A34A),
-                            ref: 'Ref #TXN8829',
-                            time: '10:30 AM',
-                          ),
-                          _buildExpandedCard(),
+                          if (_tabController.index == 0 || _tabController.index == 1)
+                            _buildStandardCard(
+                              icon: Icons.account_balance_wallet,
+                              iconBgColor: const Color(0x1A16A34A),
+                              iconColor: const Color(0xFF16A34A),
+                              title: 'Added to Wallet',
+                              subtitle: 'UPI • Google Pay',
+                              amount: '+₹200',
+                              amountColor: const Color(0xFF16A34A),
+                              badgeLabel: 'Success',
+                              badgeColor: const Color(0xFF16A34A),
+                              badgeBg: const Color(0x1A16A34A),
+                              ref: 'Ref #TXN8829',
+                              time: '10:30 AM',
+                            ),
+                          if (_tabController.index == 0 || _tabController.index == 2)
+                            _buildExpandedCard(),
                         ]),
                         const SizedBox(height: 24),
                         _buildDateGroup('Yesterday', [
-                          _buildStandardCard(
-                            icon: Icons.assignment_return,
-                            iconBgColor: const Color(0x1A2563EB),
-                            iconColor: const Color(0xFF2563EB),
-                            title: 'Refund Issued',
-                            subtitle: 'Cancellation: Item missing',
-                            amount: '+₹150 refund',
-                            amountColor: const Color(0xFF2563EB),
-                            badgeLabel: 'Refunded',
-                            badgeColor: const Color(0xFF2563EB),
-                            badgeBg: const Color(0x1A2563EB),
-                            ref: 'Order #VOSHIFY1038',
-                            time: '04:20 PM',
-                          ),
-                          _buildStandardCard(
-                            icon: Icons.military_tech,
-                            iconBgColor: const Color(0x1AF59E0B),
-                            iconColor: const Color(0xFFF59E0B),
-                            title: 'Reward Credits',
-                            subtitle: 'Referral Bonus: Rahul V.',
-                            amount: '+50 pts reward',
-                            amountColor: const Color(0xFFF59E0B),
-                            badgeLabel: 'Success',
-                            badgeColor: const Color(0xFF16A34A),
-                            badgeBg: const Color(0x1A16A34A),
-                            ref: 'Ref #REF009',
-                            time: '11:00 AM',
-                          ),
+                          if (_tabController.index == 0 || _tabController.index == 3)
+                            _buildStandardCard(
+                              icon: Icons.assignment_return,
+                              iconBgColor: const Color(0x1A2563EB),
+                              iconColor: const Color(0xFF2563EB),
+                              title: 'Refund Issued',
+                              subtitle: 'Cancellation: Item missing',
+                              amount: '+₹150 refund',
+                              amountColor: const Color(0xFF2563EB),
+                              badgeLabel: 'Refunded',
+                              badgeColor: const Color(0xFF2563EB),
+                              badgeBg: const Color(0x1A2563EB),
+                              ref: 'Order #VOSHIFY1038',
+                              time: '04:20 PM',
+                            ),
+                          if (_tabController.index == 0 || _tabController.index == 1)
+                            _buildStandardCard(
+                              icon: Icons.military_tech,
+                              iconBgColor: const Color(0x1AF59E0B),
+                              iconColor: const Color(0xFFF59E0B),
+                              title: 'Reward Credits',
+                              subtitle: 'Referral Bonus: Rahul V.',
+                              amount: '+50 pts reward',
+                              amountColor: const Color(0xFFF59E0B),
+                              badgeLabel: 'Success',
+                              badgeColor: const Color(0xFF16A34A),
+                              badgeBg: const Color(0x1A16A34A),
+                              ref: 'Ref #REF009',
+                              time: '11:00 AM',
+                            ),
                         ]),
                         const SizedBox(height: 24),
                         _buildDateGroup('Jul 18', [
-                          _buildStandardCard(
-                            icon: Icons.iron,
-                            iconBgColor: const Color(0x1ADC2626),
-                            iconColor: const Color(0xFFDC2626),
-                            title: 'Spent on Order',
-                            subtitle: 'Wash & Iron',
-                            amount: '−₹320',
-                            amountColor: const Color(0xFFDC2626),
-                            badgeLabel: 'Success',
-                            badgeColor: const Color(0xFF16A34A),
-                            badgeBg: const Color(0x1A16A34A),
-                            ref: 'Order #VOSHIFY1022',
-                            time: '02:10 PM',
-                          ),
-                          _buildStandardCard(
-                            icon: Icons.timer_off,
-                            iconBgColor: const Color(0x1464748B),
-                            iconColor: const Color(0xFF64748B),
-                            title: 'Expired Points',
-                            subtitle: 'Promo rewards cleanup',
-                            amount: '−10 pts',
-                            amountColor: const Color(0xFF64748B),
-                            badgeLabel: 'Expired',
-                            badgeColor: const Color(0xFF64748B),
-                            badgeBg: const Color(0xFFE2E8E9),
-                            ref: 'Ref #EXP11',
-                            time: '12:00 AM',
-                            isExpired: true,
-                          ),
+                          if (_tabController.index == 0 || _tabController.index == 2)
+                            _buildStandardCard(
+                              icon: Icons.iron,
+                              iconBgColor: const Color(0x1ADC2626),
+                              iconColor: const Color(0xFFDC2626),
+                              title: 'Spent on Order',
+                              subtitle: 'Wash & Iron',
+                              amount: '−₹320',
+                              amountColor: const Color(0xFFDC2626),
+                              badgeLabel: 'Success',
+                              badgeColor: const Color(0xFF16A34A),
+                              badgeBg: const Color(0x1A16A34A),
+                              ref: 'Order #VOSHIFY1022',
+                              time: '02:10 PM',
+                            ),
+                          if (_tabController.index == 0 || _tabController.index == 4)
+                            _buildStandardCard(
+                              icon: Icons.timer_off,
+                              iconBgColor: const Color(0x1464748B),
+                              iconColor: const Color(0xFF64748B),
+                              title: 'Expired Points',
+                              subtitle: 'Promo rewards cleanup',
+                              amount: '−10 pts',
+                              amountColor: const Color(0xFF64748B),
+                              badgeLabel: 'Expired',
+                              badgeColor: const Color(0xFF64748B),
+                              badgeBg: const Color(0xFFE2E8E9),
+                              ref: 'Ref #EXP11',
+                              time: '12:00 AM',
+                              isExpired: true,
+                            ),
                         ]),
                         const SizedBox(height: 24),
                         _buildLoadingSkeleton(),
@@ -257,11 +266,6 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
               ),
             ),
 
-          // Fixed bottom nav
-          Positioned(
-            bottom: 0, left: 0, right: 0,
-            child: _buildBottomNav(),
-          ),
         ],
       ),
     );
@@ -304,8 +308,8 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
         ),
         // Tab bar
         Container(
-          color: Colors.white,
           decoration: const BoxDecoration(
+            color: Colors.white,
             border: Border(bottom: BorderSide(color: Color(0xFFE2E8E9))),
           ),
           child: TabBar(
@@ -615,39 +619,4 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
     );
   }
 
-  // ─────────────────────── BOTTOM NAV ───────────────────────
-
-  Widget _buildBottomNav() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Color(0xFFE2E8E9))),
-        boxShadow: [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, -2))],
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: SafeArea(
-        top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildNavItem(Icons.home_outlined, Icons.home, 'Home', false),
-            _buildNavItem(Icons.local_laundry_service_outlined, Icons.local_laundry_service, 'Orders', false),
-            _buildNavItem(Icons.account_balance_wallet_outlined, Icons.account_balance_wallet, 'Wallet', true),
-            _buildNavItem(Icons.person_outline, Icons.person, 'Account', false),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData outlinedIcon, IconData filledIcon, String label, bool isActive) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(isActive ? filledIcon : outlinedIcon, color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B), size: 24),
-        const SizedBox(height: 4),
-        Text(label, style: TextStyle(color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B), fontSize: 10, fontWeight: isActive ? FontWeight.bold : FontWeight.w600)),
-      ],
-    );
-  }
 }

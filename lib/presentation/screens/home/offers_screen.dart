@@ -109,11 +109,6 @@ class _OffersScreenState extends State<OffersScreen> {
             child: _buildHeader(topPadding),
           ),
 
-          // ── BOTTOM NAV (LIGHT) ──
-          Positioned(
-            bottom: 0, left: 0, right: 0,
-            child: _buildBottomNav(bottomPadding),
-          ),
         ],
       ),
     );
@@ -128,11 +123,7 @@ class _OffersScreenState extends State<OffersScreen> {
       height: topPadding + 64,
       child: Row(
         children: [
-          IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, color: Color(0xFF0EA5A4), size: 24),
-            splashRadius: 22,
-          ),
+          const SizedBox(width: 16),
           const Expanded(
             child: Text(
               'Offers & Rewards',
@@ -419,52 +410,4 @@ class _OffersScreenState extends State<OffersScreen> {
     );
   }
 
-  // ─────────────────────── BOTTOM NAV ───────────────────────
-
-  Widget _buildBottomNav(double bottomPadding) {
-    return Container(
-      height: 72 + bottomPadding,
-      padding: EdgeInsets.only(bottom: bottomPadding),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-        boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 10, offset: Offset(0, -2))],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(Icons.home, 'Home', false, () => Navigator.popUntil(context, (route) => route.isFirst)),
-          _buildNavItem(Icons.local_laundry_service, 'Orders', false, () {}),
-          _buildNavItem(Icons.local_offer, 'Offers', true, () {}),
-          _buildNavItem(Icons.person, 'Profile', false, () {}),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, String label, bool isActive, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B).withValues(alpha: 0.6),
-            size: 24,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF64748B).withValues(alpha: 0.6),
-              fontSize: 10,
-              fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
