@@ -405,18 +405,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
   }
 
 
-  Widget _shimmerBox(double height, double width, {double radius = 8}) {
-    return _ShimmerWidget(
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          color: _surfaceAlt,
-          borderRadius: BorderRadius.circular(radius),
-        ),
-      ),
-    );
-  }
+
 
   // --- Helpers ---
   Widget _buildMetaChip({required IconData icon, required String label}) {

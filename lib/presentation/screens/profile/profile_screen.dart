@@ -494,7 +494,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          trailing?,
+          ?trailing,
         ],
       ),
     );
