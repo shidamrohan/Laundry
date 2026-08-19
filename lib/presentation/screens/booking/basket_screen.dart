@@ -76,7 +76,7 @@ class _BasketScreenState extends State<BasketScreen> {
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.only(top: topPadding + 64, bottom: 180),
               children: [
-                _buildSummaryCard(),
+                if (_basketItems.isNotEmpty) _buildSummaryCard(),
                 _buildItemList(),
                 _buildAddMoreButton(),
               ],
@@ -90,10 +90,11 @@ class _BasketScreenState extends State<BasketScreen> {
           ),
           
           // Sticky Footer
-          Positioned(
-            bottom: 0, left: 0, right: 0,
-            child: _buildFooter(),
-          ),
+          if (_basketItems.isNotEmpty)
+            Positioned(
+              bottom: 0, left: 0, right: 0,
+              child: _buildFooter(),
+            ),
         ],
       ),
     );
@@ -201,6 +202,20 @@ class _BasketScreenState extends State<BasketScreen> {
   }
 
   Widget _buildItemList() {
+    if (_basketItems.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(40),
+        alignment: Alignment.center,
+        child: Column(
+          children: const [
+            Icon(Icons.shopping_basket_outlined, size: 64, color: Color(0xFF64748B)),
+            SizedBox(height: 16),
+            Text('Your basket is empty', style: TextStyle(color: Color(0xFF64748B), fontSize: 16, fontWeight: FontWeight.bold)),
+          ],
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(

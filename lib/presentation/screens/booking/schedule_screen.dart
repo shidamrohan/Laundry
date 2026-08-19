@@ -10,7 +10,7 @@ class ScheduleScreen extends StatefulWidget {
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
   int _selectedDateIndex = 1; // 0 = Today, 1 = Tomorrow, 2 = Custom
-  int _selectedSlotIndex = 1; // 0 = Morning, 1 = Afternoon, 2 = Evening, 3 = Night
+  int _selectedSlotIndex = -1; // -1 = None
 
   final List<Map<String, dynamic>> _slots = [
     {
@@ -383,6 +383,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 
   Widget _buildBottomBar() {
+    final hasSelection = _selectedSlotIndex != -1;
+    final dateStr = _selectedDateIndex == 0 ? 'Today' : _selectedDateIndex == 1 ? 'Tomorrow' : 'Custom Date';
+    final timeStr = hasSelection ? _slots[_selectedSlotIndex]['time'] : 'Select a time';
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -402,24 +406,25 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 const Text('SELECTED SLOT', style: TextStyle(color: Color(0xFF64748B), fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
                 const SizedBox(height: 2),
                 Row(
-                  children: const [
-                    Text('Tomorrow', style: TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.w900)),
-                    SizedBox(width: 6),
-                    Icon(Icons.circle, color: Color(0xFFE2E8E9), size: 4),
-                    SizedBox(width: 6),
-                    Text('12–3 PM', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 16, fontWeight: FontWeight.bold)),
+                  children: [
+                    Text(dateStr, style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.w900)),
+                    const SizedBox(width: 6),
+                    const Icon(Icons.circle, color: Color(0xFFE2E8E9), size: 4),
+                    const SizedBox(width: 6),
+                    Text(timeStr, style: TextStyle(color: hasSelection ? const Color(0xFF0EA5A4) : const Color(0xFF64748B), fontSize: 16, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ],
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: hasSelection ? () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const ScheduleDeliveryScreen()));
-              },
+              } : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF0EA5A4),
+                disabledBackgroundColor: const Color(0xFFE2E8E9),
                 foregroundColor: Colors.white,
-                elevation: 8,
+                elevation: hasSelection ? 8 : 0,
                 shadowColor: const Color(0x400EA5A4),
                 padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

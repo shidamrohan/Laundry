@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laundry/presentation/screens/profile/terms_screen.dart';
+
 import 'package:laundry/core/services/location_service.dart';
 
 class AddAddressScreen extends StatefulWidget {
@@ -453,10 +453,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         top: false,
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const TermsScreen()),
-            );
+            Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF0EA5A4),

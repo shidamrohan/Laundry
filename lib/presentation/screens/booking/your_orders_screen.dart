@@ -173,6 +173,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
     );
   }
 
+  Widget _buildOrdersList() {
     return Column(
       children: [
         if (_selectedFilter == 'All' || _selectedFilter == 'Completed')
@@ -403,59 +404,6 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
     );
   }
 
-  // --- Skeleton Loader ---
-  Widget _buildSkeletonCard() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: _surface.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: _divider.withValues(alpha: 0.2)),
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _shimmerBox(56, 56, radius: 12),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _shimmerBox(12, 96),
-                    const SizedBox(height: 8),
-                    _shimmerBox(10, 128),
-                  ],
-                ),
-              ),
-              _shimmerBox(24, 80, radius: 99),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              _shimmerBox(10, 96),
-              const SizedBox(width: 24),
-              _shimmerBox(10, 80),
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Divider(color: _divider, height: 1),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              _shimmerBox(24, 64),
-              const Spacer(),
-              _shimmerBox(36, 80, radius: 99),
-              const SizedBox(width: 8),
-              _shimmerBox(36, 96, radius: 99),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _shimmerBox(double height, double width, {double radius = 8}) {
     return _ShimmerWidget(

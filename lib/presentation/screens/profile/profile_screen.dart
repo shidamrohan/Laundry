@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laundry/presentation/screens/home/notification_screen.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -414,10 +414,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const NotificationScreen()),
-                    );
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF0EA5A4),
@@ -440,10 +437,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const NotificationScreen()),
-                  );
+                  Navigator.pop(context);
                 },
                 child: const Text(
                   'Skip for now',
@@ -500,7 +494,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          ?trailing,
+          trailing?,
         ],
       ),
     );
