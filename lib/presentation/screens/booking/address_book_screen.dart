@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:laundry/presentation/screens/location/add_address_screen.dart';
 
-class AddressBookScreen extends StatelessWidget {
+class AddressBookScreen extends StatefulWidget {
   const AddressBookScreen({super.key});
 
+  @override
+  State<AddressBookScreen> createState() => _AddressBookScreenState();
+}
+
+class _AddressBookScreenState extends State<AddressBookScreen> {
   static const _primary = Color(0xFF0EA5A4);
   static const _surface = Color(0xFFFFFFFF);
   static const _surfaceAlt = Color(0xFFEFF6F6);
@@ -10,6 +16,102 @@ class AddressBookScreen extends StatelessWidget {
   static const _textPrimary = Color(0xFF0F172A);
   static const _textSecondary = Color(0xFF64748B);
   static const _error = Color(0xFFDC2626);
+
+  // Mutable address list — starts with two demo entries
+  final List<Map<String, dynamic>> _addresses = [
+    {
+      'icon': Icons.home,
+      'tag': 'Home',
+      'isDefault': true,
+      'name': 'Aarav Kumar',
+      'phone': '+91 98765 43210',
+      'address': '21 Brigade Road, Shanthala Nagar, Bengaluru 560025',
+    },
+    {
+      'icon': Icons.work,
+      'tag': 'Work',
+      'isDefault': false,
+      'name': 'Aarav Kumar',
+      'phone': '+91 98765 43210',
+      'address': 'Prestige Tech Park, Marathahalli, Outer Ring Rd, Bengaluru',
+    },
+  ];
+
+  IconData _tagIcon(String tag) {
+    switch (tag) {
+      case 'Home': return Icons.home;
+      case 'Work': return Icons.work;
+      case 'Favorite': return Icons.favorite;
+      default: return Icons.location_on;
+    }
+  }
+
+  Future<void> _openAddAddress() async {
+    final result = await Navigator.push<Map<String, dynamic>>(
+      context,
+      MaterialPageRoute(builder: (_) => const AddAddressScreen()),
+    );
+    if (result != null && mounted) {
+      setState(() {
+        _addresses.add({
+          'icon': _tagIcon(result['tag'] ?? 'Other'),
+          'tag': result['tag'] ?? 'Other',
+          'isDefault': false,
+          'name': result['name'] ?? 'New Address',
+          'phone': result['phone'] ?? '',
+          'address': result['address'] ?? '',
+        });
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Address saved successfully!'),
+          backgroundColor: _primary,
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
+  }
+
+  void _deleteAddress(int index) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Delete address?'),
+        content: const Text('Are you sure you want to remove this address?'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              setState(() => _addresses.removeAt(index));
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Address deleted'),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            },
+            child: const Text('Delete', style: TextStyle(color: _error)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _setDefault(int index) {
+    setState(() {
+      for (int i = 0; i < _addresses.length; i++) {
+        _addresses[i]['isDefault'] = (i == index);
+      }
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${_addresses[index]['tag']} set as default'),
+        backgroundColor: _primary,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,35 +135,59 @@ class AddressBookScreen extends StatelessWidget {
           style: TextStyle(color: _primary, fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 40),
+      body: _addresses.isEmpty
+          ? _buildEmptyState()
+          : ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 40),
+              children: [
+                _buildAddNewAddressButton(),
+                const SizedBox(height: 16),
+                ...List.generate(_addresses.length, (index) {
+                  final addr = _addresses[index];
+                  return Column(
+                    children: [
+                      _buildAddressCard(
+                        index: index,
+                        icon: addr['icon'] as IconData,
+                        title: addr['tag'] as String,
+                        isDefault: addr['isDefault'] as bool,
+                        nameAndPhone: '${addr['name']} · ${addr['phone']}',
+                        address: addr['address'] as String,
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  );
+                }),
+                _buildFooterIllustration(),
+              ],
+            ),
+      floatingActionButton: _addresses.isEmpty
+          ? FloatingActionButton.extended(
+              onPressed: _openAddAddress,
+              backgroundColor: _primary,
+              icon: const Icon(Icons.add, color: Colors.white),
+              label: const Text('Add address', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            )
+          : null,
+    );
+  }
+
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _buildAddNewAddressButton(),
-          const SizedBox(height: 16),
-          _buildAddressCard(
-            icon: Icons.home,
-            title: 'Home',
-            isDefault: true,
-            nameAndPhone: 'Aarav Kumar · +91 98765 43210',
-            address: '21 Brigade Road, Shanthala Nagar, Bengaluru 560025',
+          Container(
+            width: 96, height: 96,
+            decoration: BoxDecoration(color: _surfaceAlt, shape: BoxShape.circle),
+            alignment: Alignment.center,
+            child: const Icon(Icons.location_off, color: _primary, size: 48),
           ),
-          const SizedBox(height: 16),
-          _buildAddressCard(
-            icon: Icons.work,
-            title: 'Work',
-            nameAndPhone: 'Aarav Kumar · +91 98765 43210',
-            address: 'Prestige Tech Park, Marathahalli, Outer Ring Rd, Bengaluru',
-          ),
-          const SizedBox(height: 16),
-          _buildAddressCard(
-            icon: Icons.location_on,
-            title: "Mom's place",
-            nameAndPhone: 'Aarav Kumar · +91 98765 43210',
-            address: 'Green Glen Layout, Bellandur, Bengaluru, Karnataka 560103',
-          ),
-          const SizedBox(height: 32),
-          _buildFooterIllustration(),
+          const SizedBox(height: 24),
+          const Text('No saved addresses', style: TextStyle(color: _textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          const Text('Add your home, work, or any other\ndelivery address here.', textAlign: TextAlign.center, style: TextStyle(color: _textSecondary, fontSize: 15)),
         ],
       ),
     );
@@ -71,7 +197,7 @@ class AddressBookScreen extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: _openAddAddress,
         borderRadius: BorderRadius.circular(8),
         child: Container(
           width: double.infinity,
@@ -79,7 +205,7 @@ class AddressBookScreen extends StatelessWidget {
           decoration: BoxDecoration(
             color: _surface,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: _primary.withValues(alpha: 0.5), width: 2, style: BorderStyle.solid), // Flutter doesn't have native dashed border without custom painter, using solid but lighter
+            border: Border.all(color: _primary.withValues(alpha: 0.5), width: 2),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -103,6 +229,7 @@ class AddressBookScreen extends StatelessWidget {
   }
 
   Widget _buildAddressCard({
+    required int index,
     required IconData icon,
     required String title,
     bool isDefault = false,
@@ -114,7 +241,7 @@ class AddressBookScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: _surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: _divider),
+        border: Border.all(color: isDefault ? _primary.withValues(alpha: 0.4) : _divider),
         boxShadow: const [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, 2))],
       ),
       child: Column(
@@ -155,11 +282,16 @@ class AddressBookScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              IconButton(
-                onPressed: () {},
+              PopupMenuButton<String>(
                 icon: const Icon(Icons.more_vert, color: _textSecondary),
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
+                onSelected: (val) {
+                  if (val == 'default') _setDefault(index);
+                  if (val == 'delete') _deleteAddress(index);
+                },
+                itemBuilder: (_) => [
+                  const PopupMenuItem(value: 'default', child: Text('Set as default')),
+                  const PopupMenuItem(value: 'delete', child: Text('Delete', style: TextStyle(color: _error))),
+                ],
               ),
             ],
           ),
@@ -173,11 +305,9 @@ class AddressBookScreen extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              _buildActionButton('Edit', _primary),
+              _buildActionButton('Set as Default', _primary, () => _setDefault(index)),
               const SizedBox(width: 16),
-              _buildActionButton('Share', _primary),
-              const SizedBox(width: 16),
-              _buildActionButton('Delete', _error),
+              _buildActionButton('Delete', _error, () => _deleteAddress(index)),
             ],
           ),
         ],
@@ -185,9 +315,9 @@ class AddressBookScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton(String label, Color color) {
+  Widget _buildActionButton(String label, Color color, VoidCallback onTap) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Text(
         label,
         style: TextStyle(color: color, fontSize: 14, fontWeight: FontWeight.w600),
@@ -198,36 +328,19 @@ class AddressBookScreen extends StatelessWidget {
   Widget _buildFooterIllustration() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32),
-      child: ColorFiltered(
-        colorFilter: const ColorFilter.matrix([
-          0.2126, 0.7152, 0.0722, 0, 0,
-          0.2126, 0.7152, 0.0722, 0, 0,
-          0.2126, 0.7152, 0.0722, 0, 0,
-          0,      0,      0,      0.4, 0,
-        ]), // grayscale + 0.4 opacity
-        child: Column(
-          children: [
-            Container(
-              width: 96, height: 96,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuDGBE7VdEt1HuYCvXGy8LL9TKemSi5_Jk4Ff7wZFa6-PjKGib4XVdNpeQsU60bcj2-7rzwIc814lVhzAe1enA_0rngbjrEZIyME-Tv7JeRWIL_DDJv40LPGZmQLRWahibIuSpwC-AROVDwrZmrUB_FTiw7zhT5kEKhkSP8b1N8FcRkZ_bsm-oWGuEXeAJV23MQnUUv_VHXJH7tLgnsJjUfrVDwQea12nmE69LoCD_i5RZHjSCm8inAUgP7tQWce-41hxTVakngYNwlh'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+      child: Column(
+        children: [
+          const Icon(Icons.location_on, color: _textSecondary, size: 48),
+          const SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Text(
+              'Save multiple addresses for home, work, and family for a faster checkout experience.',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: _textSecondary, fontSize: 14),
             ),
-            const SizedBox(height: 16),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Text(
-                'Save multiple addresses for home, work, and family for a faster checkout experience.',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: _textSecondary, fontSize: 14),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
