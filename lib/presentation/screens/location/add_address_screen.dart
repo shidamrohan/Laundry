@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:laundry/presentation/widgets/app_widgets.dart';
 import 'package:laundry/core/services/location_service.dart';
+
 
 class AddAddressScreen extends StatefulWidget {
   const AddAddressScreen({super.key});
@@ -10,30 +11,93 @@ class AddAddressScreen extends StatefulWidget {
 }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
+  final _formKey = GlobalKey<FormState>();
+
   String _selectedTag = 'Home';
   bool _isFetchingLocation = false;
+
+  // Controllers for all fields
+  final _flatController      = TextEditingController();
+  final _floorController     = TextEditingController();
+  final _buildingController  = TextEditingController();
+  final _landmarkController  = TextEditingController();
+  final _streetController    = TextEditingController();
+  final _cityController      = TextEditingController();
+  final _pincodeController   = TextEditingController();
+  final _nameController      = TextEditingController(text: 'Aarav Kumar');
+  final _phoneController     = TextEditingController();
+  final _altPhoneController  = TextEditingController();
+  final _instructionsController = TextEditingController();
+
+  @override
+  void dispose() {
+    _flatController.dispose();
+    _floorController.dispose();
+    _buildingController.dispose();
+    _landmarkController.dispose();
+    _streetController.dispose();
+    _cityController.dispose();
+    _pincodeController.dispose();
+    _nameController.dispose();
+    _phoneController.dispose();
+    _altPhoneController.dispose();
+    _instructionsController.dispose();
+    super.dispose();
+  }
 
   void _fetchLocation() async {
     setState(() => _isFetchingLocation = true);
     try {
       final position = await LocationService.getCurrentPosition();
       if (position != null) {
-        final address = await LocationService.getAddressFromCoordinates(position.latitude, position.longitude);
+        final address = await LocationService.getAddressFromCoordinates(
+            position.latitude, position.longitude);
         if (mounted && address != null) {
+          // Auto-fill the street field with the fetched address
+          setState(() {
+            _streetController.text = address;
+          });
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Location fetched: $address')),
+            SnackBar(
+              content: Text('Location filled: $address'),
+              backgroundColor: AppColors.primary,
+              behavior: SnackBarBehavior.floating,
+            ),
           );
         }
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
+          SnackBar(content: Text('Could not fetch location: $e')),
         );
       }
     } finally {
       if (mounted) setState(() => _isFetchingLocation = false);
     }
+  }
+
+  void _saveAddress() {
+    if (!_formKey.currentState!.validate()) return;
+
+    // Build human-readable address string
+    final parts = [
+      if (_flatController.text.isNotEmpty) _flatController.text,
+      if (_floorController.text.isNotEmpty) 'Floor ${_floorController.text}',
+      if (_buildingController.text.isNotEmpty) _buildingController.text,
+      if (_landmarkController.text.isNotEmpty) _landmarkController.text,
+      if (_streetController.text.isNotEmpty) _streetController.text,
+      if (_cityController.text.isNotEmpty) _cityController.text,
+      if (_pincodeController.text.isNotEmpty) _pincodeController.text,
+    ];
+    final fullAddress = parts.join(', ');
+
+    Navigator.pop(context, {
+      'tag': _selectedTag,
+      'name': _nameController.text.trim(),
+      'phone': '+91 ${_phoneController.text.trim()}',
+      'address': fullAddress,
+    });
   }
 
   @override
@@ -42,19 +106,22 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF7FAFB),
-      body: Column(
-        children: [
-          _buildHeader(context, topPadding),
-          Expanded(
-            child: Stack(
-              children: [
-                _buildMapSection(),
-                _buildFormSection(),
-              ],
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            _buildHeader(context, topPadding),
+            Expanded(
+              child: Stack(
+                children: [
+                  _buildMapSection(),
+                  _buildFormSection(),
+                ],
+              ),
             ),
-          ),
-          _buildBottomCTA(context),
-        ],
+            _buildBottomCTA(context),
+          ],
+        ),
       ),
     );
   }
@@ -63,7 +130,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   Widget _buildHeader(BuildContext context, double topPadding) {
     return Container(
-            padding: EdgeInsets.fromLTRB(8, topPadding + 8, 8, 8),
+      padding: EdgeInsets.fromLTRB(8, topPadding + 8, 8, 8),
       height: topPadding + 64,
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -79,12 +146,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           ),
           const SizedBox(width: 8),
           const Expanded(
-            child: Text('Select location', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 20, fontWeight: FontWeight.bold)),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.mic, color: Color(0xFF0EA5A4)),
-            splashRadius: 24,
+            child: Text('Add new address',
+                style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 20, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -98,21 +161,24 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       child: Container(
         margin: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFEFF6F6),
+          color: AppColors.surfaceAlt,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFE2E8E9)),
+          border: Border.all(color: AppColors.cardBorder),
           boxShadow: const [BoxShadow(color: Color(0x140F172A), blurRadius: 16, offset: Offset(0, 4))],
         ),
         clipBehavior: Clip.hardEdge,
         child: Stack(
           children: [
-            // Map Image
+            // Map Image placeholder
             Positioned.fill(
               child: Image.network(
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvImjyOyrwww1Ryezd6RZ_e_o8sSUEZIIG3LaoLLWGkV_iojDJmX4F_QGVKWweGv9crW9JWSqYH5VpsbW1pBnQbXzMsCO2qfQvBQOEdRKX6LvQzw1cgNOAfncinfRCg-tvhw3Qrk0l6xXDQ9vhDIdhmboOb0TSYC_-oOzQMaRcDgSpI5PNPE0uJRIFUc9tpCu7OO0oXjYncQ10x9pHeC9rWthcN71PJ91mQ6XDZGlLC7IVAu-gD9qGoNC2BD6Pk4oTqSPNqpT9j23G',
                 fit: BoxFit.cover,
-                color: Colors.white.withValues(alpha: 0.2), // Lighten to match the UI
+                color: Colors.white.withValues(alpha: 0.2),
                 colorBlendMode: BlendMode.lighten,
+                errorBuilder: (e1, e2, e3) => const Center(
+                  child: Icon(Icons.map, color: Color(0xFF0EA5A4), size: 64),
+                ),
               ),
             ),
             // Center Pin
@@ -130,7 +196,6 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 2)],
                         ),
                       ),
                     ),
@@ -139,30 +204,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 ),
               ),
             ),
-            // Change on Map Button
-            Positioned(
-              top: 16,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.9),
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: const [BoxShadow(color: Color(0x140F172A), blurRadius: 16, offset: Offset(0, 4))],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(Icons.edit_location_alt, size: 16, color: Color(0xFF0F172A)),
-                      SizedBox(width: 8),
-                      Text('Change on map', style: TextStyle(color: Color(0xFF0F172A), fontSize: 12, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // GPS button
             Positioned(
               bottom: 16, right: 16,
               child: GestureDetector(
@@ -174,8 +216,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     shape: BoxShape.circle,
                     boxShadow: [BoxShadow(color: Color(0x140F172A), blurRadius: 16, offset: Offset(0, 4))],
                   ),
-                  child: _isFetchingLocation 
-                      ? const Padding(padding: EdgeInsets.all(12), child: CircularProgressIndicator(strokeWidth: 2)) 
+                  child: _isFetchingLocation
+                      ? const Padding(padding: EdgeInsets.all(12), child: CircularProgressIndicator(strokeWidth: 2))
                       : const Icon(Icons.my_location, color: Color(0xFF0EA5A4), size: 24),
                 ),
               ),
@@ -206,9 +248,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             _buildReceiverDetails(),
             const SizedBox(height: 32),
             _buildDeliveryInstructions(),
-            const SizedBox(height: 32),
-            _buildImageUpload(),
-            const SizedBox(height: 48), // Bottom CTA spacing
+            const SizedBox(height: 48),
           ],
         ),
       ),
@@ -219,7 +259,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('SAVE ADDRESS AS', style: TextStyle(color: Color(0xFF64748B), fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+        const Text('SAVE ADDRESS AS',
+            style: TextStyle(color: Color(0xFF64748B), fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
         const SizedBox(height: 12),
         Wrap(
           spacing: 8,
@@ -229,34 +270,34 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             _buildTagChip('Work', Icons.work),
             _buildTagChip('Favorite', Icons.favorite),
             _buildTagChip('Other', Icons.location_on),
-            _buildTagChip('Custom', Icons.add, isDashed: true),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildTagChip(String label, IconData icon, {bool isDashed = false}) {
+  Widget _buildTagChip(String label, IconData icon) {
     final isSelected = _selectedTag == label;
     return GestureDetector(
-      onTap: () {
-        if (!isDashed) setState(() => _selectedTag = label);
-      },
-      child: Container(
+      onTap: () => setState(() => _selectedTag = label),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF0EA5A4) : const Color(0xFFEFF6F6),
+          color: isSelected ? AppColors.primary : AppColors.surfaceAlt,
           borderRadius: BorderRadius.circular(30),
-          border: isDashed
-              ? Border.all(color: const Color(0xFFE2E8E9), style: BorderStyle.solid) // Flutter doesn't natively do dashed borders easily without a package, using solid for now
-              : Border.all(color: isSelected ? const Color(0xFF0EA5A4) : const Color(0xFFE2E8E9)),
+          border: Border.all(color: isSelected ? AppColors.primary : AppColors.cardBorder),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: isSelected ? Colors.white : const Color(0xFF0F172A), size: 18),
+            Icon(icon, color: isSelected ? Colors.white : AppColors.textPrimary, size: 18),
             const SizedBox(width: 8),
-            Text(label, style: TextStyle(color: isSelected ? Colors.white : const Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.bold)),
+            Text(label,
+                style: TextStyle(
+                    color: isSelected ? Colors.white : AppColors.textPrimary,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -265,48 +306,68 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   Widget _buildAddressFields() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const Text('Address details',
+            style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 16),
         Row(
           children: [
-            Expanded(child: _buildTextField('Flat / House no.', Icons.apartment)),
+            Expanded(child: _buildTextField('Flat / House no. *', Icons.apartment, controller: _flatController, required: true)),
             const SizedBox(width: 16),
-            Expanded(child: _buildTextField('Floor', Icons.layers)),
+            Expanded(child: _buildTextField('Floor', Icons.layers, controller: _floorController)),
           ],
         ),
         const SizedBox(height: 16),
-        _buildTextField('Building / Apartment name', Icons.domain),
+        _buildTextField('Building / Apartment name *', Icons.domain, controller: _buildingController, required: true),
         const SizedBox(height: 16),
-        _buildTextField('Landmark (optional)', Icons.tour),
+        _buildTextField('Landmark (optional)', Icons.tour, controller: _landmarkController),
         const SizedBox(height: 16),
-        _buildTextField('Area / Street', Icons.streetview),
+        _buildTextField('Area / Street *', Icons.streetview, controller: _streetController, required: true),
         const SizedBox(height: 16),
         Row(
           children: [
-            Expanded(child: _buildTextField('City', Icons.location_city)),
+            Expanded(child: _buildTextField('City *', Icons.location_city, controller: _cityController, required: true)),
             const SizedBox(width: 16),
-            Expanded(child: _buildTextField('Pincode', Icons.pin_drop, keyboardType: TextInputType.number)),
+            Expanded(child: _buildTextField('Pincode *', Icons.pin_drop,
+                controller: _pincodeController,
+                keyboardType: TextInputType.number,
+                required: true)),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildTextField(String label, IconData icon, {TextInputType? keyboardType, String? initialValue}) {
+  Widget _buildTextField(String label, IconData icon, {
+    TextEditingController? controller,
+    TextInputType? keyboardType,
+    bool required = false,
+  }) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFEFF6F6),
+        color: AppColors.surfaceAlt,
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextFormField(
-        initialValue: initialValue,
+        controller: controller,
         keyboardType: keyboardType,
         style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.w500),
+        validator: required
+            ? (val) {
+                if (val == null || val.trim().isEmpty) {
+                  return '${label.replaceAll(' *', '')} is required';
+                }
+                return null;
+              }
+            : null,
         decoration: InputDecoration(
           labelText: label,
           labelStyle: const TextStyle(color: Color(0xFF64748B), fontSize: 14, fontWeight: FontWeight.w500),
           floatingLabelStyle: const TextStyle(color: Color(0xFF0EA5A4), fontSize: 12, fontWeight: FontWeight.bold),
-          prefixIcon: Icon(icon, color: const Color(0xFF64748B)),
+          prefixIcon: Icon(icon, color: AppColors.textSecondary),
           border: InputBorder.none,
+          errorStyle: const TextStyle(fontSize: 10),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
       ),
@@ -317,49 +378,51 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Receiver details', style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text('Receiver details',
+            style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
-        _buildTextField('Receiver name', Icons.person, initialValue: 'Aarav Kumar'),
+        _buildTextField('Receiver name *', Icons.person, controller: _nameController, required: true),
         const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(child: _buildPhoneField('Phone number', Icons.call)),
-            const SizedBox(width: 16),
-            Expanded(child: _buildTextField('Alternate phone (optional)', Icons.contact_phone, keyboardType: TextInputType.phone)),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPhoneField(String label, IconData icon) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFFEFF6F6),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: TextFormField(
-        keyboardType: TextInputType.phone,
-        style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.w500),
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: const TextStyle(color: Color(0xFF64748B), fontSize: 14, fontWeight: FontWeight.w500),
-          floatingLabelStyle: const TextStyle(color: Color(0xFF0EA5A4), fontSize: 12, fontWeight: FontWeight.bold),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('+91', style: TextStyle(color: Color(0xFF0F172A), fontSize: 12, fontWeight: FontWeight.bold)),
-                const SizedBox(width: 4),
-                Icon(icon, color: const Color(0xFF64748B), size: 20),
-              ],
+        // Phone field
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.surfaceAlt,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: TextFormField(
+            controller: _phoneController,
+            keyboardType: TextInputType.phone,
+            validator: (val) {
+              if (val == null || val.trim().isEmpty) return 'Phone number is required';
+              if (val.trim().length < 10) return 'Enter a valid 10-digit phone number';
+              return null;
+            },
+            style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.w500),
+            decoration: InputDecoration(
+              labelText: 'Phone number *',
+              labelStyle: const TextStyle(color: Color(0xFF64748B), fontSize: 14, fontWeight: FontWeight.w500),
+              floatingLabelStyle: const TextStyle(color: Color(0xFF0EA5A4), fontSize: 12, fontWeight: FontWeight.bold),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Text('+91', style: TextStyle(color: Color(0xFF0F172A), fontSize: 12, fontWeight: FontWeight.bold)),
+                    SizedBox(width: 4),
+                    Icon(Icons.call, color: Color(0xFF64748B), size: 20),
+                  ],
+                ),
+              ),
+              border: InputBorder.none,
+              errorStyle: const TextStyle(fontSize: 10),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             ),
           ),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
-      ),
+        const SizedBox(height: 16),
+        _buildTextField('Alternate phone (optional)', Icons.contact_phone,
+            controller: _altPhoneController, keyboardType: TextInputType.phone),
+      ],
     );
   }
 
@@ -367,21 +430,23 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Delivery instructions', style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text('Delivery instructions',
+            style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xFFEFF6F6),
+            color: AppColors.surfaceAlt,
             borderRadius: BorderRadius.circular(12),
           ),
           child: TextFormField(
+            controller: _instructionsController,
             maxLines: 3,
             style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.w500),
             decoration: const InputDecoration(
               hintText: 'Door bell / security gate / pickup instructions',
               hintStyle: TextStyle(color: Color(0xFF64748B), fontSize: 14),
               prefixIcon: Padding(
-                padding: EdgeInsets.only(bottom: 48), // Align top
+                padding: EdgeInsets.only(bottom: 48),
                 child: Icon(Icons.sticky_note_2, color: Color(0xFF64748B)),
               ),
               border: InputBorder.none,
@@ -393,72 +458,23 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     );
   }
 
-  Widget _buildImageUpload() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('Help the pilot find you', style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 16),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          child: Row(
-            children: [
-              _buildUploadBox('Add building photo', Icons.photo_camera),
-              const SizedBox(width: 16),
-              _buildUploadBox('Add door photo', Icons.camera_front),
-              const SizedBox(width: 16),
-              _buildUploadBox('Parking entrance', Icons.local_parking),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildUploadBox(String label, IconData icon) {
-    return Container(
-      width: 128, height: 128,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE2E8E9), width: 2), // Representing dashed with solid for simplicity
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: const Color(0xFF64748B), size: 28),
-          const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              label.toUpperCase(),
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Color(0xFF64748B), fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.0),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildBottomCTA(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(top: BorderSide(color: Color(0xFFE2E8E9))),
+        boxShadow: [BoxShadow(color: Color(0x0F0F172A), blurRadius: 8, offset: Offset(0, -2))],
       ),
       child: SafeArea(
         top: false,
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: _saveAddress,
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF0EA5A4),
+            backgroundColor: AppColors.primary,
             foregroundColor: Colors.white,
             elevation: 4,
+            minimumSize: const Size(double.infinity, 56),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             padding: const EdgeInsets.symmetric(vertical: 16),
           ),
