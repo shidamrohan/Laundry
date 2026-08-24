@@ -267,7 +267,12 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
                         child: Icon(s['icon'], color: const Color(0xFF0EA5A4), size: 24),
                       ),
                       const SizedBox(height: 12),
-                      Text(s['title'], style: const TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.bold, height: 1.2)),
+                      Text(
+                        s['title'],
+                        style: const TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.bold, height: 1.2),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       const SizedBox(height: 4),
                       Row(
                         children: [
@@ -361,23 +366,32 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
         top: false,
         child: Row(
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 40, height: 40,
-                  decoration: const BoxDecoration(color: Color(0xFFEFF6F6), shape: BoxShape.circle),
-                  child: const Icon(Icons.receipt_long, color: Color(0xFF0EA5A4), size: 20),
-                ),
-                const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text('Step 1', style: TextStyle(color: Color(0xFF64748B), fontSize: 12, fontWeight: FontWeight.bold)),
-                    Text('${_selectedServiceIndex != null ? 1 : 0} service selected', style: const TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ],
+            Flexible(
+              child: Row(
+                children: [
+                  Container(
+                    width: 40, height: 40,
+                    decoration: const BoxDecoration(color: Color(0xFFEFF6F6), shape: BoxShape.circle),
+                    child: const Icon(Icons.receipt_long, color: Color(0xFF0EA5A4), size: 20),
+                  ),
+                  const SizedBox(width: 12),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text('Step 1', style: TextStyle(color: Color(0xFF64748B), fontSize: 12, fontWeight: FontWeight.bold)),
+                        Text(
+                          '${_selectedServiceIndex != null ? 1 : 0} service selected',
+                          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(width: 24),
             Expanded(

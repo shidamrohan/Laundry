@@ -3,7 +3,12 @@ import 'package:laundry/core/services/location_service.dart';
 import 'package:laundry/presentation/screens/location/add_address_screen.dart';
 
 class SearchAddressScreen extends StatefulWidget {
-  const SearchAddressScreen({super.key});
+  final bool isFromOnboarding;
+
+  const SearchAddressScreen({
+    super.key, 
+    this.isFromOnboarding = false,
+  });
 
   @override
   State<SearchAddressScreen> createState() => _SearchAddressScreenState();
@@ -226,7 +231,9 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
           );
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => const AddAddressScreen()), // Passed successfully!
+            MaterialPageRoute(
+              builder: (_) => AddAddressScreen(isFromOnboarding: widget.isFromOnboarding),
+            ),
           );
         }
       }
@@ -278,7 +285,14 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => AddAddressScreen(isFromOnboarding: widget.isFromOnboarding),
+            ),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(

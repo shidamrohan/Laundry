@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/widgets/app_widgets.dart';
 import 'package:laundry/core/services/location_service.dart';
+import 'package:laundry/presentation/screens/main_layout_screen.dart';
 
 
 class AddAddressScreen extends StatefulWidget {
-  const AddAddressScreen({super.key});
+  final bool isFromOnboarding;
+
+  const AddAddressScreen({
+    super.key, 
+    this.isFromOnboarding = false,
+  });
 
   @override
   State<AddAddressScreen> createState() => _AddAddressScreenState();
@@ -92,12 +98,20 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     ];
     final fullAddress = parts.join(', ');
 
-    Navigator.pop(context, {
-      'tag': _selectedTag,
-      'name': _nameController.text.trim(),
-      'phone': '+91 ${_phoneController.text.trim()}',
-      'address': fullAddress,
-    });
+    if (widget.isFromOnboarding) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const MainLayoutScreen()),
+        (route) => false,
+      );
+    } else {
+      Navigator.pop(context, {
+        'tag': _selectedTag,
+        'name': _nameController.text.trim(),
+        'phone': '+91 ${_phoneController.text.trim()}',
+        'address': fullAddress,
+      });
+    }
   }
 
   @override

@@ -31,310 +31,367 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1220),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // --- TOP NAVIGATION ---
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                    size: 24,
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          // --- HERO IMAGE ---
+          Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.35,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://lh3.googleusercontent.com/aida-public/AB6AXuBvImjyOyrwww1Ryezd6RZ_e_o8sSUEZIIG3LaoLLWGkV_iojDJmX4F_QGVKWweGv9crW9JWSqYH5VpsbW1pBnQbXzMsCO2qfQvBQOEdRKX6LvQzw1cgNOAfncinfRCg-tvhw3Qrk0l6xXDQ9vhDIdhmboOb0TSYC_-oOzQMaRcDgSpI5PNPE0uJRIFUc9tpCu7OO0oXjYncQ10x9pHeC9rWthcN71PJ91mQ6XDZGlLC7IVAu-gD9qGoNC2BD6Pk4oTqSPNqpT9j23G'),
+                    fit: BoxFit.cover,
                   ),
-                  splashRadius: 24,
                 ),
               ),
-            ),
-            
-            // --- MAIN CONTENT CONTAINER ---
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // App Branding
-                    Container(
-                      width: 56,
-                      height: 56,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [Color(0xFF0EA5A4), Color(0xFF2563EB)],
+              // Gradient overlay for seamless transition
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 60,
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.white.withValues(alpha: 0.0),
+                        Colors.white,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              // Back Button
+              Positioned(
+                top: MediaQuery.of(context).padding.top + 16,
+                left: 16,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.1),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
                         ),
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
-                            blurRadius: 16,
-                            offset: const Offset(0, 8),
-                          ),
-                        ],
-                      ),
-                      child: const Icon(Icons.waves, color: Colors.white, size: 32),
+                      ],
                     ),
-                    const SizedBox(height: 24),
-                    const Text(
-                      'Enter your number',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: -0.3,
-                        height: 1.2,
-                      ),
+                    child: const Icon(Icons.arrow_back, color: Color(0xFF0F172A), size: 20),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          // --- MAIN CONTENT CONTAINER ---
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    'India\'s #1 Laundry App',
+                    style: TextStyle(
+                      color: Color(0xFF0F172A),
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.5,
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "We'll send you a verification code by SMS.",
-                      style: TextStyle(
-                        color: Color(0xFF94A3B8),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 32,
+                        height: 1,
+                        color: const Color(0xFFCBD5E1),
                       ),
-                    ),
-                    const SizedBox(height: 32),
-                    
-                    // Phone Input Section
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      height: 56,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF0F172A),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: _isPhoneFocused ? const Color(0xFF0EA5A4) : const Color(0xFF1E293B),
-                          width: _isPhoneFocused ? 2 : 1,
-                        ),
-                        boxShadow: _isPhoneFocused
-                            ? [
-                                BoxShadow(
-                                  color: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
-                                  blurRadius: 0,
-                                  spreadRadius: 2,
-                                )
-                              ]
-                            : null,
-                      ),
-                      child: Row(
-                        children: [
-                          // Country Code picker
-                          InkWell(
-                            onTap: () {},
-                            borderRadius: const BorderRadius.horizontal(left: Radius.circular(12)),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Row(
-                                children: const [
-                                  Text('🇮🇳', style: TextStyle(fontSize: 18)),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    '+91',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(width: 4),
-                                  Icon(Icons.expand_more, color: Color(0xFF94A3B8), size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          // Divider
-                          Container(
-                            width: 1,
-                            height: 24,
-                            color: const Color(0xFF1E293B),
-                          ),
-                          // Text Input
-                          Expanded(
-                            child: TextField(
-                              focusNode: _phoneFocusNode,
-                              keyboardType: TextInputType.phone,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                hintText: '98765 43210',
-                                hintStyle: TextStyle(
-                                  color: Colors.white30,
-                                  fontSize: 16,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 24),
-                    
-                    // Primary CTA
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const OtpScreen(phoneNumber: '+91 98765 43210'),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF0EA5A4),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(28),
-                          ),
-                          elevation: 8,
-                          shadowColor: const Color(0xFF0EA5A4).withValues(alpha: 0.2),
-                        ),
-                        child: const Text(
-                          'Continue',
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'Log in or sign up',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0.2,
+                            color: Color(0xFF64748B),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
+                      Container(
+                        width: 32,
+                        height: 1,
+                        color: const Color(0xFFCBD5E1),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+
+                  // Phone Input Section
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: _isPhoneFocused ? const Color(0xFF0EA5A4) : const Color(0xFFE2E8E9),
+                        width: _isPhoneFocused ? 2 : 1,
+                      ),
+                      boxShadow: _isPhoneFocused
+                          ? [
+                              BoxShadow(
+                                color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
+                                blurRadius: 8,
+                                spreadRadius: 0,
+                              )
+                            ]
+                          : null,
                     ),
-                    
-                    // Divider
-                    const SizedBox(height: 40),
-                    Row(
-                      children: const [
-                        Expanded(child: Divider(color: Color(0xFF1E293B))),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text(
-                            'OR',
-                            style: TextStyle(
-                              color: Color(0xFF94A3B8),
-                              fontSize: 12,
+                    child: Row(
+                      children: [
+                        // Country Code picker
+                        InkWell(
+                          onTap: () {},
+                          borderRadius: const BorderRadius.horizontal(left: Radius.circular(12)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Row(
+                              children: const [
+                                Text('🇮🇳', style: TextStyle(fontSize: 20)),
+                                SizedBox(width: 8),
+                                Text(
+                                  '+91',
+                                  style: TextStyle(
+                                    color: Color(0xFF0F172A),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(width: 4),
+                                Icon(Icons.expand_more, color: Color(0xFF64748B), size: 18),
+                              ],
+                            ),
+                          ),
+                        ),
+                        // Divider
+                        Container(
+                          width: 1,
+                          height: 24,
+                          color: const Color(0xFFE2E8E9),
+                        ),
+                        // Text Input
+                        Expanded(
+                          child: TextField(
+                            focusNode: _phoneFocusNode,
+                            keyboardType: TextInputType.phone,
+                            style: const TextStyle(
+                              color: Color(0xFF0F172A),
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 1.0,
                             ),
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Enter phone number',
+                              hintStyle: TextStyle(
+                                color: Color(0xFF94A3B8),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 0,
+                              ),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                            ),
                           ),
                         ),
-                        Expanded(child: Divider(color: Color(0xFF1E293B))),
                       ],
                     ),
-                    const SizedBox(height: 40),
-                    
-                    // --- SOCIAL BUTTONS ---
-                    // Google
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Color(0xFF1E293B)),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(28),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Primary CTA
+                  SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const OtpScreen(phoneNumber: '+91 98765 43210'),
                           ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0EA5A4),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.network(
-                              'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png',
-                              height: 24,
-                              errorBuilder: (context, error, stackTrace) => const Icon(Icons.g_mobiledata, color: Colors.white, size: 32),
-                            ),
-                            const SizedBox(width: 12),
-                            const Text(
-                              'Continue with Google',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    
-                    // Apple
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(28),
+                  ),
+
+                  // Divider
+                  const SizedBox(height: 32),
+                  Row(
+                    children: const [
+                      Expanded(child: Divider(color: Color(0xFFE2E8E9))),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          'or',
+                          style: TextStyle(
+                            color: Color(0xFF64748B),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(Icons.apple, color: Colors.black, size: 28),
-                            SizedBox(width: 8),
-                            Text(
-                              'Continue with Apple',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
+                      ),
+                      Expanded(child: Divider(color: Color(0xFFE2E8E9))),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+
+                  // --- SOCIAL BUTTONS ---
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _SocialButton(
+                          iconUrl: 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png',
+                          onTap: () {},
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _SocialButton(
+                          iconUrl: 'https://cdn-icons-png.flaticon.com/512/0/747.png',
+                          onTap: () {},
+                          isDarkIcon: true,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _SocialButton(
+                          icon: Icons.more_horiz,
+                          onTap: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 48),
+                ],
               ),
             ),
-            
-            // --- FOOTER ---
-            Padding(
-              padding: EdgeInsets.fromLTRB(32, 16, 32, MediaQuery.of(context).padding.bottom > 0 ? MediaQuery.of(context).padding.bottom : 24),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(
-                    color: Color(0xFF94A3B8),
-                    fontSize: 13,
-                    height: 1.5,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  children: [
-                    TextSpan(text: 'By continuing you agree to our\n'),
-                    TextSpan(
-                      text: 'Terms of Service',
-                      style: TextStyle(color: Color(0xFF0EA5A4)),
-                    ),
-                    TextSpan(text: ' and '),
-                    TextSpan(
-                      text: 'Privacy Policy',
-                      style: TextStyle(color: Color(0xFF0EA5A4)),
-                    ),
-                  ],
-                ),
+          ),
+
+          // --- FOOTER ---
+          Container(
+            padding: EdgeInsets.fromLTRB(24, 16, 24, MediaQuery.of(context).padding.bottom > 0 ? MediaQuery.of(context).padding.bottom : 24),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(color: Color(0xFFF1F5F9)),
               ),
+            ),
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: const TextSpan(
+                style: TextStyle(
+                  color: Color(0xFF94A3B8),
+                  fontSize: 12,
+                  height: 1.5,
+                  fontWeight: FontWeight.w400,
+                ),
+                children: [
+                  TextSpan(text: 'By continuing, you agree to our\n'),
+                  TextSpan(
+                    text: 'Terms of Service',
+                    style: TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.w500),
+                  ),
+                  TextSpan(text: '  •  '),
+                  TextSpan(
+                    text: 'Privacy Policy',
+                    style: TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.w500),
+                  ),
+                  TextSpan(text: '  •  '),
+                  TextSpan(
+                    text: 'Content Policies',
+                    style: TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SocialButton extends StatelessWidget {
+  final String? iconUrl;
+  final IconData? icon;
+  final VoidCallback onTap;
+  final bool isDarkIcon;
+
+  const _SocialButton({
+    this.iconUrl,
+    this.icon,
+    required this.onTap,
+    this.isDarkIcon = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        height: 56,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: const Color(0xFFE2E8E9)),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.02),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
             ),
           ],
         ),
+        alignment: Alignment.center,
+        child: iconUrl != null
+            ? Image.network(
+                iconUrl!,
+                height: 24,
+                color: isDarkIcon ? const Color(0xFF0F172A) : null,
+              )
+            : Icon(icon, color: const Color(0xFF0F172A), size: 28),
       ),
     );
   }
