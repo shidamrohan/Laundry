@@ -45,8 +45,8 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF0B1220) : Colors.white,
-        border: Border(top: BorderSide(color: Theme.of(context).dividerColor.withValues(alpha: 0.08))),
+        color: Colors.white,
+        border: Border(top: BorderSide(color: const Color(0xFFE2E8E9))),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         boxShadow: [
           BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 16, offset: const Offset(0, -4)),
@@ -77,7 +77,7 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                         color: const Color(0xFF0EA5A4),
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF0B1220) : Colors.white, 
+                          color: Colors.white, 
                           width: 3
                         ),
                         boxShadow: [
@@ -97,7 +97,6 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
               final isActive = _currentNavIndex == i;
               final icon = items[i]['icon'] as IconData;
               final label = items[i]['label'] as String;
-              final isDark = Theme.of(context).brightness == Brightness.dark;
 
               return GestureDetector(
                 onTap: () {
@@ -105,30 +104,15 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                 },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: isActive ? const Color(0xFF0EA5A4).withValues(alpha: 0.1) : Colors.transparent,
-                    borderRadius: BorderRadius.circular(16),
+                    shape: BoxShape.circle,
                   ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        icon,
-                        color: isActive ? const Color(0xFF0EA5A4) : (isDark ? const Color(0xFF64748B) : const Color(0xFF94A3B8)),
-                        size: 24,
-                      ),
-                      if (isActive) ...[
-                        const SizedBox(width: 6),
-                        Text(
-                          label,
-                          style: const TextStyle(
-                            color: Color(0xFF0EA5A4),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ],
+                  child: Icon(
+                    icon,
+                    color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF94A3B8),
+                    size: 26,
                   ),
                 ),
               );

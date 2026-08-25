@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showGenderPicker() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: const Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showLanguagePicker() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: const Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -76,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           width: 40,
           height: 4,
           decoration: BoxDecoration(
-            color: const Color(0xFF1E293B),
+            color: const Color(0xFFE2E8E9),
             borderRadius: BorderRadius.circular(2),
           ),
         ),
@@ -84,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         Text(
           title,
           style: const TextStyle(
-            color: Colors.white,
+            color: Color(0xFF0F172A),
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -102,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Text(
                       item,
                       style: TextStyle(
-                        color: isSelected ? const Color(0xFF0EA5A4) : Colors.white,
+                        color: isSelected ? const Color(0xFF0EA5A4) : const Color(0xFF0F172A),
                         fontSize: 16,
                         fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                       ),
@@ -125,14 +125,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1220),
+      backgroundColor: const Color(0xFFF7FAFB),
       body: SafeArea(
         bottom: false,
         child: Column(
           children: [
             // --- STICKY HEADER ---
             Container(
-              color: const Color(0xFF0B1220).withValues(alpha: 0.92),
+              color: const Color(0xFFF7FAFB).withValues(alpha: 0.92),
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
               child: Column(
                 children: [
@@ -146,7 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: 40,
                           height: 40,
                           alignment: Alignment.center,
-                          child: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+                          child: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF0F172A), size: 20),
                         ),
                       ),
                     ],
@@ -160,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Container(
                           height: 6,
                           width: double.infinity,
-                          color: const Color(0xFF1E293B),
+                          color: const Color(0xFFE2E8E9),
                         ),
                         Container(
                           height: 6,
@@ -196,7 +196,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const Text(
                       'Complete your profile',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFF0F172A),
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         letterSpacing: -0.3,
@@ -228,7 +228,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 end: Alignment.bottomRight,
                                 colors: [Color(0xFF0EA5A4), Color(0xFF2563EB)],
                               ),
-                              border: Border.all(color: const Color(0xFF0B1220), width: 4),
+                              border: Border.all(color: const Color(0xFFF7FAFB), width: 4),
                               boxShadow: [
                                 BoxShadow(
                                   color: const Color(0xFF0EA5A4).withValues(alpha: 0.3),
@@ -259,7 +259,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 decoration: BoxDecoration(
                                   color: const Color(0xFF0EA5A4),
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: const Color(0xFF0B1220), width: 2),
+                                  border: Border.all(color: const Color(0xFFF7FAFB), width: 2),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.black.withValues(alpha: 0.2),
@@ -287,7 +287,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           const Expanded(
                             child: Text(
                               'Aarav Kumar',
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              style: TextStyle(color: Color(0xFF0F172A), fontSize: 16),
                             ),
                           ),
                           const Icon(Icons.check_circle, color: Color(0xFF16A34A), size: 20),
@@ -303,7 +303,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'e.g. aarav@voshify.com',
@@ -325,7 +325,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Text(
                           _selectedGender ?? 'Select gender',
                           style: TextStyle(
-                            color: _selectedGender != null ? Colors.white : const Color(0xFF334155),
+                            color: _selectedGender != null ? const Color(0xFF0F172A) : const Color(0xFF334155),
                             fontSize: 16,
                           ),
                         ),
@@ -342,7 +342,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         trailing: const Icon(Icons.expand_more, color: Color(0xFF94A3B8), size: 22),
                         child: Text(
                           _selectedLanguage,
-                          style: const TextStyle(color: Colors.white, fontSize: 16),
+                          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
                         ),
                       ),
                     ),
@@ -354,7 +354,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       label: 'PREFERRED PICKUP ADDRESS',
                       child: TextField(
                         controller: _addressController,
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Enter your address',
@@ -399,9 +399,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                const Color(0xFF0B1220).withValues(alpha: 0),
-                const Color(0xFF0B1220),
-                const Color(0xFF0B1220),
+                const Color(0xFFF7FAFB).withValues(alpha: 0),
+                const Color(0xFFF7FAFB),
+                const Color(0xFFF7FAFB),
               ],
             ),
           ),
@@ -466,8 +466,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       constraints: const BoxConstraints(minHeight: 56),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFF0F172A),
-        border: Border.all(color: const Color(0xFF1E293B)),
+        color: const Colors.white,
+        border: Border.all(color: const Color(0xFFE2E8E9)),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

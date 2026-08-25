@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.dark,
       ),
     );
 
@@ -120,7 +120,7 @@ class _SplashScreenState extends State<SplashScreen>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF030D1A),
+      backgroundColor: const Color(0xFFF7FAFB),
       body: Stack(
         children: [
           // ── ANIMATED BACKGROUND GRADIENT ──
@@ -135,8 +135,8 @@ class _SplashScreenState extends State<SplashScreen>
                     radius: 1.2 + pulse * 0.15,
                     colors: [
                       const Color(0xFF0EA5A4).withValues(alpha: 0.18 + pulse * 0.06),
-                      const Color(0xFF0B1220),
-                      const Color(0xFF030D1A),
+                      const Color(0xFFF7FAFB),
+                      const Color(0xFFF7FAFB),
                     ],
                     stops: const [0.0, 0.55, 1.0],
                   ),
@@ -288,14 +288,14 @@ class _SplashScreenState extends State<SplashScreen>
                     opacity: _textOpacity,
                     child: ShaderMask(
                       shaderCallback: (bounds) => const LinearGradient(
-                        colors: [Color(0xFFFFFFFF), Color(0xFF94E4E3)],
+                        colors: [Color(0xFF0F172A), Color(0xFF0EA5A4)],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ).createShader(bounds),
                       child: const Text(
                         'VOSHIFY',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.white, // Color is controlled by ShaderMask
                           fontSize: 42,
                           fontWeight: FontWeight.w900,
                           letterSpacing: 6,
@@ -340,7 +340,7 @@ class _SplashScreenState extends State<SplashScreen>
                   Text(
                     'PREMIUM CARE DIVISION',
                     style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.15),
+                      color: const Color(0xFF0F172A).withValues(alpha: 0.3),
                       fontSize: 10,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 3,

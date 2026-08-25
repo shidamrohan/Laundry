@@ -84,7 +84,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     final topPadding = mq.padding.top;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1220),
+      backgroundColor: const Color(0xFFF7FAFB),
       body: Stack(
         children: [
           // --- ATMOSPHERIC GLOW ---
@@ -177,7 +177,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                             'Stay in the loop',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Color(0xFF0F172A),
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
                               letterSpacing: -0.3,
@@ -347,7 +347,7 @@ class _NotificationScreenState extends State<NotificationScreen>
           Text(
             label,
             style: const TextStyle(
-              color: Colors.white,
+              color: Color(0xFF0F172A),
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),

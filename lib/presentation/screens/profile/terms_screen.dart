@@ -24,7 +24,7 @@ class _TermsScreenState extends State<TermsScreen> {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1220),
+      backgroundColor: const Color(0xFFF7FAFB),
       body: Stack(
         children: [
           // --- ATMOSPHERIC GLOW ---
@@ -101,7 +101,7 @@ class _TermsScreenState extends State<TermsScreen> {
                         const Text(
                           'Before you continue',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFF0F172A),
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             letterSpacing: -0.3,
@@ -214,9 +214,9 @@ class _TermsScreenState extends State<TermsScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    const Color(0xFF0B1220).withValues(alpha: 0),
-                    const Color(0xFF0B1220),
-                    const Color(0xFF0B1220),
+                    const Color(0xFFF7FAFB).withValues(alpha: 0),
+                    const Color(0xFFF7FAFB),
+                    const Color(0xFFF7FAFB),
                   ],
                 ),
               ),
@@ -281,8 +281,8 @@ class _TermsScreenState extends State<TermsScreen> {
         duration: const Duration(milliseconds: 150),
         height: 56,
         decoration: BoxDecoration(
-          color: const Color(0xFF0F172A),
-          border: Border.all(color: const Color(0xFF1E293B)),
+          color: const Colors.white,
+          border: Border.all(color: const Color(0xFFE2E8E9)),
           borderRadius: BorderRadius.circular(12),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -294,7 +294,7 @@ class _TermsScreenState extends State<TermsScreen> {
               child: Text(
                 label,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFF0F172A),
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.2,
@@ -326,7 +326,7 @@ class _TermsScreenState extends State<TermsScreen> {
               value: checked,
               onChanged: onChanged,
               activeColor: const Color(0xFF0EA5A4),
-              side: const BorderSide(color: Color(0xFF1E293B), width: 2),
+              side: const BorderSide(color: Color(0xFFE2E8E9), width: 2),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
               visualDensity: VisualDensity.compact,
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

@@ -10,6 +10,19 @@ class SelectLocationScreen extends StatefulWidget {
 }
 
 class _SelectLocationScreenState extends State<SelectLocationScreen> {
+  List<Map<String, dynamic>> _savedAddresses = [
+    {
+      'tag': 'Home',
+      'address': '21 Brigade Road, Shanthala Nagar, Bangalore...',
+      'icon': Icons.home,
+    },
+    {
+      'tag': 'Work',
+      'address': 'Prestige Tech Park, Marathahalli, Outer Ring Road...',
+      'icon': Icons.work,
+    }
+  ];
+
   bool _isClosing = false;
   bool _isFetchingLocation = false;
 
@@ -18,6 +31,39 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
     Future.delayed(const Duration(milliseconds: 300), () {
       if (mounted) Navigator.pop(context);
     });
+  }
+
+  void _handleSelectAddress(Map<String, dynamic> addressData) {
+    setState(() => _isClosing = true);
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (mounted) Navigator.pop(context, addressData);
+    });
+  }
+
+  void _navigateToAddAddress() async {
+    final result = await Navigator.push(
+      context, 
+      MaterialPageRoute(builder: (_) => const AddAddressScreen())
+    );
+
+    if (result != null && result is Map<String, dynamic>) {
+      // Add the new address to the list
+      IconData icon = Icons.location_on;
+      if (result['tag'] == 'Home') icon = Icons.home;
+      if (result['tag'] == 'Work') icon = Icons.work;
+      if (result['tag'] == 'Hotel') icon = Icons.apartment;
+
+      setState(() {
+        _savedAddresses.insert(0, {
+          'tag': result['tag'],
+          'address': result['address'],
+          'icon': icon,
+        });
+      });
+      
+      // Auto-select the newly added address
+      _handleSelectAddress(_savedAddresses[0]);
+    }
   }
 
   @override
@@ -120,26 +166,24 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                                   children: [
                                     const Text('Select a saved address', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
                                     GestureDetector(
-                                      onTap: () {},
-                                      child: const Text('See all', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.w600)),
+                                      onTap: _navigateToAddAddress,
+                                      child: const Text('Add new', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.w600)),
                                     ),
                                   ],
                                 ),
                                 const SizedBox(height: 16),
 
                                 // Saved Addresses List
-                                _buildSavedAddress(
-                                  icon: Icons.home,
-                                  title: 'Home',
-                                  subtitle: '21 Brigade Road, Shanthala Nagar, Bangalore...',
-                                ),
-                                const SizedBox(height: 16),
-                                _buildSavedAddress(
-                                  icon: Icons.work,
-                                  title: 'Work',
-                                  subtitle: 'Prestige Tech Park, Marathahalli, Outer Ring Road...',
-                                ),
-                                const SizedBox(height: 24),
+                                ..._savedAddresses.map((addr) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 16),
+                                  child: _buildSavedAddress(
+                                    icon: addr['icon'] as IconData,
+                                    title: addr['tag'] as String,
+                                    subtitle: addr['address'] as String,
+                                    onTap: () => _handleSelectAddress(addr),
+                                  ),
+                                )),
+                                const SizedBox(height: 8),
 
                                 // Recent Searches
                                 const Text('RECENT SEARCHES', style: TextStyle(color: Color(0xFF64748B), fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
@@ -208,16 +252,16 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
           Container(
             width: 40, height: 40,
             decoration: const BoxDecoration(color: Color(0x1A0EA5A4), shape: BoxShape.circle),
-            child: const Icon(Icons.location_off, color: Color(0xFF0EA5A4), size: 24),
+            child: const Icon(Icons.my_location, color: Color(0xFF0EA5A4), size: 24),
           ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                Text('Device location not enabled', style: TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.bold)),
+                Text('Use current location', style: TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.bold)),
                 SizedBox(height: 2),
-                Text('Enable your device location for better accuracy', style: TextStyle(color: Color(0xFF64748B), fontSize: 13)),
+                Text('Tap to fetch current location', style: TextStyle(color: Color(0xFF64748B), fontSize: 13)),
               ],
             ),
           ),
@@ -233,7 +277,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                         final address = await LocationService.getAddressFromCoordinates(pos.latitude, pos.longitude);
                         if (mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Location found: $address')));
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => const AddAddressScreen()));
+                          _navigateToAddAddress();
                         }
                       }
                     } catch (e) {
@@ -258,9 +302,9 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
     );
   }
 
-  Widget _buildSavedAddress({required IconData icon, required String title, required String subtitle}) {
+  Widget _buildSavedAddress({required IconData icon, required String title, required String subtitle, required VoidCallback onTap}) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(

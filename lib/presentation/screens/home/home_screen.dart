@@ -13,6 +13,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String _selectedAddressTag = 'Home';
+  String _selectedAddressString = '21 Brigade Road, Shanthala Nagar, Bengaluru...';
+
   final int _currentBanner = 0;
   bool _isLoading = true;
 
@@ -65,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1220),
+      backgroundColor: const Color(0xFFF7FAFB),
       body: Stack(
         children: [
           // --- SCROLLABLE CONTENT ---
@@ -147,11 +150,67 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildHeader(double topPadding) {
     return Container(
-      color: const Color(0xFF0B1220),
-      padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 12),
+      color: const Color(0xFFF7FAFB),
+      padding: EdgeInsets.fromLTRB(16, topPadding + 12, 16, 12),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Avatar
+          // Zomato/Swiggy Style Address Bar
+          Expanded(
+            child: GestureDetector(
+              onTap: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SelectLocationScreen()),
+                );
+                if (result != null && result is Map<String, dynamic>) {
+                  setState(() {
+                    _selectedAddressTag = result['tag'];
+                    _selectedAddressString = result['address'];
+                  });
+                }
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.location_on, color: Color(0xFF0EA5A4), size: 24),
+                      const SizedBox(width: 4),
+                      Text(
+                        _selectedAddressTag,
+                        style: const TextStyle(
+                          color: Color(0xFF0F172A),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 2),
+                      const Icon(Icons.keyboard_arrow_down, color: Color(0xFF0F172A), size: 24),
+                    ],
+                  ),
+                  const SizedBox(height: 2),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Text(
+                      _selectedAddressString,
+                      style: const TextStyle(
+                        color: Color(0xFF64748B),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          // Right side actions: Profile / Avatar
           Container(
             width: 40,
             height: 40,
@@ -175,102 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
-          const SizedBox(width: 10),
-
-          // Greeting + location
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'GOOD MORNING, AARAV',
-                  style: TextStyle(
-                    color: Color(0xFF64748B),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.8,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const SelectLocationScreen()),
-                    );
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(Icons.location_on, color: Color(0xFF0EA5A4), size: 14),
-                      SizedBox(width: 2),
-                      Flexible(
-                        child: Text(
-                          'Home · 21 Brigade Rd',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      SizedBox(width: 2),
-                      Icon(Icons.expand_more, color: Color(0xFF64748B), size: 14),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Wallet balance
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.2)),
-            ),
-            child: const Text(
-              '₹450',
-              style: TextStyle(
-                color: Color(0xFF0EA5A4),
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-
-          // Notification bell
-          Stack(
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1E293B),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.notifications_outlined, color: Colors.white, size: 20),
-              ),
-              Positioned(
-                top: 8,
-                right: 8,
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: const Color(0xFF0B1220), width: 1.5),
-                  ),
-                ),
-              ),
-            ],
-          ),
         ],
       ),
     );
@@ -280,9 +243,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       height: 52,
       decoration: BoxDecoration(
-        color: const Color(0xFF0F172A),
+        color: const Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF1E293B)),
+        border: Border.all(color: const Color(0xFFE2E8E9)),
       ),
       child: Row(
         children: [
@@ -293,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 10),
           Expanded(
             child: TextField(
-              style: const TextStyle(color: Colors.white, fontSize: 15),
+              style: const TextStyle(color: Color(0xFF0F172A), fontSize: 15),
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Search for services…',
@@ -435,7 +398,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const Text(
               'Our Services',
-              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold),
             ),
             TextButton(
               onPressed: () => Navigator.push(
@@ -479,9 +442,9 @@ class _HomeScreenState extends State<HomeScreen> {
               aspectRatio: 1,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0F172A),
+                  color: const Colors.white,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: const Color(0xFF1E293B)),
+                  border: Border.all(color: const Color(0xFFE2E8E9)),
                 ),
                 child: Icon(icon, color: const Color(0xFF0EA5A4), size: 28),
               ),
@@ -510,7 +473,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text('Popular Bundles',
-                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                  style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
               TextButton(
                 onPressed: () {},
                 child: const Text('View all',
@@ -554,9 +517,9 @@ class _HomeScreenState extends State<HomeScreen> {
       width: 220,
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
-        color: const Color(0xFF0F172A),
+        color: const Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFF1E293B)),
+        border: Border.all(color: const Color(0xFFE2E8E9)),
       ),
       clipBehavior: Clip.hardEdge,
       child: Column(
@@ -571,7 +534,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   imageUrl,
                   fit: BoxFit.cover,
                   errorBuilder: (_, _, _) => Container(
-                    color: const Color(0xFF1E293B),
+                    color: const Color(0xFFE2E8E9),
                     child: const Icon(Icons.image_not_supported_outlined, color: Color(0xFF334155)),
                   ),
                 ),
@@ -611,7 +574,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Flexible(
                       child: Text(
                         name,
-                        style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
+                        style: const TextStyle(color: Color(0xFF0F172A), fontSize: 13, fontWeight: FontWeight.bold),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -717,21 +680,21 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Recent Order',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFF0F172A),
+            color: const Colors.white,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFF1E293B)),
+            border: Border.all(color: const Color(0xFFE2E8E9)),
           ),
           child: Row(
             children: [
               Container(
                 width: 56, height: 56,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1E293B),
+                  color: const Color(0xFFE2E8E9),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Icon(Icons.local_laundry_service, color: Color(0xFF0EA5A4), size: 24),
@@ -742,7 +705,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text('Wash & Fold',
-                        style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold)),
+                        style: TextStyle(color: Color(0xFF0F172A), fontSize: 13, fontWeight: FontWeight.bold)),
                     SizedBox(height: 4),
                     Text('8 Items • Completed on Mon',
                         style: TextStyle(color: Color(0xFF64748B), fontSize: 12)),

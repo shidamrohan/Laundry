@@ -71,12 +71,12 @@ class _SearchScreenState extends State<SearchScreen> {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1220),
+      backgroundColor: const Color(0xFFF7FAFB),
       body: Column(
         children: [
           // ── FIXED HEADER ──
           Container(
-            color: const Color(0xFF0B1220).withValues(alpha: 0.95),
+            color: const Color(0xFFF7FAFB).withValues(alpha: 0.95),
             padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 12),
             child: Row(
               children: [
@@ -164,9 +164,9 @@ class _SearchScreenState extends State<SearchScreen> {
     return Container(
       height: 56,
       decoration: BoxDecoration(
-        color: const Color(0xFF0F172A),
+        color: const Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF1E293B)),
+        border: Border.all(color: const Color(0xFFE2E8E9)),
       ),
       child: Row(
         children: [
@@ -179,7 +179,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: TextField(
               controller: _searchController,
               focusNode: _focusNode,
-              style: const TextStyle(color: Colors.white, fontSize: 15),
+              style: const TextStyle(color: Color(0xFF0F172A), fontSize: 15),
               cursorColor: const Color(0xFF0EA5A4),
               onChanged: (_) => setState(() {}),
               decoration: const InputDecoration(
@@ -204,7 +204,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
           // Divider
-          Container(width: 1, height: 24, color: const Color(0xFF1E293B)),
+          Container(width: 1, height: 24, color: const Color(0xFFE2E8E9)),
           // Mic button
           GestureDetector(
             onTap: () {},
@@ -232,7 +232,7 @@ class _SearchScreenState extends State<SearchScreen> {
               margin: const EdgeInsets.only(right: 8),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
               decoration: BoxDecoration(
-                color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFF1E293B),
+                color: isActive ? const Color(0xFF0EA5A4) : const Color(0xFFE2E8E9),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: isActive
                     ? [BoxShadow(color: const Color(0xFF0EA5A4).withValues(alpha: 0.25), blurRadius: 8)]
@@ -283,7 +283,7 @@ class _SearchScreenState extends State<SearchScreen> {
         return Container(
           padding: const EdgeInsets.fromLTRB(10, 8, 6, 8),
           decoration: BoxDecoration(
-            color: const Color(0xFF1E293B),
+            color: const Color(0xFFE2E8E9),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
@@ -293,7 +293,7 @@ class _SearchScreenState extends State<SearchScreen> {
               const SizedBox(width: 6),
               Text(
                 _recentSearches[i],
-                style: const TextStyle(color: Colors.white, fontSize: 13),
+                style: const TextStyle(color: Color(0xFF0F172A), fontSize: 13),
               ),
               const SizedBox(width: 4),
               GestureDetector(
@@ -327,7 +327,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
-              color: const Color(0xFF0F172A),
+              color: const Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1)),
             ),
@@ -338,7 +338,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Text(
                     _trending[i],
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFF0F172A),
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                     ),
@@ -387,7 +387,7 @@ class _SearchScreenState extends State<SearchScreen> {
             margin: const EdgeInsets.only(bottom: 10),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFF0F172A),
+              color: const Colors.white,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
@@ -403,7 +403,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             s['image'] as String,
                             fit: BoxFit.cover,
                             errorBuilder: (_, _, _) => Container(
-                              color: const Color(0xFF1E293B),
+                              color: const Color(0xFFE2E8E9),
                               child: const Icon(Icons.image_not_supported_outlined,
                                   color: Color(0xFF334155)),
                             ),
@@ -425,7 +425,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       RichText(
                         text: TextSpan(
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFF0F172A),
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                           ),
