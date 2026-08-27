@@ -108,7 +108,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       Navigator.pop(context, {
         'tag': _selectedTag,
         'name': _nameController.text.trim(),
-        'phone': '+91 ${_phoneController.text.trim()}',
+        'phone': _altPhoneController.text.trim().isNotEmpty ? '+91 ${_altPhoneController.text.trim()}' : '',
         'address': fullAddress,
       });
     }
@@ -415,16 +415,17 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         _buildTextField('Receiver name *', 'e.g. Aarav Kumar', controller: _nameController, required: true),
         const SizedBox(height: 24),
         TextFormField(
-          controller: _phoneController,
+          controller: _altPhoneController,
           keyboardType: TextInputType.phone,
           validator: (val) {
-            if (val == null || val.trim().isEmpty) return 'Phone number is required';
-            if (val.trim().length < 10) return 'Enter a valid 10-digit phone number';
+            if (val != null && val.trim().isNotEmpty && val.trim().length < 10) {
+              return 'Enter a valid 10-digit phone number';
+            }
             return null;
           },
           style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.w500),
           decoration: const InputDecoration(
-            labelText: 'Phone number *',
+            labelText: 'Alternate phone number (Optional)',
             hintText: 'e.g. 9876543210',
             labelStyle: TextStyle(color: Color(0xFF64748B), fontSize: 13, fontWeight: FontWeight.w500),
             floatingLabelStyle: TextStyle(color: Color(0xFFE23744), fontSize: 14, fontWeight: FontWeight.bold),

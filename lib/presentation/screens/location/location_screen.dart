@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laundry/core/services/location_service.dart';
 import 'package:laundry/presentation/screens/location/add_address_screen.dart';
 import 'package:laundry/presentation/screens/location/search_address_screen.dart';
+import 'package:laundry/presentation/screens/main_layout_screen.dart';
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
 
@@ -23,6 +24,26 @@ class _LocationScreenState extends State<LocationScreen> {
           icon: const Icon(Icons.arrow_back, color: Color(0xFF0F172A)),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const MainLayoutScreen()),
+                (route) => false,
+              );
+            },
+            child: const Text(
+              'Skip',
+              style: TextStyle(
+                color: Color(0xFF64748B),
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       body: SafeArea(
         child: Column(
