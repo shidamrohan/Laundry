@@ -243,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       height: 52,
       decoration: BoxDecoration(
-        color: const Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFFE2E8E9)),
       ),
@@ -442,7 +442,7 @@ class _HomeScreenState extends State<HomeScreen> {
               aspectRatio: 1,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Colors.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: const Color(0xFFE2E8E9)),
                 ),
@@ -517,7 +517,7 @@ class _HomeScreenState extends State<HomeScreen> {
       width: 220,
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
-        color: const Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: const Color(0xFFE2E8E9)),
       ),
@@ -685,7 +685,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Colors.white,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: const Color(0xFFE2E8E9)),
           ),

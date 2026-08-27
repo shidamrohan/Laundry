@@ -164,7 +164,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Container(
       height: 56,
       decoration: BoxDecoration(
-        color: const Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFFE2E8E9)),
       ),
@@ -327,7 +327,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
-              color: const Colors.white,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: const Color(0xFF0EA5A4).withValues(alpha: 0.1)),
             ),
@@ -387,7 +387,7 @@ class _SearchScreenState extends State<SearchScreen> {
             margin: const EdgeInsets.only(bottom: 10),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Colors.white,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
