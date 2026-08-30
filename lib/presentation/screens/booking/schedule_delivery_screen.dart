@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // For CupertinoSwitch
 import 'package:laundry/presentation/screens/booking/choose_speed_screen.dart';
@@ -483,7 +484,7 @@ class _ScheduleDeliveryScreenState extends State<ScheduleDeliveryScreen> {
                       child: const Text('+₹149 surcharge', style: TextStyle(color: Color(0xFF7C3AED), fontSize: 12, fontWeight: FontWeight.bold)),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       child: Row(
                         children: const [
                           Text('Upgrade', style: TextStyle(color: Color(0xFF7C3AED), fontSize: 14, fontWeight: FontWeight.bold)),

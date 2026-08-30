@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
@@ -326,7 +327,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
             width: double.infinity,
             height: 56,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               style: ElevatedButton.styleFrom(
                 backgroundColor: _primary,
                 foregroundColor: Colors.white,

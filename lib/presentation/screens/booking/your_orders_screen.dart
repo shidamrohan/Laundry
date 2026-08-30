@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/widgets/skeleton_loader.dart';
 
@@ -87,7 +88,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.search, color: _primary),
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           ),
         ],
       ),
@@ -293,7 +294,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
                     _textActionButton('Support'),
                     const SizedBox(width: 8),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _primary,
                         foregroundColor: Colors.white,
@@ -389,7 +390,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
             _textActionButton('Details'),
             const SizedBox(width: 8),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: _primary),
                 foregroundColor: _primary,
@@ -421,7 +422,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
 
   Widget _textActionButton(String label) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       style: TextButton.styleFrom(
         foregroundColor: _textSecondary,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -433,7 +434,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
 
   Widget _outlinedActionButton(String label, {bool isPrimary = false}) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: BoxDecoration(
@@ -448,7 +449,7 @@ class _YourOrdersScreenState extends State<YourOrdersScreen> {
   Widget _moreButton() {
     return IconButton(
       icon: const Icon(Icons.more_vert, color: _textSecondary),
-      onPressed: () {},
+      onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       padding: EdgeInsets.zero,
       constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
     );

@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -173,7 +174,7 @@ class _ExclusiveCouponDialogState extends State<ExclusiveCouponDialog> with Sing
                     width: double.infinity,
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0EA5A4),
                         foregroundColor: Colors.white,

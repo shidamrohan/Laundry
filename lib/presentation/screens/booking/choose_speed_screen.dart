@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/order_review_screen.dart';
 
@@ -307,7 +308,7 @@ class _ChooseSpeedScreenState extends State<ChooseSpeedScreen> {
                 // Hidden on very small screens, shown otherwise
                 if (MediaQuery.of(context).size.width > 350) ...[
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     style: TextButton.styleFrom(
                       foregroundColor: const Color(0xFF64748B),
                       backgroundColor: const Color(0xFFEFF6F6),

@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/profile/profile_screen.dart';
 
@@ -150,7 +151,7 @@ class _TermsScreenState extends State<TermsScreen> {
                                   alignment: PlaceholderAlignment.baseline,
                                   baseline: TextBaseline.alphabetic,
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                                     child: const Text(
                                       'Terms of Service',
                                       style: TextStyle(
@@ -166,7 +167,7 @@ class _TermsScreenState extends State<TermsScreen> {
                                   alignment: PlaceholderAlignment.baseline,
                                   baseline: TextBaseline.alphabetic,
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                                     child: const Text(
                                       'Privacy Policy',
                                       style: TextStyle(
@@ -275,13 +276,13 @@ class _TermsScreenState extends State<TermsScreen> {
 
   Widget _buildPolicyRow({required IconData icon, required String label}) {
     return InkWell(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       borderRadius: BorderRadius.circular(12),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         height: 56,
         decoration: BoxDecoration(
-          color: const Colors.white,
+          color: Colors.white,
           border: Border.all(color: const Color(0xFFE2E8E9)),
           borderRadius: BorderRadius.circular(12),
         ),

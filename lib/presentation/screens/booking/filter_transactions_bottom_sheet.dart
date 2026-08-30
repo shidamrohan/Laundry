@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class FilterTransactionsBottomSheet extends StatefulWidget {
@@ -121,7 +122,7 @@ class _FilterTransactionsBottomSheetState extends State<FilterTransactionsBottom
             )),
             // Custom Range Button
             GestureDetector(
-              onTap: () {},
+              onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(

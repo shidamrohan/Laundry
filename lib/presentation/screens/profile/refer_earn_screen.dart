@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class ReferEarnScreen extends StatefulWidget {
@@ -281,7 +282,7 @@ class _ReferEarnScreenState extends State<ReferEarnScreen> {
         ),
         const SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF0EA5A4),
             foregroundColor: Colors.white,

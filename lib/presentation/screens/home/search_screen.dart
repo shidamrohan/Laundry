@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -207,7 +208,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Container(width: 1, height: 24, color: const Color(0xFFE2E8E9)),
           // Mic button
           GestureDetector(
-            onTap: () {},
+            onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 14),
               child: Icon(Icons.mic_outlined, color: Color(0xFF0EA5A4), size: 22),
@@ -382,7 +383,7 @@ class _SearchScreenState extends State<SearchScreen> {
       children: List.generate(filtered.length, (i) {
         final s = filtered[i];
         return GestureDetector(
-          onTap: () {},
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           child: Container(
             margin: const EdgeInsets.only(bottom: 10),
             padding: const EdgeInsets.all(12),

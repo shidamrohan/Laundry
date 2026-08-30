@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/payment_screen.dart';
@@ -320,7 +321,7 @@ class _PaymentFailedScreenState extends State<PaymentFailedScreen>
 
   Widget _buildSupportFooter() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: const [

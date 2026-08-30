@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class CouponsOffersScreen extends StatefulWidget {
@@ -172,7 +173,7 @@ class _CouponsOffersScreenState extends State<CouponsOffersScreen> {
           ),
           const SizedBox(width: 12),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF0EA5A4),
               foregroundColor: Colors.white,
@@ -347,7 +348,7 @@ class _CouponsOffersScreenState extends State<CouponsOffersScreen> {
           const SizedBox(width: 4),
           const Text('Applied', style: TextStyle(color: Color(0xFF16A34A), fontSize: 12, fontWeight: FontWeight.bold)),
           const SizedBox(width: 8),
-          GestureDetector(onTap: () {}, child: const Text('Remove', style: TextStyle(color: Color(0xFFDC2626), fontSize: 12, fontWeight: FontWeight.bold))),
+          GestureDetector(onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); }, child: const Text('Remove', style: TextStyle(color: Color(0xFFDC2626), fontSize: 12, fontWeight: FontWeight.bold))),
         ],
       );
       saveWidget = Text(saveText, style: const TextStyle(color: Color(0xFF16A34A), fontSize: 12, fontWeight: FontWeight.bold));

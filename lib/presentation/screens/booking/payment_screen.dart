@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/add_card_bottom_sheet.dart';
 import 'package:laundry/presentation/screens/booking/bill_details_bottom_sheet.dart';
@@ -390,7 +391,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               icon: Icons.add,
               title: 'Add new UPI ID',
               color: const Color(0xFF0EA5A4),
-              onTap: () {},
+              onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             ),
           ],
         ),
@@ -721,7 +722,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     Color? subtitleColor,
   }) {
     return InkWell(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(

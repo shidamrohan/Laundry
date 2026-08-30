@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/wallet_history_screen.dart';
 import 'package:laundry/presentation/screens/booking/wallet_settings_screen.dart';
@@ -160,7 +161,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         ],
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: const Color(0xFF0EA5A4),
@@ -235,7 +236,7 @@ class _WalletScreenState extends State<WalletScreen> {
     return Column(
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           child: Container(
             width: 56, height: 56,
             decoration: BoxDecoration(
@@ -304,7 +305,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   const Text('₹50 rewards expire in 5 days', style: TextStyle(color: Color(0xFF0F172A), fontSize: 13, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 2),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     child: const Text('Use now', style: TextStyle(color: Color(0xFFF59E0B), fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 0.5)),
                   ),
                 ],
@@ -403,7 +404,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 return Column(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       borderRadius: BorderRadius.vertical(
                         top: index == 0 ? const Radius.circular(12) : Radius.zero,
                         bottom: isLast ? const Radius.circular(12) : Radius.zero,

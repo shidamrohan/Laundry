@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class PaymentMethodsScreen extends StatefulWidget {
@@ -134,7 +135,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             icon: const Icon(Icons.more_vert, color: _textSecondary),
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
@@ -149,7 +150,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
         borderRadius: BorderRadius.circular(16),
         child: Container(
           width: double.infinity,
@@ -211,7 +212,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
         ),
         const SizedBox(height: 16),
         GestureDetector(
-          onTap: () {},
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Row(
@@ -286,7 +287,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
           color: _surface,
           borderRadius: BorderRadius.circular(16),
           child: InkWell(
-            onTap: () {},
+            onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             borderRadius: BorderRadius.circular(16),
             child: Container(
               padding: const EdgeInsets.all(16),

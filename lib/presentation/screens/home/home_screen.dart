@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/widgets/skeleton_loader.dart';
 import 'package:laundry/presentation/screens/booking/select_location_screen.dart';
@@ -475,7 +476,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Text('Popular Bundles',
                   style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
               TextButton(
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 child: const Text('View all',
                     style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 13, fontWeight: FontWeight.w600)),
               ),
@@ -589,7 +590,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(price, style: const TextStyle(color: Color(0xFF0EA5A4), fontSize: 18, fontWeight: FontWeight.w800)),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0EA5A4),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -658,7 +659,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: const Color(0xFF7C3AED),
@@ -714,7 +715,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(width: 8),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 style: OutlinedButton.styleFrom(
                   foregroundColor: const Color(0xFF0EA5A4),
                   side: const BorderSide(color: Color(0xFF0EA5A4), width: 1),

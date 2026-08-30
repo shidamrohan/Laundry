@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class MembershipScreen extends StatefulWidget {
@@ -131,7 +132,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             icon: const Icon(Icons.help_outline, color: Color(0xFF64748B), size: 24),
             splashRadius: 22,
           ),
@@ -469,7 +470,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
         ),
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF0EA5A4),
           foregroundColor: Colors.white,

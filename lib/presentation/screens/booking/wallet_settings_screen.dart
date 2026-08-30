@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/phone_verification_bottom_sheet.dart';
 import 'package:laundry/presentation/screens/booking/change_phone_number_bottom_sheet.dart';
@@ -22,7 +23,7 @@ class WalletSettingsScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, color: Color(0xFF0EA5A4)),
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           ),
         ],
         bottom: PreferredSize(
@@ -55,7 +56,7 @@ class WalletSettingsScreen extends StatelessWidget {
                   icon: Icons.fingerprint,
                   label: 'Wallet security',
                   subtitle: 'PIN & biometrics for extra safety',
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 ),
               ]),
               const SizedBox(height: 24),
@@ -64,25 +65,25 @@ class WalletSettingsScreen extends StatelessWidget {
                   icon: Icons.help,
                   label: 'FAQs',
                   subtitle: 'Learn how VOSHIFY Wallet works',
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 ),
                 _buildSettingsItem(
                   icon: Icons.policy,
                   label: 'Privacy policy',
                   subtitle: 'How we protect your data',
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 ),
                 _buildSettingsItem(
                   icon: Icons.gavel,
                   label: 'Terms of use',
                   subtitle: 'Legal guidelines',
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 ),
                 _buildSettingsItem(
                   icon: Icons.support_agent,
                   label: 'Contact support',
                   subtitle: 'Get help from our team',
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 ),
               ]),
               const SizedBox(height: 24),
@@ -91,13 +92,13 @@ class WalletSettingsScreen extends StatelessWidget {
                   icon: Icons.report_problem,
                   label: 'Raise an issue',
                   subtitle: 'Report transaction problems',
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 ),
                 _buildSettingsItem(
                   icon: Icons.ios_share,
                   label: 'Export transactions',
                   subtitle: 'Download history as PDF/CSV',
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 ),
               ]),
               const SizedBox(height: 24),

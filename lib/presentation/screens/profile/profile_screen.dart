@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -27,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showGenderPicker() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Colors.white,
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -46,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showLanguagePicker() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Colors.white,
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -252,7 +253,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             bottom: 0,
                             right: 0,
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                               child: Container(
                                 width: 32,
                                 height: 32,
@@ -366,7 +367,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     const SizedBox(height: 8),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       child: Row(
                         children: const [
                           Icon(Icons.my_location, color: Color(0xFF0EA5A4), size: 18),
@@ -466,7 +467,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       constraints: const BoxConstraints(minHeight: 56),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: const Colors.white,
+        color: Colors.white,
         border: Border.all(color: const Color(0xFFE2E8E9)),
         borderRadius: BorderRadius.circular(12),
       ),

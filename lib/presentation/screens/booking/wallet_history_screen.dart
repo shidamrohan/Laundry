@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/filter_transactions_bottom_sheet.dart';
 import 'package:laundry/presentation/screens/booking/transaction_details_screen.dart';
@@ -103,7 +104,7 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
                           ),
                           const SizedBox(height: 32),
                           ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                             icon: const Icon(Icons.add, size: 20),
                             label: const Text('Add money', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                             style: ElevatedButton.styleFrom(
@@ -257,7 +258,7 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
                       ),
                       const SizedBox(width: 8),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                         child: const Icon(Icons.refresh, color: Color(0xFFF59E0B), size: 18),
                       ),
                     ],
@@ -295,11 +296,11 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen>
                   child: Text('Transactions', style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                   icon: const Icon(Icons.search, color: Color(0xFF0F172A)),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                   icon: const Icon(Icons.filter_list, color: Color(0xFF0F172A)),
                 ),
               ],

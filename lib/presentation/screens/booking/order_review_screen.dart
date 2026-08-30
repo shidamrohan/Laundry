@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // For CupertinoSwitch
 import 'package:laundry/presentation/screens/home/offers_screen.dart';
@@ -131,7 +132,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                   ],
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                   icon: const Icon(Icons.more_vert, color: Color(0xFF0F172A)),
                   splashRadius: 24,
                   padding: EdgeInsets.zero,

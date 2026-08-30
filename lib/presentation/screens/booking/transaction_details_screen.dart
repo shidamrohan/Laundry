@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class TransactionDetailsScreen extends StatefulWidget {
@@ -48,7 +49,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen>
         actions: [
           IconButton(
             icon: const Icon(Icons.share, color: Color(0xFF0EA5A4)),
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           ),
         ],
         bottom: PreferredSize(
@@ -228,7 +229,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen>
 
   Widget _buildSupportCard() {
     return InkWell(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -268,7 +269,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen>
       children: [
         // Download receipt
         InkWell(
-          onTap: () {},
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           borderRadius: BorderRadius.circular(16),
           child: Container(
             width: double.infinity,
@@ -292,7 +293,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen>
 
         // Share
         InkWell(
-          onTap: () {},
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           borderRadius: BorderRadius.circular(16),
           child: Container(
             width: double.infinity,
@@ -318,7 +319,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen>
 
         // Report issue link
         GestureDetector(
-          onTap: () {},
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           child: const Text(
             'Report an issue',
             style: TextStyle(

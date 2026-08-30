@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/services/item_customization_bottom_sheet.dart';
 import 'package:laundry/presentation/screens/booking/basket_screen.dart';
@@ -157,7 +158,7 @@ class _AddGarmentsScreenState extends State<AddGarmentsScreen> {
                 ],
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 icon: const Icon(Icons.search, color: Color(0xFF64748B)),
                 splashRadius: 24,
                 padding: EdgeInsets.zero,
@@ -266,7 +267,7 @@ class _AddGarmentsScreenState extends State<AddGarmentsScreen> {
 
   Widget _buildQuickAddChip(String label) {
     return InkWell(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       borderRadius: BorderRadius.circular(8),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

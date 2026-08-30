@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -297,7 +298,7 @@ class _OtpVerificationBottomSheetState extends State<OtpVerificationBottomSheet>
                                 ],
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                                 child: Row(
                                   children: const [
                                     Icon(Icons.call, color: Color(0xFF0EA5A4), size: 18),

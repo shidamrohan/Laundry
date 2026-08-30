@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/core/services/location_service.dart';
 import 'package:laundry/presentation/screens/location/search_address_screen.dart';
@@ -115,7 +116,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             icon: const Icon(Icons.mic, color: Color(0xFF0EA5A4), size: 24),
             splashRadius: 22,
           ),

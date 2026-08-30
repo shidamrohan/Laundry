@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -171,7 +172,7 @@ class _ChangePhoneNumberBottomSheetState extends State<ChangePhoneNumberBottomSh
                         children: [
                           // Country selector mock
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                               decoration: const BoxDecoration(

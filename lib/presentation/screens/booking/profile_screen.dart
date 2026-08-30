@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/your_orders_screen.dart';
 import 'package:laundry/presentation/screens/booking/address_book_screen.dart';
@@ -28,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, color: Color(0xFF111C2D)),
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           ),
           const SizedBox(width: 8),
         ],

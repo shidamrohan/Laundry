@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class ExportTransactionsBottomSheet extends StatefulWidget {
@@ -292,7 +293,7 @@ class _ExportTransactionsBottomSheetState extends State<ExportTransactionsBottom
                   if (subtitle != null) ...[
                     const SizedBox(height: 4),
                     GestureDetector(
-                      onTap: () {}, // e.g. open email edit dialog
+                      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); }, // e.g. open email edit dialog
                       child: Text(subtitle, style: const TextStyle(color: _primary, fontSize: 12, fontWeight: FontWeight.bold)),
                     ),
                   ],

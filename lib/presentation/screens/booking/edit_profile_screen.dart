@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert, color: Color(0xFF64748B)),
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           ),
         ],
         bottom: PreferredSize(
@@ -140,7 +141,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         const SizedBox(width: 8),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                           child: const Text('Change', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.bold)),
                         ),
                       ],
@@ -243,7 +244,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     boxShadow: const [BoxShadow(color: Color(0x330EA5A4), blurRadius: 16, offset: Offset(0, 4))],
                   ),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,

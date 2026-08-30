@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/services/price_list_screen.dart';
 import 'package:laundry/presentation/screens/services/service_detail_screen.dart';
@@ -211,7 +212,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                   ),
                   // Sort button
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     child: Row(
                       children: const [
                         Text('Sort: ',
@@ -590,7 +591,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                         SizedBox(
                           height: 32,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF0EA5A4),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

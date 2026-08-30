@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class ReportIssueScreen extends StatefulWidget {
@@ -120,7 +121,7 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
       width: double.infinity,
       height: 56,
       child: ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
         icon: const Icon(Icons.call),
         label: const Text('Call emergency helpline'),
         style: ElevatedButton.styleFrom(
@@ -382,7 +383,7 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
             width: double.infinity,
             height: 56,
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               icon: const Text('Submit report'),
               label: const Icon(Icons.send),
               style: ElevatedButton.styleFrom(

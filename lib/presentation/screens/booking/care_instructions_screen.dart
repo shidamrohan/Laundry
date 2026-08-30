@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // For CupertinoSwitch
 import 'package:laundry/presentation/screens/booking/add_photos_screen.dart';
@@ -196,7 +197,7 @@ class _CareInstructionsScreenState extends State<CareInstructionsScreen> {
                     decoration: BoxDecoration(color: const Color(0xFFEFF6F6), shape: BoxShape.circle),
                     child: IconButton(
                       icon: const Icon(Icons.mic, color: Color(0xFF0EA5A4), size: 20),
-                      onPressed: () {},
+                      onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       padding: EdgeInsets.zero,
                       splashRadius: 18,
                     ),

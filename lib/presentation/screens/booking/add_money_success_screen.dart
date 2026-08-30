@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class AddMoneySuccessScreen extends StatefulWidget {
@@ -81,7 +82,7 @@ class _AddMoneySuccessScreenState extends State<AddMoneySuccessScreen> with Sing
             SizedBox(
               width: double.infinity,
               child: TextButton.icon(
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 icon: const Icon(Icons.download, color: Color(0xFF0EA5A4), size: 20),
                 label: const Text('Download receipt', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 16, fontWeight: FontWeight.bold)),
                 style: TextButton.styleFrom(

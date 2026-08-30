@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class WalletActivatedScreen extends StatefulWidget {
@@ -114,7 +115,7 @@ class _WalletActivatedScreenState extends State<WalletActivatedScreen> with Sing
                 SizedBox(
                   width: double.infinity,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     style: TextButton.styleFrom(
                       foregroundColor: const Color(0xFF0EA5A4),
                       padding: const EdgeInsets.symmetric(vertical: 16),

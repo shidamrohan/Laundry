@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class RewardsScreen extends StatefulWidget {
@@ -212,7 +213,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                     const Text('Silver Tier Member', style: TextStyle(color: Color(0xE6FFFFFF), fontSize: 14, fontWeight: FontWeight.w500)),
                     const Spacer(),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         decoration: BoxDecoration(
@@ -334,7 +335,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                     ),
                     const SizedBox(width: 12),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                         decoration: BoxDecoration(
@@ -427,7 +428,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
           children: [
             const Text('Reward History', style: TextStyle(color: Color(0xFF0F172A), fontSize: 20, fontWeight: FontWeight.bold)),
             GestureDetector(
-              onTap: () {},
+              onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               child: const Text('See All', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.bold)),
             ),
           ],
@@ -493,7 +494,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.all(16),
@@ -532,7 +533,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
 
   Widget _buildPromoBanner() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       child: Container(
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
@@ -564,7 +565,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                 const Text('Earn 2x coins on every wash and get free pickup always.', style: TextStyle(color: Color(0xB3FFFFFF), fontSize: 13, height: 1.5)),
                 const SizedBox(height: 20),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                     decoration: BoxDecoration(

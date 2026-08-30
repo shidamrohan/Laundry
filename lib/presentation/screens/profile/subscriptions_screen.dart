@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class SubscriptionsScreen extends StatefulWidget {
@@ -180,7 +181,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             icon: const Icon(Icons.notifications_none, color: Color(0xFF0F172A), size: 24),
             splashRadius: 22,
           ),
@@ -501,7 +502,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
               Text('Invite friends to VOSHIFY and get 1 extra bag credit for every successful referral.', style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 13, height: 1.4)),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: const Color(0xFF0EA5A4),
@@ -530,7 +531,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
       child: SafeArea(
         top: false,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF0EA5A4),
             foregroundColor: Colors.white,

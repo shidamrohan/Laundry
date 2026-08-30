@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/main_layout_screen.dart';
 
@@ -55,7 +56,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> with Single
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF0EA5A4),
                       foregroundColor: Colors.white,
@@ -88,7 +89,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> with Single
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 120),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           backgroundColor: const Color(0xFF0EA5A4),
           foregroundColor: Colors.white,
           elevation: 8,
@@ -280,7 +281,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> with Single
         children: [
           Expanded(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF0EA5A4),
                 foregroundColor: Colors.white,
@@ -302,7 +303,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> with Single
           const SizedBox(width: 16),
           Expanded(
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: const Color(0xFF0F172A),

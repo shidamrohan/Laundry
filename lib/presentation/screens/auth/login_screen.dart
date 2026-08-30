@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/auth/otp_screen.dart';
 
@@ -165,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         // Country Code picker
                         InkWell(
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                           borderRadius: const BorderRadius.horizontal(left: Radius.circular(12)),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -281,14 +282,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       Expanded(
                         child: _SocialButton(
                           iconUrl: 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png',
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                         ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: _SocialButton(
                           iconUrl: 'https://cdn-icons-png.flaticon.com/512/0/747.png',
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                           isDarkIcon: true,
                         ),
                       ),
@@ -296,7 +297,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Expanded(
                         child: _SocialButton(
                           icon: Icons.more_horiz,
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                         ),
                       ),
                     ],

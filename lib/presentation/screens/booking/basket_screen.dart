@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/care_instructions_screen.dart';
 
@@ -126,7 +127,7 @@ class _BasketScreenState extends State<BasketScreen> {
                   ],
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                   icon: const Icon(Icons.more_vert, color: Color(0xFF0F172A)),
                   splashRadius: 24,
                   padding: EdgeInsets.zero,
@@ -285,7 +286,7 @@ class _BasketScreenState extends State<BasketScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                                 child: const Text('Edit', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 12, fontWeight: FontWeight.bold)),
                               ),
                               Container(
@@ -403,7 +404,7 @@ class _BasketScreenState extends State<BasketScreen> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                   child: Row(
                     children: const [
                       Text('View break-up', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.bold)),

@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/location/address_selection_screen.dart';
 import 'package:laundry/presentation/screens/services/item_customization_bottom_sheet.dart';
@@ -461,7 +462,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
             children: [
               const Text('Customer feedback', style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
               TextButton(
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 child: const Text('View all', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 13, fontWeight: FontWeight.w600)),
               ),
             ],
@@ -566,7 +567,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
 
   Widget _buildSimilarCard({required String title, required String price, required IconData icon}) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       child: Container(
         width: 140,
         padding: const EdgeInsets.all(12),

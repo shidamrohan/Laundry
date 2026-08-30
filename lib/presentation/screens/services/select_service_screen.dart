@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/add_garments_screen.dart';
 
@@ -124,7 +125,7 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             icon: const Icon(Icons.grid_view, color: Color(0xFF0F172A)),
             splashRadius: 24,
             padding: EdgeInsets.zero,

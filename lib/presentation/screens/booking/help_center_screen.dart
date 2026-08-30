@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class HelpCenterScreen extends StatefulWidget {
@@ -32,7 +33,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Color(0xFF64748B)),
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
           ),
           const SizedBox(width: 8),
         ],
@@ -254,7 +255,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
 
   Widget _buildFeedbackButton(IconData icon, String label, bool isNegative) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
@@ -313,7 +314,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               icon: const Icon(Icons.chat, color: Colors.white, size: 20),
               label: const Text('Contact support', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               style: ElevatedButton.styleFrom(

@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class PriceListScreen extends StatefulWidget {
@@ -191,7 +192,7 @@ class _PriceListScreenState extends State<PriceListScreen> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             icon: const Icon(Icons.search, color: Color(0xFF0F172A), size: 24),
             splashRadius: 22,
           ),
@@ -471,7 +472,7 @@ class _PriceListScreenState extends State<PriceListScreen> {
                   color: const Color(0xFF0EA5A4).withValues(alpha: 0.05),
                   width: double.infinity,
                   child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     icon: const SizedBox(),
                     label: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -549,7 +550,7 @@ class _PriceListScreenState extends State<PriceListScreen> {
                 ),
                 const SizedBox(height: 14),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: const Color(0xFF0EA5A4),
@@ -622,7 +623,7 @@ class _PriceListScreenState extends State<PriceListScreen> {
           ),
           const SizedBox(width: 12),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF0EA5A4),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

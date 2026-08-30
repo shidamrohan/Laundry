@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/core/services/location_service.dart';
 import 'package:laundry/presentation/screens/location/add_address_screen.dart';
@@ -362,7 +363,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
 
   Widget _buildMapPreview() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
       child: Container(
         height: 192,
         decoration: BoxDecoration(

@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // For CupertinoSwitch
 
@@ -183,7 +184,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
         Text(subtitle, style: const TextStyle(color: Color(0xFF64748B), fontSize: 14)),
         const SizedBox(height: 4),
         GestureDetector(
-          onTap: () {}, // Action to change
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); }, // Action to change
           child: const Text('Change', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.bold)),
         ),
       ],
@@ -231,7 +232,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
             children: [
               const Text('Saved combinations', style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
               GestureDetector(
-                onTap: () {},
+                onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                 child: const Text('View all', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 14, fontWeight: FontWeight.bold)),
               ),
             ],
@@ -293,7 +294,7 @@ class _AddressSelectionScreenState extends State<AddressSelectionScreen> {
           SizedBox(
             width: double.infinity,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
               style: TextButton.styleFrom(
                 backgroundColor: const Color(0xFF0EA5A4).withValues(alpha: 0.1),
                 foregroundColor: const Color(0xFF0EA5A4),

@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 
 class WalletLockedScreen extends StatelessWidget {
@@ -94,12 +95,12 @@ class WalletLockedScreen extends StatelessWidget {
                             _buildOptionButton(
                               icon: Icons.fingerprint,
                               label: 'Unlock with biometrics',
-                              onTap: () {},
+                              onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                             ),
                             const SizedBox(width: 12),
                             _buildOptionButton(
                               label: 'Enter wallet PIN',
-                              onTap: () {},
+                              onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                             ),
                           ],
                         ),
@@ -109,7 +110,7 @@ class WalletLockedScreen extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF0EA5A4),
                               foregroundColor: Colors.white,
@@ -125,7 +126,7 @@ class WalletLockedScreen extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                             style: TextButton.styleFrom(
                               foregroundColor: const Color(0xFF64748B),
                               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -136,7 +137,7 @@ class WalletLockedScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                           child: const Text(
                             'Forgot PIN?',
                             style: TextStyle(
@@ -151,7 +152,7 @@ class WalletLockedScreen extends StatelessWidget {
 
                         // Footer Support Anchor
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [

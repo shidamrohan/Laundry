@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laundry/presentation/screens/booking/otp_verification_bottom_sheet.dart';
@@ -139,7 +140,7 @@ class _PhoneVerificationBottomSheetState extends State<PhoneVerificationBottomSh
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                           child: const Text('Change', style: TextStyle(color: Color(0xFF0EA5A4), fontWeight: FontWeight.bold, fontSize: 14)),
                         ),
                       ],

@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // For CupertinoSwitch
 import 'package:laundry/core/services/location_service.dart';
@@ -86,7 +87,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             child: Text('Edit Address', style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold)),
           ),
           TextButton.icon(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             style: TextButton.styleFrom(
               foregroundColor: const Color(0xFFDC2626),
               backgroundColor: const Color(0xFFDC2626).withValues(alpha: 0.05),
@@ -148,7 +149,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF0EA5A4),
                       foregroundColor: Colors.white,

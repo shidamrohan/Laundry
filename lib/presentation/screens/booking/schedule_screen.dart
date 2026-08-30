@@ -1,3 +1,4 @@
+import 'package:laundry/presentation/screens/placeholder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry/presentation/screens/booking/schedule_delivery_screen.dart';
 
@@ -100,7 +101,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           ),
           const Text('Schedule Pickup', style: TextStyle(color: Color(0xFF0EA5A4), fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: -0.5)),
           IconButton(
-            onPressed: () {},
+            onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen())); },
             icon: const Icon(Icons.help_outline, color: Color(0xFF64748B)),
             splashRadius: 24,
             padding: EdgeInsets.zero,
