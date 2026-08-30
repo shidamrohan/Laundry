@@ -10,7 +10,8 @@ import 'package:laundry/presentation/screens/booking/about_screen.dart';
 import 'package:laundry/presentation/screens/booking/report_issue_screen.dart';
 import 'package:laundry/presentation/screens/booking/logout_confirmation_dialog.dart';
 import 'package:laundry/presentation/screens/booking/edit_profile_screen.dart';
-
+import 'package:laundry/presentation/screens/booking/wallet_screen.dart';
+import 'package:laundry/presentation/screens/booking/coupons_offers_screen.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -42,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 24),
             _buildMembershipCard(),
             const SizedBox(height: 24),
-            _buildQuickActionRow(),
+            _buildQuickActionRow(context),
             const SizedBox(height: 32),
             _buildSettingsGroups(context),
             const SizedBox(height: 32),
@@ -185,7 +186,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuickActionRow() {
+  Widget _buildQuickActionRow(BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -195,6 +196,7 @@ class ProfileScreen extends StatelessWidget {
             iconBgColor: const Color(0x1A0EA5A4),
             title: 'Wallet',
             value: '₹1,250',
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const WalletScreen())),
           ),
         ),
         const SizedBox(width: 16),
@@ -205,42 +207,46 @@ class ProfileScreen extends StatelessWidget {
             iconBgColor: const Color(0x1A2563EB),
             title: 'Coupons',
             value: '6 available',
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CouponsOffersScreen())),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildQuickActionCard({required IconData icon, required Color iconColor, required Color iconBgColor, required String title, required String value}) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
-        boxShadow: const [BoxShadow(color: Color(0x05000000), blurRadius: 4, offset: Offset(0, 2))],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 40, height: 40,
-                decoration: BoxDecoration(color: iconBgColor, borderRadius: BorderRadius.circular(12)),
-                alignment: Alignment.center,
-                child: Icon(icon, color: iconColor, size: 20),
-              ),
-              const Icon(Icons.chevron_right, color: Color(0x663D4949), size: 20),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(title, style: const TextStyle(color: Color(0xB33D4949), fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
-          const SizedBox(height: 4),
-          Text(value, style: const TextStyle(color: Color(0xFF111C2D), fontSize: 18, fontWeight: FontWeight.w600)),
-        ],
+  Widget _buildQuickActionCard({required IconData icon, required Color iconColor, required Color iconBgColor, required String title, required String value, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: const Color(0xFFE2E8F0)),
+          boxShadow: const [BoxShadow(color: Color(0x05000000), blurRadius: 4, offset: Offset(0, 2))],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 40, height: 40,
+                  decoration: BoxDecoration(color: iconBgColor, borderRadius: BorderRadius.circular(12)),
+                  alignment: Alignment.center,
+                  child: Icon(icon, color: iconColor, size: 20),
+                ),
+                const Icon(Icons.chevron_right, color: Color(0x663D4949), size: 20),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(title, style: const TextStyle(color: Color(0xB33D4949), fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
+            const SizedBox(height: 4),
+            Text(value, style: const TextStyle(color: Color(0xFF111C2D), fontSize: 18, fontWeight: FontWeight.w600)),
+          ],
+        ),
       ),
     );
   }
@@ -254,7 +260,9 @@ class ProfileScreen extends StatelessWidget {
           items: [
             _SettingsItem(icon: Icons.local_laundry_service, iconColor: const Color(0xFF0EA5A4), title: 'Your orders', subtitle: 'Track, cancel, or reorder', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const YourOrdersScreen()))),
             _SettingsItem(icon: Icons.location_on, iconColor: const Color(0xFF0EA5A4), title: 'Address book', subtitle: 'Manage home and office addresses', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AddressBookScreen()))),
-            _SettingsItem(icon: Icons.bookmark, iconColor: const Color(0xFF0EA5A4), title: 'Saved services', subtitle: 'Quick access to frequent needs'),
+            _SettingsItem(icon: Icons.bookmark, iconColor: const Color(0xFF0EA5A4), title: 'Saved services', subtitle: 'Quick access to frequent needs', onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved services coming soon!')));
+            }),
           ],
         ),
         const SizedBox(height: 32),
@@ -271,7 +279,9 @@ class ProfileScreen extends StatelessWidget {
           items: [
             _SettingsItem(icon: Icons.notifications_active, iconColor: const Color(0xFF0EA5A4), title: 'Notifications', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationSettingsScreen()))),
             _SettingsItem(icon: Icons.palette, iconColor: const Color(0xFF0EA5A4), title: 'Appearance', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AccessibilitySettingsScreen()))),
-            _SettingsItem(icon: Icons.language, iconColor: const Color(0xFF0EA5A4), title: 'Language'),
+            _SettingsItem(icon: Icons.language, iconColor: const Color(0xFF0EA5A4), title: 'Language', onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Language settings coming soon!')));
+            }),
           ],
         ),
         const SizedBox(height: 32),
