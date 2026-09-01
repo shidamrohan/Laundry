@@ -219,14 +219,15 @@ class _WalletScreenState extends State<WalletScreen> {
 
   Widget _buildQuickActions() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildActionItem(Icons.send, 'Send'),
-          _buildActionItem(Icons.loyalty, 'Redeem'),
-          _buildActionItem(Icons.swap_horiz, 'Transfer'),
-          _buildDisabledActionItem(Icons.qr_code_scanner, 'Scan QR\n(soon)'),
+          Expanded(child: _buildActionItem(Icons.send, 'Send')),
+          Expanded(child: _buildActionItem(Icons.loyalty, 'Redeem')),
+          Expanded(child: _buildActionItem(Icons.swap_horiz, 'Transfer')),
+          Expanded(child: _buildDisabledActionItem(Icons.qr_code_scanner, 'Scan QR\n(soon)')),
         ],
       ),
     );
@@ -334,7 +335,7 @@ class _WalletScreenState extends State<WalletScreen> {
             crossAxisCount: 2,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            childAspectRatio: 2.2,
+            childAspectRatio: 1.8,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: [
